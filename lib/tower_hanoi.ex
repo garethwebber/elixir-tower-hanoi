@@ -1,18 +1,8 @@
 defmodule TowerHanoi do
-  @moduledoc """
-  Documentation for `TowerHanoi`.
-  """
-
   @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> TowerHanoi.hello()
-      :world
-
+  Tower of Hanoi
   """
-  def hello do
-    :world
+  def run() do
+    IO.puts "Tower of Hanoi"
   end
 end
