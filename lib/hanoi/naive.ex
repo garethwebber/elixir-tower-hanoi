@@ -1,8 +1,8 @@
 defmodule Hanoi.Naive do
   require Logger
   
-  def move_plates(_board) do
-    algo(3, :left, :centre, :right)
+  def move_stones(_board, stones) do
+    algo(stones, :left, :centre, :right)
   end
 
   defp algo(disk_numbers, source, auxilary, destination) do

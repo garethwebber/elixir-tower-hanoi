@@ -6,17 +6,17 @@ defmodule Hanoi.Board do
     right: []
   ]
   
-  def create_board(plates) do
-    %Board{ left: create_loaded_stack(plates) }
+  def create_board(stones) do
+    %Board{ left: create_loaded_stack(stones) }
   end
 
-  def create_loaded_stack(plates) do
-      create_stack_int([], plates, 1)
+  def create_loaded_stack(stones) do
+      create_stack_int([], stones, 1)
   end
 
   defp create_stack_int(stack, 0, _counter) do stack end
-  defp create_stack_int(stack, platesleft, counter) do
-    create_stack_int([counter|stack], (platesleft - 1) , (counter + 1))
+  defp create_stack_int(stack, stonesleft, counter) do
+    create_stack_int([counter|stack], (stonesleft - 1) , (counter + 1))
   end
 
 end
