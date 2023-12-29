@@ -24,8 +24,6 @@ defmodule Hanoi.Naive do
     {:ok, [head|tail]} = Map.fetch(board, from) 
     {:ok, to_contents} = Map.fetch(board, to)
 
-    Logger.info "Moving #{head} from  #{from} -> #{to}" 
-    
     intboard = Map.put(board, from, tail)
     newboard = Map.put(intboard, to, [head|to_contents])
 
