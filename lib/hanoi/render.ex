@@ -10,7 +10,7 @@ defmodule Hanoi.Render do
   defp reverse_to_string([]) do "" end
   defp reverse_to_string(input) do
    [head|tail] = input 
-   " #{head}" <> reverse_to_string(tail)
+   reverse_to_string(tail) <> " #{head}"
   end
 end
 
