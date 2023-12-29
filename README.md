@@ -11,7 +11,8 @@ number too high (20 takes 20 odd seconds and each extra doubles it).
 
 To see the results
 
-```cat hanoi.log    
+```
+cat hanoi.log    
 18:38:52.969 [info] State: %Hanoi.Board{left: [1, 2, 3], centre: [], right: []}
 18:38:52.973 [info] Moving 1 from  left -> right
 18:38:52.973 [info] State: %Hanoi.Board{left: [2, 3], centre: [], right: [1]}
