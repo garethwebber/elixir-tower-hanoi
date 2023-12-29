@@ -11,12 +11,12 @@ defmodule Hanoi.Board do
   end
 
   def create_loaded_stack(stones) do
-      create_stack_int([], stones, 1)
+      create_stack_int([], stones)
   end
 
-  defp create_stack_int(stack, 0, _counter) do stack end
-  defp create_stack_int(stack, stonesleft, counter) do
-    create_stack_int([counter|stack], (stonesleft - 1) , (counter + 1))
+  defp create_stack_int(stack, 0) do stack end
+  defp create_stack_int(stack, stonesleft) do
+    create_stack_int([stonesleft|stack], (stonesleft - 1))
   end
 
 end
