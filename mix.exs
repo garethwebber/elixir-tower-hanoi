@@ -36,7 +36,7 @@ defmodule TowerHanoi.MixProject do
 
   defp docs do
     [
-      extras: ["README.md"]
+      extras: ["README.md", "LICENSE"]
     ]
   end
 end
