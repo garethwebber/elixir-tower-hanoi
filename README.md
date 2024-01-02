@@ -16,7 +16,7 @@ Build the executable with ```mix escript.build```.
 
 If you want to run the tests, ```mix test```.
 
-If you want documents, run ```mix docs``` and point your browser at docuements
+If you want documents, run ```mix docs``` and point your browser at documents
 directory.
 
 To run then call ```./tower_hanoi <stones>``` being careful not to set the
