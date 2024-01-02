@@ -1,4 +1,11 @@
 defmodule Hanoi.CLI do
+  @moduledoc """
+  Process command line arguments picking out inital stones to process, or help 
+  """
+
+  @doc """
+  Parses command like argumennts and returns number of stones, or help. 
+  """
   def parse_args(argv) do
     OptionParser.parse(argv,
       switches: [help: :boolean],

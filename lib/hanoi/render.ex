@@ -1,4 +1,12 @@
 defmodule Hanoi.Render do
+  @moduledoc """
+  Functions for converting the internal data representation to a 
+  human-readable format.
+  """
+  
+  @doc """
+  Renders a board <struct> as a <String>. 
+  """
   def render_to_string(board) do
     "State:\n" <>
       "L" <> reverse_to_string(board.left) <> "\n" <>
