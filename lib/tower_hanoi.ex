@@ -27,7 +27,7 @@ defmodule TowerHanoi do
     create_board(stones)
     |> run_algo()
 
-    IO.puts("#{stones} took #{get_runtime(timer)}")
+    IO.puts("\n#{stones} stones took #{get_runtime(timer)}.")
   end
 
   defp start_timer(time_period) do

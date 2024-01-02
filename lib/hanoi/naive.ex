@@ -11,7 +11,7 @@ defmodule Hanoi.Naive do
   """
   def run_algo(board) do
     disk_numbers = length(board.left)
-    Logger.info(Hanoi.Render.render_to_string(board))
+    IO.puts(Hanoi.Render.render_to_string(board))
     algo(board, disk_numbers, :left, :centre, :right)
   end
 
@@ -44,7 +44,7 @@ defmodule Hanoi.Naive do
         intboard = Map.put(board, from, tail)
         newboard = Map.put(intboard, to, [head | to_contents])
 
-        Logger.info(Hanoi.Render.render_to_string(newboard))
+        IO.puts(Hanoi.Render.render_to_string(newboard))
         {:ok, newboard}
     end
   end

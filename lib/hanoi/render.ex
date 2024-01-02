@@ -8,7 +8,7 @@ defmodule Hanoi.Render do
   Renders a board <struct> as a <String>. 
   """
   def render_to_string(board) do
-    "State:\n" <>
+    "\n" <>
       "L" <> reverse_to_string(board.left) <> "\n" <>
       "C" <> reverse_to_string(board.centre) <> "\n" <>
       "R" <> reverse_to_string(board.right)
