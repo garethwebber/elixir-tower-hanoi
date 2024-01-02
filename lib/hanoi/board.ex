@@ -1,5 +1,4 @@
 defmodule Hanoi.Board do
-  alias Hanoi.Board
 
   defstruct left: [],
             centre: [],
