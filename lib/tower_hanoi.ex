@@ -15,23 +15,28 @@ defmodule TowerHanoi do
     process(parse_args(argv))
   end
 
-  @doc """
-  Sets up data structures based on stones provided and runs algorithm, or
-  prints out help text. 
-  """
-  def process(:help) do
+  defp process(:help) do
     IO.puts("Usage: tower_hanoi <stones>\n")
     IO.puts("Remember not to go to high. 20 takes 20 seconds and each extra")
     IO.puts("doubles that. Results are recorded in hanoi.log.\n")
   end
 
-  def process(stones) do
-    timer = System.system_time(:second)
+  defp process(stones) do
+    timer = start_timer(:millisecond)
 
     create_board(stones)
     |> run_algo()
 
-    runtime = System.system_time(:second) - timer
-    IO.puts("#{stones} took #{runtime} seconds")
+    IO.puts("#{stones} took #{get_runtime(timer)}")
+  end
+
+  defp start_timer(time_period) do
+    {time_period, System.system_time(time_period)}
+  end
+
+  defp get_runtime(timer) do
+    {time_period, start_time} = timer
+
+    "#{System.system_time(time_period) - start_time} #{time_period}(s)"
   end
 end

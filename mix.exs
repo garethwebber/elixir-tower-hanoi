@@ -5,7 +5,7 @@ defmodule TowerHanoi.MixProject do
     [
       app: :tower_hanoi,
       escript: escript_config(),
-      version: "0.1.0",
+      version: "0.2.0",
       elixir: "~> 1.16",
       name: "Towers of Hanoi",
       source_url: "https://github.com/garethwebber/elixir-tower-hanoi",
