@@ -18,7 +18,7 @@ defmodule TowerHanoi do
      timer = System.system_time(:second)
      
      create_board(stones)
-     |> move_stones()
+     |> run_algo()
      
      runtime = System.system_time(:second) - timer
      IO.puts "#{stones} took #{runtime} seconds"
