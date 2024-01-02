@@ -1,6 +1,5 @@
 defmodule RenderTest do
   use ExUnit.Case
-  doctest TowerHanoi
 
   require Hanoi.Board
   require Hanoi.Render

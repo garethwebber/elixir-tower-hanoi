@@ -1,6 +1,5 @@
 defmodule NaiveTest do
   use ExUnit.Case
-  doctest TowerHanoi
 
   require Hanoi.Board
   require Hanoi.Naive

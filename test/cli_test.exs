@@ -1,6 +1,5 @@
 defmodule CLITest do
   use ExUnit.Case
-  doctest TowerHanoi
 
   import Hanoi.CLI
 
