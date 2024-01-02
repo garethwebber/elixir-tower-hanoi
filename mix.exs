@@ -11,20 +11,16 @@ defmodule TowerHanoi.MixProject do
       source_url: "https://github.com/garethwebber/elixir-tower-hanoi",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
-      docs: [
-        extras: ["README.md"]
-      ]
+      docs: docs()
     ]
   end
 
-  # Run "mix help compile.app" to learn about applications.
   def application do
     [
       extra_applications: [:logger, :logger_file_backend]
     ]
   end
 
-  # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
       {:logger_file_backend, "~> 0.0.10"},
@@ -35,6 +31,12 @@ defmodule TowerHanoi.MixProject do
   defp escript_config do
     [
       main_module: TowerHanoi
+    ]
+  end
+
+  defp docs do
+    [
+      extras: ["README.md"]
     ]
   end
 end
