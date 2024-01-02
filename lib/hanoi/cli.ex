@@ -1,14 +1,22 @@
 defmodule Hanoi.CLI do
   
   def parse_args(argv) do
-    parse = OptionParser.parse(argv,
-                               switches: [ help: :boolean],
-                               aliases:  [h:     :help])
+    OptionParser.parse(argv,
+                       switches: [ help: :boolean],
+                       aliases:  [h:     :help])
+    |> elem(1)
+    |> process_args()
+  end
 
-    case parse do
-      { [help: true ], _ , _} -> :help
-      { _, [stones], _ }      -> String.to_integer(stones) 
-      _                       -> :help
+  defp process_args([stones]) do
+    case Integer.parse(stones) do
+     :error -> :help
+     {value, _remainder} -> value
     end
   end
+  
+  defp process_args(_) do
+   :help
+  end
+
 end
