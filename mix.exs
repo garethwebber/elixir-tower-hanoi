@@ -8,9 +8,12 @@ defmodule TowerHanoi.MixProject do
       version: "0.1.0",
       elixir: "~> 1.16",
       name: "Towers of Hanoi",
-      source_url: "ihttps://github.com/garethwebber/elixir-tower-hanoi",
+      source_url: "https://github.com/garethwebber/elixir-tower-hanoi",
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+      docs: [
+        extras: ["README.md"]
+      ]
     ]
   end
 
