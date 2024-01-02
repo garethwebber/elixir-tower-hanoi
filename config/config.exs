@@ -1,9 +1,9 @@
 import Config
 
-config :logger, 
+config :logger,
   backends: [{LoggerFileBackend, :error_log}],
   format: "[$level] $message\n"
 
-config :logger, :error_log, 
+config :logger, :error_log,
   path: "hanoi.log",
   level: :debug

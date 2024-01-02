@@ -17,7 +17,7 @@ defmodule TowerHanoi.MixProject do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
-      extra_applications: [:logger, :logger_file_backend ]
+      extra_applications: [:logger, :logger_file_backend]
     ]
   end
 
@@ -25,9 +25,10 @@ defmodule TowerHanoi.MixProject do
   defp deps do
     [
       {:logger_file_backend, "~> 0.0.10"},
-      {:ex_doc, "~> 0.31", only: :dev, runtime: false},
+      {:ex_doc, "~> 0.31", only: :dev, runtime: false}
     ]
   end
+
   defp escript_config do
     [
       main_module: TowerHanoi
