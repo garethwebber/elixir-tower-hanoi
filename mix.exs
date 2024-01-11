@@ -1,15 +1,19 @@
 defmodule TowerHanoi.MixProject do
   use Mix.Project
 
+  @version "0.2.0" 
+  @repo_url "https://github.com/garethwebber/elixir-tower-hanoi"
+
   def project do
     [
       app: :tower_hanoi,
       escript: escript_config(),
-      version: "0.2.0",
+      version: @version,
       elixir: "~> 1.16",
       name: "Towers of Hanoi",
-      source_url: "https://github.com/garethwebber/elixir-tower-hanoi",
+      source_url: @repo_url,
       start_permanent: Mix.env() == :prod,
+      package: package(),
       deps: deps(),
       docs: docs()
     ]
@@ -18,6 +22,16 @@ defmodule TowerHanoi.MixProject do
   def application do
     [
       extra_applications: [:logger, :logger_file_backend]
+    ]
+  end
+
+  defp package do
+    [
+      description: "Towers of Hanoi library",
+      maintainers: ["Gareth Webber"],
+      licenses: ["Apache-2.0"],
+      links: %{"GitHub" => @repo_url},
+      files: ~w(lib mix.exs *.md)
     ]
   end
 
