@@ -8,6 +8,17 @@ functions so I designed it this way.
 
 Obviously having written this as a critique of structure - feel free to comment on what I have done. All greatfully accepted.
 
+## Building
+
+To run, first get dependencies, ```mix deps.get```.  
+
+Build the executable with ```mix escript.build```.
+
+If you want to run the tests, ```mix test```.
+
+If you want documents, run ```mix docs``` and point your browser at documents
+directory.
+
 ## Running GenServer
 
 ```
@@ -27,15 +38,6 @@ iex(4)> Hanoi.TowerState.get_state(pid)
 ```
 
 ## Running from command line
-
-To run, first get dependencies, ```mix deps.get```.  
-
-Build the executable with ```mix escript.build```.
-
-If you want to run the tests, ```mix test```.
-
-If you want documents, run ```mix docs``` and point your browser at documents
-directory.
 
 To run then call ```./tower_hanoi <stones>``` being careful not to set the
 number too high (20 takes 20 odd seconds and each extra doubles it).
