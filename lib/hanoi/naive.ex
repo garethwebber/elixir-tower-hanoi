@@ -18,12 +18,12 @@ defmodule Hanoi.Naive do
   defp algo(board, disk_numbers, source, auxilary, destination) do
     cond do
       disk_numbers == 1 ->
-        {:ok, newboard} = move_stone(board, source, destination)
+        {:ok, newboard} = move_stone(board, source, destination, true)
         newboard
 
       true ->
         intboard = algo(board, disk_numbers - 1, source, destination, auxilary)
-        {:ok, newboard} = move_stone(intboard, source, destination)
+        {:ok, newboard} = move_stone(intboard, source, destination, true)
         algo(newboard, disk_numbers - 1, auxilary, source, destination)
     end
   end
@@ -31,7 +31,7 @@ defmodule Hanoi.Naive do
   @doc """
   Returns a new board with stone moved, or an error if an invalid move 
   """
-  def move_stone(board, from, to) do
+  def move_stone(board, from, to, debug) do
     case is_valid_move(board, from, to) do
       false ->
         Logger.error("Invalid move #{from}->#{to}")
@@ -44,7 +44,9 @@ defmodule Hanoi.Naive do
         intboard = Map.put(board, from, tail)
         newboard = Map.put(intboard, to, [head | to_contents])
 
-        IO.puts(Hanoi.Render.render_to_string(newboard))
+        if debug do
+          IO.puts(Hanoi.Render.render_to_string(newboard))
+        end
         {:ok, newboard}
     end
   end

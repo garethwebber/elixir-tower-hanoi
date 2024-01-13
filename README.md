@@ -28,14 +28,11 @@ iex(1)> {:ok, pid} = Hanoi.TowerState.start_link(%{"name" => "hello"})
 iex(2)> Hanoi.TowerState.get_state(pid)
 %Hanoi.Board{left: [1, 2, 3], centre: [], right: []}
 iex(3)> Hanoi.TowerState.move_stone(pid, :left, :centre)
-
-L 3 2
-C 1
-R
 :ok
-iex(4)> Hanoi.TowerState.get_state(pid)
-%Hanoi.Board{left: [2, 3], centre: [1], right: []}
-```
+iex(4)> Hanoi.TowerState.move_stone(pid, :left, :right)
+:ok
+iex(5)> Hanoi.TowerState.get_state(pid)
+%Hanoi.Board{left: [3], centre: [1], right: [2]}```
 
 ## Running from command line
 

@@ -39,7 +39,7 @@ defmodule Hanoi.TowerState do
   end
 
   def handle_call({:move_stone, from, to}, _sender, data) do
-    with {:ok, newstate} <- Hanoi.Naive.move_stone(data.state, from, to) do 
+    with {:ok, newstate} <- Hanoi.Naive.move_stone(data.state, from, to, false) do 
       newdata = %{data | :state => newstate}
       {:reply, :ok, newdata}
     else _ ->
