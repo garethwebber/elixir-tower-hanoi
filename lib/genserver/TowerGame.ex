@@ -4,7 +4,6 @@ defmodule Hanoi.TowerGame do
   def child_spec(opts) do
     %{
       id: (opts[:name] || raise ArgumentError, "Cache name is required"),
-      stones: (opts[:stones] || raise ArgumentError, "Number of stones required"),
       start: {__MODULE__, :start_link, [opts]},
     }
   end
