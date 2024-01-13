@@ -29,14 +29,14 @@ defmodule NaiveTest do
     start = %Hanoi.Board{left: [1, 3], centre: [2]}
     expected_end = %Hanoi.Board{left: [3], centre: [1, 2]}
 
-    {:ok, output} = Hanoi.Naive.move_stone(start, :left, :centre)
+    {:ok, output} = Hanoi.Naive.move_stone(start, :left, :centre, false)
     assert output == expected_end
   end
 
   test "does move_stone error on an incorrect move" do
     start = %Hanoi.Board{left: [3], centre: [2]}
 
-    {value, _board} = Hanoi.Naive.move_stone(start, :left, :centre)
+    {value, _board} = Hanoi.Naive.move_stone(start, :left, :centre, false)
     assert value == :error
   end
 

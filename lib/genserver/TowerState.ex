@@ -58,9 +58,9 @@ defmodule Hanoi.TowerState do
   
   def handle_call({:move_stone, from, to}, _sender, data) do
     with [{_key, state}] <- :ets.lookup(data.table, :state),
-         {:ok, newstate} <- Hanoi.Naive.move_stone(state, from, to, false)
+         {:ok, newstate} <- Hanoi.Naive.move_stone(state, from, to, false),
+         true            <- :ets.insert(data.table, {:state, newstate})
     do 
-      :ets.insert(data.table, {:state, newstate})
       {:reply, :ok, data}
     else _ ->
       Logger.error("Move stone from #{from} to #{to} failed.")
