@@ -25,6 +25,10 @@ defmodule Hanoi.TowerState do
   def move_stone(server, from, to) do
     GenServer.call(server, {:move_stone, from, to})
   end
+  
+  def get_moves(server) do
+    GenServer.call(server, {:get_moves})
+  end
  
   def init(opts) do
     {:ok, %{table: opts[:name], stones: opts[:stones]}, {:continue, :load}}
@@ -64,6 +68,17 @@ defmodule Hanoi.TowerState do
       {:reply, :ok, data}
     else _ ->
       Logger.error("Move stone from #{from} to #{to} failed.")
+      {:reply, :error, data}
+    end
+  end
+
+  def handle_call({:get_moves}, _sender, data) do
+      with [{_key, state}] <- :ets.lookup(data.table, :state),
+           {:ok, moves}    <- Hanoi.Naive.get_moves(state)
+    do
+      {:reply, moves, data}   
+    else _ ->
+      Logger.error("Move algorithm failed.")
       {:reply, :error, data}
     end
   end

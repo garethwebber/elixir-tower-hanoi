@@ -26,6 +26,10 @@ defmodule Hanoi.TowerGame do
     Hanoi.TowerState.move_stone(storage_name(name), from, to)
   end
 
+  def get_moves(name) do
+    Hanoi.TowerState.get_moves(storage_name(name))
+  end
+
   def init(opts) do
     name = opts[:name]
     stones = opts[:stones]
