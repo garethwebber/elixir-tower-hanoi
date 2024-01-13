@@ -25,15 +25,15 @@ To start run ```iex -S mix```.
 
 ```
 Interactive Elixir (1.16.0) - press Ctrl+C to exit (type h() ENTER for help)
-iex(1)> {:ok, pid} = Hanoi.TowerState.start_link(%{"name" => "hello"})
+iex(1)> Hanoi.TowerGame.start_link(%{:name => :hello})
 {:ok, #PID<0.186.0>}
-iex(2)> Hanoi.TowerState.get_state(pid)
+iex(2)> Hanoi.TowerGame.get_state(:hello)
 %Hanoi.Board{left: [1, 2, 3], centre: [], right: []}
-iex(3)> Hanoi.TowerState.move_stone(pid, :left, :centre)
+iex(3)> Hanoi.TowerGame.move_stone(:hello, :left, :centre)
 :ok
-iex(4)> Hanoi.TowerState.move_stone(pid, :left, :right)
+iex(4)> Hanoi.TowerGame.move_stone(:hello, :left, :right)
 :ok
-iex(5)> Hanoi.TowerState.get_state(pid)
+iex(5)> Hanoi.TowerGame.get_state(:hello)
 %Hanoi.Board{left: [3], centre: [1], right: [2]}
 ```
 
