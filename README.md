@@ -12,7 +12,7 @@ Obviously having written this as a critique of structure - feel free to comment 
 
 To run, first get dependencies, ```mix deps.get```.  
 
-Build the executable with ```mix escript.build```.
+Build with ```mix compile```.
 
 If you want to run the tests, ```mix test```.
 
@@ -20,6 +20,8 @@ If you want documents, run ```mix docs``` and point your browser at documents
 directory.
 
 ## Running GenServer
+
+To start run ```iex -S mix```.
 
 ```
 Interactive Elixir (1.16.0) - press Ctrl+C to exit (type h() ENTER for help)
@@ -36,6 +38,8 @@ iex(5)> Hanoi.TowerState.get_state(pid)
 ```
 
 ## Running from command line
+
+Build the executable with ```mix escript.build```.
 
 To run then call ```./tower_hanoi <stones>``` being careful not to set the
 number too high (20 takes 20 odd seconds and each extra doubles it).
