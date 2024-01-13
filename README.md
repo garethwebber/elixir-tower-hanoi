@@ -25,7 +25,7 @@ To start run ```iex -S mix```.
 
 ```
 Interactive Elixir (1.16.0) - press Ctrl+C to exit (type h() ENTER for help)
-iex(1)> Hanoi.TowerGame.start_link(%{:name => :hello})
+iex(1)> Hanoi.TowerGame.start_link(%{name: :hello, stones: 3})
 {:ok, #PID<0.186.0>}
 iex(2)> Hanoi.TowerGame.get_state(:hello)
 %Hanoi.Board{left: [1, 2, 3], centre: [], right: []}

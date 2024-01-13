@@ -4,13 +4,15 @@ defmodule Hanoi.TowerGame do
   def child_spec(opts) do
     %{
       id: (opts[:name] || raise ArgumentError, "Cache name is required"),
+      stones: (opts[:stones] || raise ArgumentError, "Number of stones required"),
       start: {__MODULE__, :start_link, [opts]},
     }
   end
 
   def start_link(opts) do
     name = opts[:name] || raise ArgumentError, "Cache name is required"
-    Supervisor.start_link(__MODULE__, opts, name: name)
+    stones = opts[:stones] || raise ArgumentError, "Number of stones required"
+    Supervisor.start_link(__MODULE__, opts, [name: name, stones: stones])
   end
 
   def get_state(name) do
@@ -27,10 +29,11 @@ defmodule Hanoi.TowerGame do
 
   def init(opts) do
     name = opts[:name]
+    stones = opts[:stones]
     _table = :ets.new(storage_name(name), [:named_table, :public, :set])
 
     children = [
-      {Hanoi.TowerState, [name: storage_name(name)]},
+      {Hanoi.TowerState, [name: storage_name(name), stones: stones]},
     ]
 
     Supervisor.init(children, strategy: :one_for_one)

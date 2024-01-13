@@ -27,12 +27,12 @@ defmodule Hanoi.TowerState do
   end
  
   def init(opts) do
-    {:ok, %{table: opts[:name]}, {:continue, :load}}
+    {:ok, %{table: opts[:name], stones: opts[:stones]}, {:continue, :load}}
   end
 
   def handle_continue(:load, data) do
-    true = :ets.insert(data.table, {:state, Hanoi.Board.create_board(3)})
-    Logger.info("Loaded 3 stones into #{data.table}")
+    true = :ets.insert(data.table, {:state, Hanoi.Board.create_board(data.stones)})
+    Logger.info("Placed #{data.stones} stones onto #{data.table} board")
     {:noreply, data}
   end
 
