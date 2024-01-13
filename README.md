@@ -29,11 +29,21 @@ iex(1)> Hanoi.TowerGame.start_link(%{name: :hello, stones: 3})
 {:ok, #PID<0.186.0>}
 iex(2)> Hanoi.TowerGame.get_state(:hello)
 %Hanoi.Board{left: [1, 2, 3], centre: [], right: []}
-iex(3)> Hanoi.TowerGame.move_stone(:hello, :left, :centre)
+iex(3)> Hanoi.TowerGame.get_moves(:hello)
+[
+  left: :right,
+  left: :centre,
+  right: :centre,
+  left: :right,
+  centre: :left,
+  centre: :right,
+  left: :right
+]
+iex(4)> Hanoi.TowerGame.move_stone(:hello, :left, :centre)
 :ok
-iex(4)> Hanoi.TowerGame.move_stone(:hello, :left, :right)
+iex(5)> Hanoi.TowerGame.move_stone(:hello, :left, :right)
 :ok
-iex(5)> Hanoi.TowerGame.get_state(:hello)
+iex(6)> Hanoi.TowerGame.get_state(:hello)
 %Hanoi.Board{left: [3], centre: [1], right: [2]}
 ```
 
