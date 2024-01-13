@@ -8,6 +8,24 @@ functions so I designed it this way.
 
 Obviously having written this as a critique of structure - feel free to comment on what I have done. All greatfully accepted.
 
+## Running GenServer
+
+```
+Interactive Elixir (1.16.0) - press Ctrl+C to exit (type h() ENTER for help)
+iex(1)> {:ok, pid} = Hanoi.TowerState.start_link(%{"name" => "hello"})
+{:ok, #PID<0.186.0>}
+iex(2)> Hanoi.TowerState.get_state(pid)
+%Hanoi.Board{left: [1, 2, 3], centre: [], right: []}
+iex(3)> Hanoi.TowerState.move_stone(pid, :left, :centre)
+
+L 3 2
+C 1
+R
+:ok
+iex(4)> Hanoi.TowerState.get_state(pid)
+%Hanoi.Board{left: [2, 3], centre: [1], right: []}
+```
+
 ## Running from command line
 
 To run, first get dependencies, ```mix deps.get```.  
@@ -62,22 +80,4 @@ C
 R 3 2 1
 
 3 stones took 2 millisecond(s).
-```
-
-## Running GenServer
-
-```
-Interactive Elixir (1.16.0) - press Ctrl+C to exit (type h() ENTER for help)
-iex(1)> {:ok, pid} = Hanoi.TowerState.start_link(%{"name" => "hello"})
-{:ok, #PID<0.186.0>}
-iex(2)> Hanoi.TowerState.get_state(pid)
-%Hanoi.Board{left: [1, 2, 3], centre: [], right: []}
-iex(3)> Hanoi.TowerState.move_stone(pid, :left, :centre)
-
-L 3 2
-C 1
-R
-:ok
-iex(4)> Hanoi.TowerState.get_state(pid)
-%Hanoi.Board{left: [2, 3], centre: [1], right: []}
 ```
