@@ -13,6 +13,7 @@ defmodule TowerHanoi.MixProject do
       name: "Towers of Hanoi",
       source_url: @repo_url,
       start_permanent: Mix.env() == :prod,
+      test_coverage: [summary: [threshhold: 80],  ignore_modules: [TowerHanoi]],
       package: package(),
       deps: deps(),
       docs: docs()

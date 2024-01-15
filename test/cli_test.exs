@@ -13,6 +13,6 @@ defmodule CLITest do
   end
 
   test ":help returned when malformed input is passed" do
-    assert parse_args(["qq"]) == :help
+    assert parse_args(["--qq"]) == :help
   end
 end

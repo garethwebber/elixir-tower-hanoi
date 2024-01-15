@@ -3,6 +3,17 @@ defmodule TowerGameTest do
 
   require Hanoi.TowerGame
 
+  test "does the server check its arguments" do
+    # No name
+    assert_raise ArgumentError, fn ->
+      Hanoi.TowerGame.start_link(%{stones: 3})
+    end
+    # No stones
+    assert_raise ArgumentError, fn ->
+      Hanoi.TowerGame.start_link(%{name: :testname})
+    end
+  end
+
   test "does server create board correctly" do
     name = :test_tower
     {:ok, _pid} = Hanoi.TowerGame.start_link(%{name: name, stones: 3})
