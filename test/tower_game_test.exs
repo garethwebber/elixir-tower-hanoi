@@ -18,9 +18,9 @@ defmodule TowerGameTest do
 
   test "does server move stone correctly" do
     name = :test_tower2
-    {:ok, _pid} = Hanoi.TowerGame.start_link(%{name: name, stones: 3})
-    before_string = "\nL 3 2 1\nC\nR"
-    after_string  = "\nL 3 2\nC\nR 1"
+    {:ok, _pid} = Hanoi.TowerGame.start_link(%{name: name, stones: 4})
+    before_string = "\nL 4 3 2 1\nC\nR"
+    after_string  = "\nL 4 3 2\nC\nR 1"
  
     before = Hanoi.TowerGame.get_state_as_text(name) 
     assert before == before_string
@@ -33,5 +33,22 @@ defmodule TowerGameTest do
     # This should fail
     value = Hanoi.TowerGame.move_stone(name, :left, :right)
     assert value = :error
+  end
+
+  test "does server run get moves correctly" do
+    name = :test_tower3
+    {:ok, _pid} = Hanoi.TowerGame.start_link(%{name: name, stones: 3})
+    expect =  [
+              {:left, :right},
+              {:left, :centre},
+              {:right, :centre},
+              {:left, :right},
+              {:centre, :left},
+              {:centre, :right},
+              {:left, :right}
+            ]
+
+    moves = Hanoi.TowerGame.get_moves(name)
+    assert expected = moves
   end
 end
