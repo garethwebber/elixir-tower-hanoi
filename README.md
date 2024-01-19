@@ -46,12 +46,15 @@ iex(5)> Hanoi.TowerGame.move_stone(:hello, :left, :right)
 iex(6)> Hanoi.TowerGame.get_state(:hello)
 %Hanoi.Board{left: [3], centre: [1], right: [2]}
 ```
+## Running in web-server
+
+Run ```mix phx.server``` and then point your web-browser at http://localhost:4000
 
 ## Running from command line
 
 Build the executable with ```mix escript.build```.
 
-To run then call ```./tower_hanoi <stones>``` being careful not to set the
+To run then call ```./hanoi <stones>``` being careful not to set the
 number too high (20 takes 20 odd seconds and each extra doubles it).
 
 ### Results
