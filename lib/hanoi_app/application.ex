@@ -13,6 +13,7 @@ defmodule Hanoi.Application do
       {Phoenix.PubSub, name: Hanoi.PubSub},
       # Start the Finch HTTP client for sending emails
       {Finch, name: Hanoi.Finch},
+      {Hanoi.TowerGame, name: :hanoi, stones: 3},
       # Start a worker by calling: Hanoi.Worker.start_link(arg)
       # {Hanoi.Worker, arg},
       # Start to serve requests, typically the last entry
