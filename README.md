@@ -48,7 +48,9 @@ iex(6)> Hanoi.TowerGame.get_state(:hello)
 ```
 ## Running in web-server
 
-Run ```mix phx.server``` and then point your web-browser at http://localhost:4000
+Run ```iex -S mix phx.server``` and then point your web-browser at http://localhost:4000
+
+You can then enter ```Hanoi.TowerGame.move_stone(:hanoi, :left, :right)``` and hit reload in the browser
 
 ## Running from command line
 
