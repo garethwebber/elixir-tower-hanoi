@@ -1,7 +1,6 @@
 defmodule HanoiWeb.ControllerLive do
   use HanoiWeb, :html
   use Phoenix.LiveView
-  require Logger
 
   def mount(_params, _, socket) do
     state = Hanoi.TowerGame.get_state(:hanoi) 
@@ -9,14 +8,26 @@ defmodule HanoiWeb.ControllerLive do
   end
 
   def render(assigns) do
-    Logger.info("Render")
     ~H"""
-       <.flash_group flash={@flash} />
+        <.header>Hanoi</.header>
+        <.flash_group flash={@flash} />
         <div class="mx-auto max-w-xl lg:mx-0">
-  <h1 class="text-brand mt-10 flex items-center text-sm font-semibold leading-6">Hanoi</h1>
-        <pre>
-          <%= Hanoi.Render.render_to_string(@state)  %>
-        </pre>
+        <%= render_stones(assigns) %>
+        <.buttons></.buttons>
+      </div>
+    """
+  end
+  
+  def render_stones(assigns) do
+    ~L"""
+      <pre>
+         <%= Hanoi.Render.render_to_string(@state)  %>
+      </pre>
+    """
+  end
+
+  def buttons(assigns) do
+      ~H"""
         <table border="10">
         <tr><td>
         <.button phx-click="move_stone" phx-value-from="left" phx-value-to="centre">Left to centre</.button>
@@ -35,10 +46,9 @@ defmodule HanoiWeb.ControllerLive do
         <.button phx-click="move_stone" phx-value-from="right" phx-value-to="left">Right to Left</.button>
         </td></tr>
         </table>
-      </div>
-    """
+     """
   end
-  
+
   def handle_event("move_stone", %{"from" => from, "to" => to}, socket) do
     Hanoi.TowerGame.move_stone(:hanoi, stone_name(from), stone_name(to))
     {:noreply, assign(socket, :state, Hanoi.TowerGame.get_state(:hanoi))}
