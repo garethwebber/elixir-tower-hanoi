@@ -9,17 +9,19 @@ defmodule HanoiWeb.ControllerLive do
 
   def render(assigns) do
     ~H"""
+        <main class="px-4 py-4 sm:px-6 lg:px-8">
         <.header>Hanoi</.header>
-        <.flash_group flash={@flash} />
+         <.flash_group flash={@flash} />
         <div class="mx-auto max-w-xl lg:mx-0">
         <%= render_stones(assigns) %>
         <.buttons></.buttons>
-      </div>
+        </div>
+        </main>
     """
   end
   
   def render_stones(assigns) do
-    ~L"""
+    ~H"""
       <pre>
          <%= Hanoi.Render.render_to_string(@state)  %>
       </pre>
