@@ -1,5 +1,13 @@
 defmodule HanoiWeb.PageHTML do
-  use HanoiWeb, :html
+  use Phoenix.Component 
 
-  embed_templates "page_html/*"
+  def home(assigns) do
+    ~H"""
+       <div class="lg:block">
+        <pre>
+          <%= Hanoi.Render.render_to_string(Hanoi.TowerGame.get_state(:hanoi)) %>
+        </pre>
+      </div>
+    """
+  end
 end
