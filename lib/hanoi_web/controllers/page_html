@@ -1,0 +1,23 @@
+defmodule HanoiWeb.LivePage do
+  use HanoiWeb, :live_component
+  require Logger
+
+  def render(assigns) do
+    Logger.info("Render")
+    ~H"""
+       <div class="lg:block">
+        <pre>
+          <%= Hanoi.Render.render_to_string(Hanoi.TowerGame.get_state(:hanoi)) %>
+        </pre>
+        <button phx-click="move_stone" phx-value-from="left" phx-value-to="centre">Left to centre</button>
+      </div>
+    """
+  end
+  
+  def handle_event("move_stone", %{"from" => from, "to" => to}, socket) do
+    Logger.info("move_stone #{from} #{to}")
+    Hanoi.TowerGame.move_stone(:hanoi, :"{#from}", :"{to}")
+    {:noreply, assign(socket, :update, :ok)}
+  end
+
+end
