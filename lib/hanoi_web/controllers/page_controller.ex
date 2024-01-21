@@ -10,12 +10,12 @@ defmodule HanoiWeb.ControllerLive do
   def render(assigns) do
     ~H"""
         <main class="px-4 py-4 sm:px-6 lg:px-8">
-        <.header>Hanoi</.header>
-         <.flash_group flash={@flash} />
-        <div class="mx-auto max-w-xl lg:mx-0">
-        <%= render_stones(assigns) %>
-        <.buttons></.buttons>
-        </div>
+          <.header>Hanoi</.header>
+          <.flash_group flash={@flash} />
+          <div class="mx-auto max-w-xl lg:mx-0">
+            <%= render_stones(assigns) %>
+             <.buttons></.buttons>
+          </div>
         </main>
     """
   end
