@@ -1,4 +1,5 @@
 defmodule HanoiWeb.ControllerLive do
+  use HanoiWeb, :html
   use Phoenix.LiveView
   require Logger
 
@@ -9,25 +10,29 @@ defmodule HanoiWeb.ControllerLive do
 
   def render(assigns) do
     Logger.info("Render")
-    ~L"""
-       <div class="lg:block">
+    ~H"""
+       <.flash_group flash={@flash} />
+        <div class="mx-auto max-w-xl lg:mx-0">
+  <h1 class="text-brand mt-10 flex items-center text-sm font-semibold leading-6">Hanoi</h1>
         <pre>
           <%= Hanoi.Render.render_to_string(@state)  %>
         </pre>
         <table border="10">
         <tr><td>
-        <button phx-click="move_stone" phx-value-from="left" phx-value-to="centre">Left to centre</button>
+        <.button phx-click="move_stone" phx-value-from="left" phx-value-to="centre">Left to centre</.button>
         </td><td>
-        <button phx-click="move_stone" phx-value-from="centre" phx-value-to="left">Centre to left</button>
+        <.button phx-click="move_stone" phx-value-from="centre" phx-value-to="left">Centre to left</.button>
         </td><td>
-        <button phx-click="move_stone" phx-value-from="centre" phx-value-to="right">Centre to right</button>
+        <.button phx-click="move_stone" phx-value-from="centre" phx-value-to="right">Centre to right</.button>
         </td><td>
-        <button phx-click="move_stone" phx-value-from="right" phx-value-to="centre">Right to centre</button>
-        </td><tr>
+        <.button phx-click="move_stone" phx-value-from="right" phx-value-to="centre">Right to centre</.button>
+        </td></tr>
         <tr><td>
-        <button phx-click="move_stone" phx-value-from="left" phx-value-to="right">Left to right</button>
-        </td><td></td><td></td><td>
-        <button phx-click="move_stone" phx-value-from="right" phx-value-to="left">Right to Left</button>
+        <.button phx-click="move_stone" phx-value-from="left" phx-value-to="right">Left to right</.button>
+        </td>
+        <td></td><td></td>
+        <td>
+        <.button phx-click="move_stone" phx-value-from="right" phx-value-to="left">Right to Left</.button>
         </td></tr>
         </table>
       </div>
