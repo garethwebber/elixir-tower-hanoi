@@ -5,9 +5,11 @@ defmodule HanoiWeb.ControllerLive do
   def mount(_params, _, socket) do
     state = Hanoi.TowerGame.get_state(:hanoi) 
     number_moves = Hanoi.TowerGame.get_number_moves(:hanoi)
+    number_stones = Hanoi.TowerGame.get_number_stones(:hanoi)
     {:ok, assign(socket, 
         state: state,
-        number_moves: number_moves
+        number_moves: number_moves,
+        number_stones: number_stones
         )}
   end
 
@@ -17,6 +19,7 @@ defmodule HanoiWeb.ControllerLive do
           <.header>Hanoi</.header>
           <.flash_group flash={@flash} />
           <div class="mx-auto max-w-xl lg:mx-0">
+            <p>Hanoi games with <%= @number_stones %> stones.</p>
             <%= render_stones(assigns) %>
             <%= render_number_moves(assigns) %>
             <.buttons></.buttons>
@@ -35,7 +38,7 @@ defmodule HanoiWeb.ControllerLive do
 
   def render_number_moves(assigns) do
     ~H"""
-         <p>Number of moves: <%= @number_moves  %></p>
+         <p>Number of moves: <%= @number_moves  %></p><br />
     """
   end
 

@@ -25,6 +25,10 @@ defmodule Hanoi.TowerGame do
   def get_number_moves(name) do
     Hanoi.TowerState.get_number_moves(storage_name(name))
   end
+
+  def get_number_stones(name) do
+     Hanoi.TowerState.get_number_stones(storage_name(name))
+  end
   
   def move_stone(name, from, to) do
     Hanoi.TowerState.move_stone(storage_name(name), from, to)

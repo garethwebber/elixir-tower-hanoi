@@ -26,6 +26,10 @@ defmodule Hanoi.TowerState do
     GenServer.call(server, {:get_number_moves}) 
   end
 
+  def get_number_stones(server) do
+    GenServer.call(server, {:get_number_stones})    
+  end
+
   def move_stone(server, from, to) do
     GenServer.call(server, {:move_stone, from, to})
   end
@@ -41,6 +45,7 @@ defmodule Hanoi.TowerState do
   def handle_continue(:load, data) do
     true = :ets.insert(data.table, {:state, Hanoi.Board.create_board(data.stones)})
     true = :ets.insert(data.table, {:moves, 0})
+    true = :ets.insert(data.table, {:stones, data.stones})
     Logger.info("Placed #{data.stones} stones onto #{data.table} board")
     {:noreply, data}
   end
@@ -69,6 +74,16 @@ defmodule Hanoi.TowerState do
     case :ets.lookup(data.table, :moves) do
       [{_key, moves}] ->
         {:reply, moves, data} 
+
+      [] ->
+        {:reply, :error, data} 
+    end
+  end
+
+  def handle_call({:get_number_stones}, _sender, data) do
+    case :ets.lookup(data.table, :stones) do
+      [{_key, stones}] ->
+        {:reply, stones, data} 
 
       [] ->
         {:reply, :error, data} 
