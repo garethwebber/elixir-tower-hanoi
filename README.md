@@ -4,8 +4,8 @@ An implementation of Towers of Hanoi written in Elixir. When I was learning
 elixir, the examples I saw felt ideomatically OO (e.g. [1]) rather than 
 functional so I decided to write one myself, leaning into FP.
 
-Why? The definition of a plate, pole and board felt very object-oriented even if they are only used for printing. I wanted to switch my mind to data and 
-functions so I designed it this way.
+Having got the CLI running, I didn't stop there and ended up building a 
+LiveView web-app because, why not?
 
 Obviously having written this as a critique of structure - feel free to comment on what I have done. All greatfully accepted.
 
