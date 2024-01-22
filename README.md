@@ -2,7 +2,7 @@
 
 An implementation of Towers of Hanoi written in Elixir. When I was learning
 elixir, the examples I saw felt ideomatically OO (e.g. [1]) rather than 
-functional stonesI decided to write one myself, leaning into FP.
+functional so I decided to write one myself, leaning into FP.
 
 Why? The definition of a plate, pole and board felt very object-oriented even if they are only used for printing. I wanted to switch my mind to data and 
 functions so I designed it this way.
