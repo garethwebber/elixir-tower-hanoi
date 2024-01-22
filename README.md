@@ -1,7 +1,8 @@
 # Elixir: Towers of Hanoi
 
-An implementation of Towers of Hanoi written in Elixir. I wrote it as when
-I was learning about found this version https://github.com/wouterken/towers-of-hanoi-elixir, I didn't like it. 
+An implementation of Towers of Hanoi written in Elixir. When I was learning
+elixir, the examples I saw felt ideomatically OO (e.g. [1]) rather than 
+functional stonesI decided to write one myself, leaning into FP.
 
 Why? The definition of a plate, pole and board felt very object-oriented even if they are only used for printing. I wanted to switch my mind to data and 
 functions so I designed it this way.
@@ -101,3 +102,7 @@ R 3 2 1
 
 3 stones took 2 millisecond(s).
 ```
+
+## References
+
+[1] https://github.com/wouterken/towers-of-hanoi-elixir
