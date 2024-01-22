@@ -19,6 +19,12 @@ If you want to run the tests, ```mix test```.
 If you want documents, run ```mix docs``` and point your browser at documents
 directory.
 
+## Running in web-server
+
+Run ```iex -S mix phx.server``` and then point your web-browser at http://localhost:4000
+
+<img width="800" alt="hanoi web-app screenshot" src="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/priv/web-view.jpg">
+
 ## Running GenServer
 
 To start run ```iex -S mix```.
@@ -46,11 +52,6 @@ iex(5)> Hanoi.TowerGame.move_stone(:hello, :left, :right)
 iex(6)> Hanoi.TowerGame.get_state(:hello)
 %Hanoi.Board{left: [3], centre: [1], right: [2]}
 ```
-## Running in web-server
-
-Run ```iex -S mix phx.server``` and then point your web-browser at http://localhost:4000
-
-You can then enter ```Hanoi.TowerGame.move_stone(:hanoi, :left, :right)``` and hit reload in the browser
 
 ## Running from command line
 
