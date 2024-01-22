@@ -4,7 +4,11 @@ defmodule HanoiWeb.ControllerLive do
 
   def mount(_params, _, socket) do
     state = Hanoi.TowerGame.get_state(:hanoi) 
-    {:ok, assign(socket, :state, state)}
+    number_moves = Hanoi.TowerGame.get_number_moves(:hanoi)
+    {:ok, assign(socket, 
+        state: state,
+        number_moves: number_moves
+        )}
   end
 
   def render(assigns) do
@@ -14,7 +18,8 @@ defmodule HanoiWeb.ControllerLive do
           <.flash_group flash={@flash} />
           <div class="mx-auto max-w-xl lg:mx-0">
             <%= render_stones(assigns) %>
-             <.buttons></.buttons>
+            <%= render_number_moves(assigns) %>
+            <.buttons></.buttons>
           </div>
         </main>
     """
@@ -25,6 +30,12 @@ defmodule HanoiWeb.ControllerLive do
       <pre>
          <%= Hanoi.Render.render_to_string(@state)  %>
       </pre>
+    """
+  end
+
+  def render_number_moves(assigns) do
+    ~H"""
+         <p>Number of moves: <%= @number_moves  %></p>
     """
   end
 
@@ -53,7 +64,10 @@ defmodule HanoiWeb.ControllerLive do
 
   def handle_event("move_stone", %{"from" => from, "to" => to}, socket) do
     Hanoi.TowerGame.move_stone(:hanoi, stone_name(from), stone_name(to))
-    {:noreply, assign(socket, :state, Hanoi.TowerGame.get_state(:hanoi))}
+    {:noreply, assign(socket, 
+        state: Hanoi.TowerGame.get_state(:hanoi),
+        number_moves: Hanoi.TowerGame.get_number_moves(:hanoi)
+        )}
   end
 
   defp stone_name(name) do

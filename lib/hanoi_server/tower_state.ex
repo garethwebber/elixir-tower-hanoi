@@ -22,6 +22,10 @@ defmodule Hanoi.TowerState do
      GenServer.call(server, {:get_state_as_text})
   end
 
+  def get_number_moves(server) do
+    GenServer.call(server, {:get_number_moves}) 
+  end
+
   def move_stone(server, from, to) do
     GenServer.call(server, {:move_stone, from, to})
   end
@@ -36,6 +40,7 @@ defmodule Hanoi.TowerState do
 
   def handle_continue(:load, data) do
     true = :ets.insert(data.table, {:state, Hanoi.Board.create_board(data.stones)})
+    true = :ets.insert(data.table, {:moves, 0})
     Logger.info("Placed #{data.stones} stones onto #{data.table} board")
     {:noreply, data}
   end
@@ -60,10 +65,22 @@ defmodule Hanoi.TowerState do
     end
   end
   
+  def handle_call({:get_number_moves}, _sender, data) do
+    case :ets.lookup(data.table, :moves) do
+      [{_key, moves}] ->
+        {:reply, moves, data} 
+
+      [] ->
+        {:reply, :error, data} 
+    end
+  end
+
   def handle_call({:move_stone, from, to}, _sender, data) do
-    with [{_key, state}] <- :ets.lookup(data.table, :state),
-         {:ok, newstate} <- Hanoi.Naive.move_stone(state, from, to, false),
-         true            <- :ets.insert(data.table, {:state, newstate})
+    with [{_key, state}]  <- :ets.lookup(data.table, :state),
+         {:ok, newstate}  <- Hanoi.Naive.move_stone(state, from, to, false),
+         true             <- :ets.insert(data.table, {:state, newstate}),
+         [{_key2, moves}] <- :ets.lookup(data.table, :moves),
+         true             <- :ets.insert(data.table, {:moves, moves + 1})
     do 
       {:reply, :ok, data}
     else _ ->
