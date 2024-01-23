@@ -1,0 +1,36 @@
+<html>
+	<head><title>Hanoi Mockup</title></head>
+<style>
+.stone {
+	margin:          0 auto;
+	height:          20px;
+	justify-content: center
+}
+.pile {
+	display:         inline;
+        width:           33%;
+	margin-top:      auto
+}
+.board {
+	display:        flex;
+	flex-direction: row;
+	width:          100%;
+	padding:        0;
+}
+</style>
+	<body width="100%">
+		<div name="board" class="board">
+			<div name="left" class="pile">
+				<div name="st1" class="stone" style="width:25%; background-color: blue"></div>
+				<div name="st2" class="stone" style="width:75%; background-color: green"></div>
+			</div>
+			<div name="centre" class="pile">
+				<div name="st4" class="stone" style="width:100%; background-color: green"></div>
+
+			</div>
+			<div name="right" class="pile">
+				<div name="st3" class="stone" style="width:50%; background-color: red"></div>
+			</div>
+		</div>
+	</body>
+</html>
