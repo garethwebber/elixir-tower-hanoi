@@ -24,12 +24,12 @@ defmodule HanoiWeb.RenderBoard do
           border-bottom:    solid;
           padding:          0;
        }
-       :root {
-         --color1: #155263; 
-	 --color2: #ff6f3c; 
-	 --color3: #ff9a3c; 
-         --color4: #ffc93c; 
-       }
+        :root {
+           --color1: #155263; 
+           --color2: #ff6f3c; 
+           --color3: #ff9a3c; 
+           --color4: #ffc93c; 
+        }
        </style>
       """
    end
@@ -54,7 +54,7 @@ defmodule HanoiWeb.RenderBoard do
       "</div>"
    end
 
-   def render_pile([], width) do
+   def render_pile([], _width) do
      "\n"
    end
 
