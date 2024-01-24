@@ -10,7 +10,6 @@ defmodule HanoiWeb.RenderBoard do
           height:            20px;
           background-color:  --var(color2)
           justify-content:   center;
-          border: solid
        }
        .pile {
           display:           inline;
