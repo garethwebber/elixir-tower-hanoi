@@ -8,8 +8,9 @@ defmodule HanoiWeb.RenderBoard do
        .stone {
           margin:            0 auto;
           height:            20px;
-          background-color:  black;
-          justify-content:   center
+          background-color:  --var(color2)
+          justify-content:   center;
+          border: solid
        }
        .pile {
           display:           inline;
@@ -23,6 +24,12 @@ defmodule HanoiWeb.RenderBoard do
           height:           #{height}px;
           border-bottom:    solid;
           padding:          0;
+       }
+       :root {
+         --color1: #155263; 
+	 --color2: #ff6f3c; 
+	 --color3: #ff9a3c; 
+         --color4: #ffc93c; 
        }
        </style>
       """
@@ -58,7 +65,9 @@ defmodule HanoiWeb.RenderBoard do
    end
 
    def render_stone(stone, width) do
+      color = Integer.mod(stone, 4)
       stone_width = stone*width
-      "<div name=\"st#{stone}\" class=\"stone\" style=\"width:#{stone_width}%\">aa</div>"
+      "<div name=\"st#{stone}\" class=\"stone\" 
+              style=\"width:#{stone_width}%; background: var(--color#{color})\"></div>"
    end
 end
