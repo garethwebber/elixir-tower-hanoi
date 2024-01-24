@@ -30,9 +30,8 @@ defmodule HanoiWeb.ControllerLive do
   
   def render_stones(assigns) do
     ~H"""
-      <pre>
-         <%= Hanoi.Render.render_to_string(@state)  %>
-      </pre>
+       <%= Phoenix.HTML.raw(HanoiWeb.RenderBoard.render_css(@number_stones)) %>
+       <%= Phoenix.HTML.raw(HanoiWeb.RenderBoard.render_board(@state, @number_stones)) %>
     """
   end
 
