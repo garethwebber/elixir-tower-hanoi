@@ -14,7 +14,8 @@ defmodule TowerHanoi.MixProject do
       name: "Towers of Hanoi",
       source_url: @repo_url,
       start_permanent: Mix.env() == :prod,
-      test_coverage: [summary: [threshhold: 80],  ignore_modules: [TowerHanoi]],
+      test_coverage: [summary: 
+                        [threshhold: 80], ignore_modules: test_exclusions() ],
       package: package(),
       aliases: aliases(),
       deps: deps(),
@@ -69,6 +70,20 @@ defmodule TowerHanoi.MixProject do
   defp escript_config do
     [
       main_module: TowerHanoi
+    ]
+  end
+
+  defp test_exclusions do
+    [
+      TowerHanoi,
+      HanoiWeb,
+      HanoiWeb.CoreComponents,
+      HanoiWeb.ErrorHTML,
+      HanoiWeb.Gettext,
+      HanoiWeb.Layouts,
+      HanoiWeb.Router,
+      HanoiWeb.Endpoint,
+      HanoiWeb.Telemetry
     ]
   end
 
