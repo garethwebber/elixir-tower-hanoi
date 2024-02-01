@@ -1,10 +1,16 @@
 defmodule Hanoi.Application do
-  # See https://hexdocs.pm/elixir/Application.html
-  # for more information on OTP Applications
-  @moduledoc false
+  @moduledoc """
+  OTP Application that runs phoenix web app.
+
+  Currently also loads HanoiGame supervision tree & Genserver. This may move to
+  being started by the web app to allow multiple games to run in parallel.
+
+  Alternative entrypoint to the CLI module
+  """
 
   use Application
 
+  @doc "Application entrypoint"
   @impl true
   def start(_type, _args) do
     children = [

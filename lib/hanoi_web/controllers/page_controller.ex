@@ -1,7 +1,16 @@
 defmodule HanoiWeb.ControllerLive do
   use HanoiWeb, :html
   use Phoenix.LiveView
+  @moduledoc """
+  Controller that renders the main Hanoi game page
 
+  Receives liveview events from the page and updates state accordingly
+
+  Main page furniture is rendered here. The main board visual rendering 
+  functions are in RenderBoard.
+  """
+
+  @doc "Set up initial liveview state"
   def mount(_params, _, socket) do
     state = Hanoi.TowerGame.get_state(:hanoi) 
     number_moves = Hanoi.TowerGame.get_number_moves(:hanoi)
@@ -13,6 +22,7 @@ defmodule HanoiWeb.ControllerLive do
         )}
   end
 
+  @doc "Render the page based on current state"
   def render(assigns) do
     ~H"""
         <main class="px-4 py-4 sm:px-6 lg:px-8">
@@ -22,12 +32,13 @@ defmodule HanoiWeb.ControllerLive do
             <p>Hanoi games with <%= @number_stones %> stones.</p>
             <%= render_stones(assigns) %>
             <%= render_number_moves(assigns) %>
-            <.buttons></.buttons>
+            <.render_buttons />
           </div>
         </main>
     """
   end
-  
+
+  @doc "Renders the piles of stones on the page"
   def render_stones(assigns) do
     ~H"""
        <%= Phoenix.HTML.raw(HanoiWeb.RenderBoard.render_css(@number_stones)) %>
@@ -35,13 +46,15 @@ defmodule HanoiWeb.ControllerLive do
     """
   end
 
+  @doc "Renders the current move count"
   def render_number_moves(assigns) do
     ~H"""
          <p>Number of moves: <%= @number_moves  %></p><br />
     """
   end
 
-  def buttons(assigns) do
+  @doc "Renders the controls for moving stones"
+  def render_buttons(assigns) do
       ~H"""
         <table border="10">
         <tr><td>
@@ -64,6 +77,7 @@ defmodule HanoiWeb.ControllerLive do
      """
   end
 
+  @doc "Handle the page clicks from the page"
   def handle_event("move_stone", %{"from" => from, "to" => to}, socket) do
     Hanoi.TowerGame.move_stone(:hanoi, stone_name(from), stone_name(to))
     {:noreply, assign(socket, 

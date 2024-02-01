@@ -1,5 +1,6 @@
 defmodule HanoiWeb.Router do
   use HanoiWeb, :router
+  @moduledoc false
 
   pipeline :browser do
     plug :accepts, ["html"]

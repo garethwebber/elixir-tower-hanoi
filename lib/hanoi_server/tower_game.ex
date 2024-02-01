@@ -2,8 +2,13 @@ defmodule Hanoi.TowerGame do
   use Supervisor
 
   @moduledoc """
-  The main entry point for the Hanoi game. Runs as a supervisor and starts
-  a GenServer to process work and an ETS instance to hold state. 
+  The Hanoi game as a public API & state.
+
+  Each individual game should run as one of these. They will exist 
+  independently of each other.
+  
+  Runs as a supervisor and starts a GenServer to process work and an
+  ETS instance to hold state. Usually run as part of an OTP application.
   """
 
   @doc false

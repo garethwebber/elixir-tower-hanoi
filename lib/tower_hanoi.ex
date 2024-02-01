@@ -4,7 +4,12 @@ defmodule TowerHanoi do
   import Hanoi.Naive
   
   @moduledoc """
-  Core runtime exextutable module. 
+  Command Line application version of the Tower of Hanoi.
+
+  Sets up a board and then runs the algorithm. Just uses the domain model
+  and alorithm, avoiding OTP.
+
+  An alternative to the OTP Phoenix application
   """
 
   @doc """

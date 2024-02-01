@@ -2,7 +2,9 @@ defmodule Hanoi.Board do
   alias Hanoi.Board
   
   @moduledoc """
-  Functions to set up the data structures representing initial stacks of stones 
+  The domain model.
+
+  The type and functions that define and create the domain data model
   """
 
   defstruct left: [],

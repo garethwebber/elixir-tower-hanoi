@@ -1,7 +1,9 @@
 defmodule Hanoi.Render do
   @moduledoc """
   Functions for converting the internal data representation to a 
-  human-readable format.
+  text-based human-readable format.
+
+  Generally used by the command line application
   """
   
   @doc """

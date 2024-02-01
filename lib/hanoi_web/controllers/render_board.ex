@@ -1,5 +1,9 @@
 defmodule HanoiWeb.RenderBoard do
+   @moduledoc """
+   Supporing functions for the main page rendering controller
+   """
 
+   @doc "Define the CSS needed to render the stones board"
    def render_css (stones) do
      height = (stones * 20) + 40
 
@@ -34,6 +38,7 @@ defmodule HanoiWeb.RenderBoard do
       """
    end
 
+   @doc "Renders the board as a pile of stones" 
    def render_board(board, stones) do
       width = div(100, stones)
 
@@ -54,6 +59,7 @@ defmodule HanoiWeb.RenderBoard do
       "</div>"
    end
 
+   @doc "Render each individual pile on the board"
    def render_pile([], _width) do
      "\n"
    end
@@ -62,7 +68,8 @@ defmodule HanoiWeb.RenderBoard do
      [head|tail] = pile
      render_stone(head, width) <> render_pile(tail, width) 
    end
-
+   
+   @doc "Render an individual stone in a pile"
    def render_stone(stone, width) do
       color = Integer.mod(stone, 4)
       stone_width = stone*width

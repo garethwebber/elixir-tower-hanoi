@@ -1,6 +1,6 @@
 defmodule Hanoi.CLI do
   @moduledoc """
-  Process command line arguments picking out inital stones to process, or help 
+  Command line application processing for CLI application 
   """
 
   @doc """
