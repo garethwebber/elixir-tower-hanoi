@@ -18,7 +18,7 @@ defmodule HanoiWeb.Router do
   scope "/", HanoiWeb do
     pipe_through :browser
 
-    live "/", ControllerLive, :home
+    live "/", HanoiGameControllerLive, :home
   end
 
   # Other scopes may use custom stacks.

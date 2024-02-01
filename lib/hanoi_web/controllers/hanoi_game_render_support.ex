@@ -1,4 +1,4 @@
-defmodule HanoiWeb.RenderBoard do
+defmodule HanoiWeb.HanoiGameRenderSupport do
    @moduledoc """
    Supporing functions for the main page rendering controller
    """

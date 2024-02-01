@@ -1,4 +1,4 @@
-defmodule HanoiWeb.ControllerLive do
+defmodule HanoiWeb.HanoiGameControllerLive do
   use HanoiWeb, :html
   use Phoenix.LiveView
   @moduledoc """
@@ -41,8 +41,8 @@ defmodule HanoiWeb.ControllerLive do
   @doc "Renders the piles of stones on the page"
   def render_stones(assigns) do
     ~H"""
-       <%= Phoenix.HTML.raw(HanoiWeb.RenderBoard.render_css(@number_stones)) %>
-       <%= Phoenix.HTML.raw(HanoiWeb.RenderBoard.render_board(@state, @number_stones)) %>
+       <%= Phoenix.HTML.raw(HanoiWeb.HanoiGameRenderSupport.render_css(@number_stones)) %>
+       <%= Phoenix.HTML.raw(HanoiWeb.HanoiGameRenderSupport.render_board(@state, @number_stones)) %>
     """
   end
 
