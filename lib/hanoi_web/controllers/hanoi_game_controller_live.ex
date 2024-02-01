@@ -18,7 +18,8 @@ defmodule HanoiWeb.HanoiGameControllerLive do
     {:ok, assign(socket, 
         state: state,
         number_moves: number_moves,
-        number_stones: number_stones
+        number_stones: number_stones,
+        error_text: nil
         )}
   end
 
@@ -30,12 +31,29 @@ defmodule HanoiWeb.HanoiGameControllerLive do
           <.flash_group flash={@flash} />
           <div class="mx-auto max-w-xl lg:mx-0">
             <p>Hanoi games with <%= @number_stones %> stones.</p>
+            <%= render_error_text(assigns) %>
             <%= render_stones(assigns) %>
             <%= render_number_moves(assigns) %>
             <.render_buttons />
           </div>
         </main>
     """
+  end
+  
+  @doc "Renders any error messages"
+  def render_error_text(%{error_text: error_text} = assigns) do
+    cond do
+      error_text == nil -> ~H"""
+                              <p>&nbsp</p><br/>
+                            """
+
+      true  ->
+            ~H"""
+               <p align="center"><span style="color: #c51244; border: 1px solid #c51244 !important;">
+                 &nbsp; <%= @error_text  %> &nbsp;
+               </span></p><br />
+             """
+      end
   end
 
   @doc "Renders the piles of stones on the page"
@@ -49,7 +67,7 @@ defmodule HanoiWeb.HanoiGameControllerLive do
   @doc "Renders the current move count"
   def render_number_moves(assigns) do
     ~H"""
-         <p>Number of moves: <%= @number_moves  %></p><br />
+         <p>Number of moves: <%= @number_moves  %></p>
     """
   end
 
@@ -79,10 +97,17 @@ defmodule HanoiWeb.HanoiGameControllerLive do
 
   @doc "Handle the page clicks from the page"
   def handle_event("move_stone", %{"from" => from, "to" => to}, socket) do
-    Hanoi.TowerGame.move_stone(:hanoi, stone_name(from), stone_name(to))
+    value = Hanoi.TowerGame.move_stone(:hanoi, 
+                                        stone_name(from), stone_name(to))
+    error_text= case value do
+      :ok    -> nil
+      :error -> "Invalid move #{from} -> #{to}"
+    end
+
     {:noreply, assign(socket, 
         state: Hanoi.TowerGame.get_state(:hanoi),
-        number_moves: Hanoi.TowerGame.get_number_moves(:hanoi)
+        number_moves: Hanoi.TowerGame.get_number_moves(:hanoi),
+        error_text: error_text 
         )}
   end
 
