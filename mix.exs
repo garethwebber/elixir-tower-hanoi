@@ -29,6 +29,7 @@ defmodule TowerHanoi.MixProject do
 
   def application do
     [
+      # This is the main module for the OTP application
       mod: {Hanoi.Application, []},
       extra_applications: [:logger, :logger_file_backend, :runtime_tools]
     ]
@@ -69,12 +70,14 @@ defmodule TowerHanoi.MixProject do
 
   defp escript_config do
     [
+      # This is the run module for command-line
       main_module: TowerHanoi
     ]
   end
 
   defp test_exclusions do
     [
+      # remove phx.new created files from test coverage stats 
       TowerHanoi,
       HanoiWeb,
       HanoiWeb.CoreComponents,
@@ -89,6 +92,7 @@ defmodule TowerHanoi.MixProject do
 
   defp docs do
     [
+      # Add the following files into the documents create by mix docs
       extras: ["README.md", "LICENSE"]
     ]
   end
