@@ -25,6 +25,13 @@ defmodule NaiveTest do
     assert output == false
   end
 
+  test "does is_valid_mode stop me moving a non-existant stone" do
+    start = %Hanoi.Board{left: [], centre: [2]}
+
+    output = Hanoi.Naive.is_valid_move(start, :left, :centre)
+    assert output == false
+  end
+
   test "does move_stone move a stone correctly" do
     start = %Hanoi.Board{left: [1, 3], centre: [2]}
     expected_end = %Hanoi.Board{left: [3], centre: [1, 2]}

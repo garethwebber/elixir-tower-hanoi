@@ -71,18 +71,25 @@ defmodule Hanoi.Naive do
   end
 
   @doc """
-  A move is valid if the stack moved to is empty, or has a larger stone on it
+  A move is valid if the stone exists, the stack moved to is empty, 
+  or has a larger stone on it
   """
   def is_valid_move(board, from, to) do
-    case Map.fetch(board, to) == {:ok, []} do
-      true ->
-        true
+    case Map.fetch(board, from) == {:ok, []} do
+      true -> # Stone doesn't exist
+        false
+     
+       false ->
+         case Map.fetch(board, to) == {:ok, []} do
+           true -> # Move to enpty pile
+             true
 
-      false ->
-        {:ok, [from_head | _tail]} = Map.fetch(board, from)
-        {:ok, [to_head | _tail]} = Map.fetch(board, to)
+            false -> # Not empty but larger
+              {:ok, [from_head | _tail]} = Map.fetch(board, from)
+              {:ok, [to_head | _tail]} = Map.fetch(board, to)
 
-        from_head < to_head
+              from_head < to_head
+         end
     end
   end
 end
