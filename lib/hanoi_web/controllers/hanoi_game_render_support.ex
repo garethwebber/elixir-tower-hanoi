@@ -74,6 +74,6 @@ defmodule HanoiWeb.HanoiGameRenderSupport do
       color = Integer.mod(stone, 4)
       stone_width = stone*width
       "<div name=\"st#{stone}\" class=\"stone\" 
-              style=\"width:#{stone_width}%; background: var(--color#{color})\"></div>"
+              style=\"width:#{stone_width}%; background: var(--color#{color + 1})\"></div>"
    end
 end

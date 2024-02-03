@@ -37,6 +37,10 @@ defmodule Hanoi.TowerState do
   def get_moves(server) do
     GenServer.call(server, {:get_moves})
   end
+
+  def reset(server, new_stones) do
+    GenServer.call(server, {:reset, new_stones}) 
+  end
  
   def init(opts) do
     {:ok, %{table: opts[:name], stones: opts[:stones]}, {:continue, :load}}
@@ -102,6 +106,14 @@ defmodule Hanoi.TowerState do
       Logger.error("Move stone from #{from} to #{to} failed.")
       {:reply, :error, data}
     end
+  end
+
+  def handle_call({:reset, new_stones}, _sender, data) do 
+    true = :ets.insert(data.table, {:state, Hanoi.Board.create_board(new_stones)})
+    true = :ets.insert(data.table, {:moves, 0})
+    true = :ets.insert(data.table, {:stones, new_stones})
+    Logger.info("Placed #{new_stones} stones onto #{data.table} board")
+    {:reply, :ok, data}
   end
 
   def handle_call({:get_moves}, _sender, data) do

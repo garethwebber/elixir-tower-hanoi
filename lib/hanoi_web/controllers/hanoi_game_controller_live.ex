@@ -27,19 +27,40 @@ defmodule HanoiWeb.HanoiGameControllerLive do
   def render(assigns) do
     ~H"""
         <main class="px-4 py-4 sm:px-6 lg:px-8">
-          <.header>Hanoi</.header>
           <.flash_group flash={@flash} />
+          <div class="mx-auto max-w-xl lg:mx-0 table-row border">
+            <div class="table-cell"><.header>Hanoi</.header></div>
+            <div class="table-cell"><.render_reset_block/></div>
+          </div>
           <div class="mx-auto max-w-xl lg:mx-0">
             <p>Hanoi games with <%= @number_stones %> stones.</p>
             <%= render_error_text(assigns) %>
-            <%= render_stones(assigns) %>
+            <%= Phoenix.HTML.raw(HanoiWeb.HanoiGameRenderSupport.render_css(@number_stones)) %>
+       <%= Phoenix.HTML.raw(HanoiWeb.HanoiGameRenderSupport.render_board(@state, @number_stones)) %>
             <%= render_number_moves(assigns) %>
-            <.render_buttons />
+            <.render_game_controls />
           </div>
         </main>
     """
   end
   
+  @doc "Renders reset options"
+  def render_reset_block(assigns) do
+    form = to_form(%{"stone" => 3})
+
+    ~H"""
+       <span class="table-cell border"> 
+       <.simple_form for={form} phx-update="ignore" phx-submit="reset">
+        Stones: <.input field={form[:stone]} 
+                style="width: 80px"
+                name="stone"
+                type="select"
+                options={["3", "4", "5", "6", "7", "8"]} /> 
+        <.button>Reset</.button>
+      </.simple_form></span>
+    """
+  end
+
   @doc "Renders any error messages"
   def render_error_text(%{error_text: error_text} = assigns) do
     cond do
@@ -50,18 +71,13 @@ defmodule HanoiWeb.HanoiGameControllerLive do
       true  ->
             ~H"""
                <p align="center"><span style="color: #c51244; border: 1px solid #c51244 !important;">
-                 &nbsp; <%= @error_text  %> &nbsp;
+                 &nbsp; 
+                 <.icon name="hero-exclamation-circle-mini" class="py-2.5 h-4 w-4 text-rose-500"/>
+                 <%= @error_text  %>
+                 &nbsp;
                </span></p><br />
              """
       end
-  end
-
-  @doc "Renders the piles of stones on the page"
-  def render_stones(assigns) do
-    ~H"""
-       <%= Phoenix.HTML.raw(HanoiWeb.HanoiGameRenderSupport.render_css(@number_stones)) %>
-       <%= Phoenix.HTML.raw(HanoiWeb.HanoiGameRenderSupport.render_board(@state, @number_stones)) %>
-    """
   end
 
   @doc "Renders the current move count"
@@ -72,7 +88,7 @@ defmodule HanoiWeb.HanoiGameControllerLive do
   end
 
   @doc "Renders the controls for moving stones"
-  def render_buttons(assigns) do
+  def render_game_controls(assigns) do
       ~H"""
         <table border="10">
         <tr><td>
@@ -109,6 +125,18 @@ defmodule HanoiWeb.HanoiGameControllerLive do
         number_moves: Hanoi.TowerGame.get_number_moves(:hanoi),
         error_text: error_text 
         )}
+  end
+
+  def handle_event("reset", %{"stone" => stone}, socket) do
+
+      {new_stones, _rest} = Integer.parse(stone) 
+      Hanoi.TowerGame.reset(:hanoi, new_stones)
+
+      {:noreply, assign(socket,
+        state: Hanoi.TowerGame.get_state(:hanoi),
+        number_moves: Hanoi.TowerGame.get_number_moves(:hanoi),
+        error_text: nil 
+        )}         
   end
 
   defp stone_name(name) do

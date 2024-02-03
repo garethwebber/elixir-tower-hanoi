@@ -74,6 +74,10 @@ defmodule Hanoi.TowerGame do
     Hanoi.TowerState.get_moves(storage_name(name))
   end
 
+  def reset(name, new_stones) do
+    Hanoi.TowerState.reset(storage_name(name), new_stones)
+  end
+
   @doc false
   def init(opts) do
     name = opts[:name]
