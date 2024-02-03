@@ -1,13 +1,13 @@
 defmodule HanoiWeb.HanoiGameRenderSupport do
+  use Phoenix.LiveView
    @moduledoc """
    Supporing functions for the main page rendering controller
    """
 
    @doc "Define the CSS needed to render the stones board"
-   def render_css (stones) do
-     height = (stones * 20) + 40
+   def render_css(assigns) do
 
-     """
+     ~H"""
        <style>
        .stone {
           margin:            0 auto;
@@ -24,7 +24,7 @@ defmodule HanoiWeb.HanoiGameRenderSupport do
           display:          flex;
           flex-direction:   row;
           width:            100%;
-          height:           #{height}px;
+          height:           <%= (@number_stones * 20) + 40 %>px;
           border-bottom:    solid;
           padding:          0;
        }
@@ -39,24 +39,25 @@ defmodule HanoiWeb.HanoiGameRenderSupport do
    end
 
    @doc "Renders the board as a pile of stones" 
-   def render_board(board, stones) do
-      width = div(100, stones)
-
-      "<div name=\"board\" class=\"board\">" <>
+   def render_board(assigns) do
+    ~H"""
+      <!--<%= width = div(100, @number_stones) %>-->
+      <div name="board" class="board">
       
-      "<div name=\"left\" class=\"pile\">"   <>
-      render_pile(board.left, width)         <> 
-      "</div>"                               <>
+      <div name="left" class="pile">   
+      <%= Phoenix.HTML.raw(render_pile(@board.left, width)) %>       
+      </div>                               
 
-      "<div name=\"centre\" class=\"pile\">" <>
-      render_pile(board.centre, width)       <> 
-      "</div>"                               <>
+      <div name="left" class="pile">   
+      <%= Phoenix.HTML.raw(render_pile(@board.centre, width)) %>       
+      </div>                               
 
-      "<div name=\"right\" class=\"pile\">"  <>
-      render_pile(board.right, width)        <> 
-      "</div>"                               <>
+      <div name="left" class="pile">   
+      <%= Phoenix.HTML.raw(render_pile(@board.right, width)) %>       
+      </div>                               
 
-      "</div>"
+      </div>
+    """
    end
 
    @doc "Render each individual pile on the board"

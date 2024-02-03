@@ -1,6 +1,7 @@
 defmodule HanoiWeb.HanoiGameControllerLive do
   use HanoiWeb, :html
   use Phoenix.LiveView
+  import HanoiWeb.HanoiGameRenderSupport, only: [render_css: 1, render_board: 1]
   @moduledoc """
   Controller that renders the main Hanoi game page
 
@@ -34,10 +35,10 @@ defmodule HanoiWeb.HanoiGameControllerLive do
           </div>
           <div class="mx-auto max-w-xl lg:mx-0">
             <p>Hanoi games with <%= @number_stones %> stones.</p>
-            <%= render_error_text(assigns) %>
-            <%= Phoenix.HTML.raw(HanoiWeb.HanoiGameRenderSupport.render_css(@number_stones)) %>
-       <%= Phoenix.HTML.raw(HanoiWeb.HanoiGameRenderSupport.render_board(@state, @number_stones)) %>
-            <%= render_number_moves(assigns) %>
+            <.render_error_text error_text={@error_text} />
+            <.render_css number_stones={@number_stones}/>
+            <.render_board board={@state} number_stones={@number_stones}/>
+            <.render_number_moves number_moves={@number_moves} />
             <.render_game_controls />
           </div>
         </main>
