@@ -71,6 +71,7 @@ defmodule HanoiWeb.HanoiGameControllerLive do
       {:noreply, assign(socket,
         state: Hanoi.TowerGame.get_state(:hanoi),
         number_moves: Hanoi.TowerGame.get_number_moves(:hanoi),
+        number_stones: new_stones,
         error_text: nil 
         )}         
   end
