@@ -20,7 +20,8 @@ defmodule HanoiWeb.HanoiGameControllerLive do
         state: state,
         number_moves: number_moves,
         number_stones: number_stones,
-        error_text: nil
+        error_text: nil,
+        auto_mode: false
         )}
   end
 
@@ -30,17 +31,26 @@ defmodule HanoiWeb.HanoiGameControllerLive do
         <.flash_group flash={@flash} />
         <main class="px-4 py-4 sm:px-6 lg:px-8">
           <div class="mx-auto max-w-xl lg:mx-0 flex justify-between">
-            <div class="h-4"><.header>Hanoi</.header></div>
+            <div class="h-10 p-4"><.header>Hanoi</.header></div>
             <div class="flex flex-row h-4 w-64"><.render_reset_block/></div>
           </div>
           <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 max-w-xl">
             <div>
               <p>Hanoi games with <%= @number_stones %> stones.</p>
+
               <.render_error_text error_text={@error_text} />
               <.render_css number_stones={@number_stones}/>
               <.render_board board={@state} number_stones={@number_stones}/>
-              <.render_number_moves number_moves={@number_moves} />
-              <.render_game_controls />
+
+              <%= if @auto_mode == false do %>
+                <.render_number_moves number_moves={@number_moves} />
+                <.render_game_controls />
+              <% end %>
+
+              <%= if (@number_moves == 0) and (@auto_mode == false) do %>
+                <.render_automode_control />
+              <% end %>              
+
             </div>
           </div>
         </main>
@@ -72,10 +82,39 @@ defmodule HanoiWeb.HanoiGameControllerLive do
         state: Hanoi.TowerGame.get_state(:hanoi),
         number_moves: Hanoi.TowerGame.get_number_moves(:hanoi),
         number_stones: new_stones,
-        error_text: nil 
+        error_text: nil, 
+        auto_mode: false
         )}         
   end
+  
+  def handle_event("auto_mode", _params, socket) do
+    live_view_pid = self()
 
+      socket
+      |> start_async(:running_task, fn ->
+          
+          moves = Hanoi.TowerGame.get_moves(:hanoi)
+
+          Enum.map(moves, fn({from, to}) ->
+            :timer.sleep(250)
+            Hanoi.TowerGame.move_stone(:hanoi, from, to)
+            send(live_view_pid, :refresh_board)
+          end)
+    
+        end)
+
+     {:noreply, assign(socket, 
+        error_text: "Running auto-mode",
+        auto_mode: true
+     )}
+  end
+
+  def handle_info(:refresh_board, socket) do
+    {:noreply, assign(socket, 
+        state: Hanoi.TowerGame.get_state(:hanoi),
+        )}
+  end
+  
   defp stone_name(name) do
     :"#{name}"
   end

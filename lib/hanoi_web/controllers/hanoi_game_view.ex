@@ -147,4 +147,10 @@ defmodule HanoiWeb.HanoiGameView do
      """
   end
 
+  def render_automode_control(assigns) do
+    ~H"""
+      <.button class="bg-blue-700 hover:bg-blue-500" phx-click="auto_mode">Auto mode</.button>
+    """
+  end
+
 end
