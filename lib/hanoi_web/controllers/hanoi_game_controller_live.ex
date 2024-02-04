@@ -111,7 +111,7 @@ defmodule HanoiWeb.HanoiGameControllerLive do
 
   def handle_info(:refresh_board, socket) do
     {:noreply, assign(socket, 
-        state: Hanoi.TowerGame.get_state(:hanoi),
+        state: Hanoi.TowerGame.get_state(:hanoi)
         )}
   end
   
