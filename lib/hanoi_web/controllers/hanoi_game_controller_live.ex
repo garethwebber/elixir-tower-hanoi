@@ -57,7 +57,7 @@ defmodule HanoiWeb.HanoiGameControllerLive do
     """
   end
   
-  @doc "Handle the page clicks from the page"
+  @doc "Handle the auto_mode, move_stone and reset clicks from the page"
   def handle_event("move_stone", %{"from" => from, "to" => to}, socket) do
     value = Hanoi.TowerGame.move_stone(:hanoi, 
                                         stone_name(from), stone_name(to))
@@ -73,6 +73,7 @@ defmodule HanoiWeb.HanoiGameControllerLive do
         )}
   end
 
+  # Creates a new board with X stones, and resets error_text and move_counter
   def handle_event("reset", %{"stone" => stone}, socket) do
 
       {new_stones, _rest} = Integer.parse(stone) 
@@ -86,7 +87,8 @@ defmodule HanoiWeb.HanoiGameControllerLive do
         auto_mode: false
         )}         
   end
-  
+ 
+  # Demo auto-mode: disables manual controls then moves stones automatically
   def handle_event("auto_mode", _params, socket) do
     live_view_pid = self()
 
@@ -109,6 +111,7 @@ defmodule HanoiWeb.HanoiGameControllerLive do
      )}
   end
 
+  @doc "Handle the refresh_board messages triggered by auto_mode"
   def handle_info(:refresh_board, socket) do
     {:noreply, assign(socket, 
         state: Hanoi.TowerGame.get_state(:hanoi)

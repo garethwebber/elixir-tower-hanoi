@@ -79,7 +79,7 @@ defmodule HanoiWeb.HanoiGameView do
               style=\"width:#{stone_width}%; background: var(--color#{color + 1})\"></div>"
    end
   
-  @doc "Renders reset options"
+  @doc "Renders reset dropdown and button"
   def render_reset_block(assigns) do
     form = to_form(%{"stone" => 3})
 
@@ -147,6 +147,7 @@ defmodule HanoiWeb.HanoiGameView do
      """
   end
 
+  @doc "Renders the demo automode block"
   def render_automode_control(assigns) do
     ~H"""
       <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
