@@ -27,19 +27,21 @@ defmodule HanoiWeb.HanoiGameControllerLive do
   @doc "Render the page based on current state"
   def render(assigns) do
     ~H"""
+        <.flash_group flash={@flash} />
         <main class="px-4 py-4 sm:px-6 lg:px-8">
-          <.flash_group flash={@flash} />
-          <div class="mx-auto max-w-xl lg:mx-0 table-row border">
-            <div class="table-cell"><.header>Hanoi</.header></div>
-            <div class="table-cell"><.render_reset_block/></div>
+          <div class="mx-auto max-w-xl lg:mx-0 flex justify-between border">
+            <div class="h-4"><.header>Hanoi</.header></div>
+            <div class="flex flex-row h-4 w-64"><.render_reset_block/></div>
           </div>
-          <div class="mx-auto max-w-xl lg:mx-0">
-            <p>Hanoi games with <%= @number_stones %> stones.</p>
-            <.render_error_text error_text={@error_text} />
-            <.render_css number_stones={@number_stones}/>
-            <.render_board board={@state} number_stones={@number_stones}/>
-            <.render_number_moves number_moves={@number_moves} />
-            <.render_game_controls />
+          <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 max-w-xl">
+            <div>
+              <p>Hanoi games with <%= @number_stones %> stones.</p>
+              <.render_error_text error_text={@error_text} />
+              <.render_css number_stones={@number_stones}/>
+              <.render_board board={@state} number_stones={@number_stones}/>
+              <.render_number_moves number_moves={@number_moves} />
+              <.render_game_controls />
+            </div>
           </div>
         </main>
     """
@@ -50,15 +52,16 @@ defmodule HanoiWeb.HanoiGameControllerLive do
     form = to_form(%{"stone" => 3})
 
     ~H"""
-       <span class="table-cell border"> 
-       <.simple_form for={form} phx-update="ignore" phx-submit="reset">
-        Stones: <.input field={form[:stone]} 
-                style="width: 80px"
+     <.simple_form for={form} phx-update="ignore" phx-submit="reset">
+       <div class="flex items-end justify-between">
+         <span>Stones:&nbsp;</span>
+         <.input field={form[:stone]} 
                 name="stone"
                 type="select"
                 options={["3", "4", "5", "6", "7", "8"]} /> 
         <.button>Reset</.button>
-      </.simple_form></span>
+        </div>
+      </.simple_form>
     """
   end
 
