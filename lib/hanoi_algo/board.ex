@@ -1,6 +1,6 @@
 defmodule Hanoi.Board do
   alias Hanoi.Board
-  
+
   @moduledoc """
   The domain model.
 
@@ -10,6 +10,7 @@ defmodule Hanoi.Board do
   defstruct left: [],
             centre: [],
             right: []
+
   @doc """
   Recommended way to set up the inital board with stones on left
   """

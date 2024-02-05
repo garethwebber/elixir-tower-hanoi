@@ -1,7 +1,7 @@
 defmodule TowerHanoi.MixProject do
   use Mix.Project
 
-  @version "0.3.0" 
+  @version "0.3.0"
   @repo_url "https://github.com/garethwebber/elixir-tower-hanoi"
 
   def project do
@@ -14,8 +14,7 @@ defmodule TowerHanoi.MixProject do
       name: "Towers of Hanoi",
       source_url: @repo_url,
       start_permanent: Mix.env() == :prod,
-      test_coverage: [summary: 
-                        [threshhold: 80], ignore_modules: test_exclusions() ],
+      test_coverage: [summary: [threshhold: 80], ignore_modules: test_exclusions()],
       package: package(),
       aliases: aliases(),
       deps: deps(),

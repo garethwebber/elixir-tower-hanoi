@@ -6,7 +6,7 @@ defmodule Hanoi.TowerGame do
 
   Each individual game should run as one of these. They will exist 
   independently of each other.
-  
+
   Runs as a supervisor and starts a GenServer to process work and an
   ETS instance to hold state. Usually run as part of an OTP application.
   """
@@ -14,8 +14,8 @@ defmodule Hanoi.TowerGame do
   @doc false
   def child_spec(opts) do
     %{
-      id: (opts[:name] || raise ArgumentError, "Cache name is required"),
-      start: {__MODULE__, :start_link, [opts]},
+      id: opts[:name] || raise(ArgumentError, "Cache name is required"),
+      start: {__MODULE__, :start_link, [opts]}
     }
   end
 
@@ -25,9 +25,9 @@ defmodule Hanoi.TowerGame do
   def start_link(opts) do
     name = opts[:name] || raise ArgumentError, "Cache name is required"
     stones = opts[:stones] || raise ArgumentError, "Number of stones required"
-    Supervisor.start_link(__MODULE__, opts, [name: name, stones: stones])
+    Supervisor.start_link(__MODULE__, opts, name: name, stones: stones)
   end
-  
+
   @doc """
   Function returning the current state of the hanoi board
   """
@@ -54,9 +54,9 @@ defmodule Hanoi.TowerGame do
   Function that returns the number of stones on the board.
   """
   def get_number_stones(name) do
-     Hanoi.TowerState.get_number_stones(storage_name(name))
+    Hanoi.TowerState.get_number_stones(storage_name(name))
   end
-  
+
   @doc """
   Funtion that moves a stone between piles. 
   Will error if the stone is bigger than the one at the top of the pile.
@@ -85,7 +85,7 @@ defmodule Hanoi.TowerGame do
     _table = :ets.new(storage_name(name), [:named_table, :public, :set])
 
     children = [
-      {Hanoi.TowerState, [name: storage_name(name), stones: stones]},
+      {Hanoi.TowerState, [name: storage_name(name), stones: stones]}
     ]
 
     Supervisor.init(children, strategy: :one_for_one)

@@ -2,7 +2,7 @@ defmodule TowerHanoi do
   import Hanoi.CLI
   import Hanoi.Board
   import Hanoi.Naive
-  
+
   @moduledoc """
   Command Line application version of the Tower of Hanoi.
 
