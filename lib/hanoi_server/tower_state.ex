@@ -96,7 +96,7 @@ defmodule Hanoi.TowerState do
 
   def handle_call({:move_stone, from, to}, _sender, data) do
     with [{_key, state}] <- :ets.lookup(data.table, :state),
-         {:ok, newstate} <- Hanoi.Naive.move_stone(state, from, to, false),
+         {:ok, newstate} <- Hanoi.Algo.move_stone(state, from, to, false),
          true <- :ets.insert(data.table, {:state, newstate}),
          [{_key2, moves}] <- :ets.lookup(data.table, :moves),
          true <- :ets.insert(data.table, {:moves, moves + 1}) do
@@ -118,7 +118,7 @@ defmodule Hanoi.TowerState do
 
   def handle_call({:get_moves}, _sender, data) do
     with [{_key, state}] <- :ets.lookup(data.table, :state),
-         {:ok, moves} <- Hanoi.Naive.get_moves(state) do
+         {:ok, moves} <- Hanoi.Algo.get_moves(state) do
       {:reply, moves, data}
     else
       _ ->

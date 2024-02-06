@@ -1,4 +1,4 @@
-defmodule Hanoi.Naive do
+defmodule Hanoi.Algo do
   require Logger
   require Hanoi.Render
 
