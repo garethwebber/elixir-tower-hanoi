@@ -47,15 +47,14 @@ defmodule TowerGameTest do
     assert after_moves == (before_moves + 1)
 
     # This should fail
-    value = Hanoi.TowerGame.move_stone(name, :left, :right)
-    assert value = :error
+    assert Hanoi.TowerGame.move_stone(name, :left, :right) == :error
   end
 
   test "does server run get moves correctly" do
     name = :test_tower3
     {:ok, _pid} = Hanoi.TowerGame.start_link(%{name: name, stones: 3})
 
-    expect = [
+    expected = [
       {:left, :right},
       {:left, :centre},
       {:right, :centre},
@@ -65,8 +64,7 @@ defmodule TowerGameTest do
       {:left, :right}
     ]
 
-    moves = Hanoi.TowerGame.get_moves(name)
-    assert expected = moves
+    assert Hanoi.TowerGame.get_moves(name) == expected 
   end
 
   test "does server reset board correctly" do
@@ -86,7 +84,5 @@ defmodule TowerGameTest do
     assert Hanoi.TowerGame.get_number_moves(name) == 0
     assert Hanoi.TowerGame.get_number_stones(name) == 4
   end
-
-
 
 end
