@@ -36,11 +36,15 @@ defmodule TowerGameTest do
 
     before = Hanoi.TowerGame.get_state_as_text(name)
     assert before == before_string
+    before_moves = Hanoi.TowerGame.get_number_moves(name)
 
     :ok = Hanoi.TowerGame.move_stone(name, :left, :right)
 
     after_s = Hanoi.TowerGame.get_state_as_text(name)
     assert after_s == after_string
+
+    after_moves = Hanoi.TowerGame.get_number_moves(name) 
+    assert after_moves == (before_moves + 1)
 
     # This should fail
     value = Hanoi.TowerGame.move_stone(name, :left, :right)
@@ -64,4 +68,25 @@ defmodule TowerGameTest do
     moves = Hanoi.TowerGame.get_moves(name)
     assert expected = moves
   end
+
+  test "does server reset board correctly" do
+    name = :test_tower
+    {:ok, _pid} = Hanoi.TowerGame.start_link(%{name: name, stones: 3})
+    :ok = Hanoi.TowerGame.move_stone(name, :left, :right)
+    
+    expected_state = %Hanoi.Board{left: [2, 3], centre: [], right: [1]}
+    assert Hanoi.TowerGame.get_state(name) == expected_state
+    assert Hanoi.TowerGame.get_number_moves(name) == 1
+    assert Hanoi.TowerGame.get_number_stones(name) == 3
+
+    Hanoi.TowerGame.reset(name, 4)
+ 
+    reset_state = %Hanoi.Board{left: [1, 2, 3, 4], centre: [], right: []}
+    assert Hanoi.TowerGame.get_state(name) == reset_state
+    assert Hanoi.TowerGame.get_number_moves(name) == 0
+    assert Hanoi.TowerGame.get_number_stones(name) == 4
+  end
+
+
+
 end
