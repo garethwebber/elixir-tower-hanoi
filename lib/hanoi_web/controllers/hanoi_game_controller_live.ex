@@ -32,13 +32,13 @@ defmodule HanoiWeb.HanoiGameControllerLive do
   def render(assigns) do
     ~H"""
         <.flash_group flash={@flash} />
-        <main class="px-4 py-4 sm:px-6 lg:px-8">
-          <div class="mx-auto max-w-xl lg:mx-0 flex justify-between">
-            <div class="h-10 p-4"><.header>Hanoi</.header></div>
-            <div class="flex flex-row h-4 w-64"><.render_reset_block/></div>
+        <main>
+          <div class="bg-white shadow-md rounded px-4 py-4 max-w-xl">
+          <div class="flex justify-between">
+            <div class="h-20 p-6"><.header>Hanoi</.header></div>
+            <div class="flex flex-row w-48 h-20"><.render_reset_block/></div>
           </div>
-          <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 max-w-xl">
-            <div>
+          <div>
               <p>Hanoi games with <%= @number_stones %> stones.</p>
 
               <.render_error_text error_text={@error_text} />

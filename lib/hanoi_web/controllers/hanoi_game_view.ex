@@ -84,8 +84,8 @@ defmodule HanoiWeb.HanoiGameView do
     form = to_form(%{"stone" => 3})
 
     ~H"""
-     <.simple_form for={form} phx-update="ignore" phx-submit="reset">
-       <div class="flex items-end justify-between">
+     <.form for={form} phx-update="ignore" phx-submit="reset">
+       <div class="flex items-end h-20 items-center">
          <span>Stones:&nbsp;</span>
          <.input field={form[:stone]} 
                 name="stone"
@@ -93,7 +93,7 @@ defmodule HanoiWeb.HanoiGameView do
                 options={["3", "4", "5", "6", "7", "8"]} /> 
         <.button>Reset</.button>
         </div>
-      </.simple_form>
+      </.form>
     """
   end
 
