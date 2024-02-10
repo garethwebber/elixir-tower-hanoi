@@ -32,10 +32,10 @@ defmodule HanoiWeb.HanoiGameControllerLive do
   def render(assigns) do
     ~H"""
         <.flash_group flash={@flash} />
-        <main>
+        <main class="min-h-screen bg-slate-400 flex items-center justify-center">
           <div class="bg-white shadow-md rounded px-4 py-4 max-w-xl">
           <div class="flex justify-between">
-            <div class="h-20 py-6"><.header>Hanoi</.header></div>
+            <div class="h-20 py-3"><.header>Towers of Hanoi</.header></div>
             <div class="flex flex-row w-48 h-20"><.render_reset_block/></div>
           </div>
           <div>
