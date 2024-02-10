@@ -133,7 +133,7 @@ defmodule HanoiWeb.HanoiGameView do
     ~H"""
      <hr class="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700">
 
-     <div class="flex py-1 justify-between">
+     <div class="flex py-1 gap-x-2 justify-between">
        <.button phx-click="move_stone" phx-value-from="left" phx-value-to="centre">Left to centre</.button>
        <.button phx-click="move_stone" phx-value-from="centre" phx-value-to="left">Centre to left</.button>
        <.button phx-click="move_stone" phx-value-from="centre" phx-value-to="right">Centre to right</.button>
