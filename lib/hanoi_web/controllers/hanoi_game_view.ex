@@ -85,7 +85,7 @@ defmodule HanoiWeb.HanoiGameView do
 
     ~H"""
      <.form for={form} phx-update="ignore" phx-submit="reset">
-       <div class="flex items-end h-20 items-center">
+       <div class="flex items-end items-center">
          <span>Stones:&nbsp;</span>
          <.input field={form[:stone]} 
                 name="stone"
@@ -102,17 +102,19 @@ defmodule HanoiWeb.HanoiGameView do
     cond do
       error_text == nil ->
         ~H"""
-          <p>&nbsp</p><br/>
+          <p>&nbsp</p>
         """
 
       true ->
         ~H"""
-          <p align="center"><span style="color: #c51244; border: 1px solid #c51244 !important;">
-            &nbsp; 
-            <.icon name="hero-exclamation-circle-mini" class="py-2.5 h-4 w-4 text-rose-500"/>
-            <%= @error_text  %>
-            &nbsp;
-          </span></p><br />
+          <p class="text-center">
+            <span class="prose border border-red-500"> 
+              &nbsp; 
+              <.icon name="hero-exclamation-circle-mini" class="py-2.5 h-4 w-4 text-red-500"/>
+              <%= @error_text  %>
+              &nbsp;
+            </span>
+          </p>
         """
     end
   end
@@ -120,39 +122,35 @@ defmodule HanoiWeb.HanoiGameView do
   @doc "Renders the current move count"
   def render_number_moves(assigns) do
     ~H"""
-         <p>Number of moves: <%= @number_moves  %></p>
+         <span class="prose py-4">
+           Number of moves: <%= @number_moves  %>
+         </span>
     """
   end
 
   @doc "Renders the controls for moving stones"
   def render_game_controls(assigns) do
     ~H"""
-       <table border="10">
-       <tr><td>
+     <hr class="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700">
+
+     <div class="flex py-1 justify-between">
        <.button phx-click="move_stone" phx-value-from="left" phx-value-to="centre">Left to centre</.button>
-       </td><td>
        <.button phx-click="move_stone" phx-value-from="centre" phx-value-to="left">Centre to left</.button>
-       </td><td>
        <.button phx-click="move_stone" phx-value-from="centre" phx-value-to="right">Centre to right</.button>
-       </td><td>
        <.button phx-click="move_stone" phx-value-from="right" phx-value-to="centre">Right to centre</.button>
-       </td></tr>
-       <tr><td>
+       </div>
+       <div class="flex py-1 justify-between">
        <.button phx-click="move_stone" phx-value-from="left" phx-value-to="right">Left to right</.button>
-       </td>
-       <td></td><td></td>
-       <td>
        <.button phx-click="move_stone" phx-value-from="right" phx-value-to="left">Right to Left</.button>
-       </td></tr>
-       </table>
+     </div>
     """
   end
 
   @doc "Renders the demo automode block"
   def render_automode_control(assigns) do
     ~H"""
-      <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
-      <.button class="bg-rose-700 hover:bg-rose-500" phx-click="auto_mode">Auto mode</.button>
+      <hr class="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700">
+      <.button phx-click="auto_mode">Auto mode</.button>
     """
   end
 end

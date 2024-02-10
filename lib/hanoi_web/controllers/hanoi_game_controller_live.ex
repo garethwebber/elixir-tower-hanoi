@@ -35,11 +35,13 @@ defmodule HanoiWeb.HanoiGameControllerLive do
         <main>
           <div class="bg-white shadow-md rounded px-4 py-4 max-w-xl">
           <div class="flex justify-between">
-            <div class="h-20 p-6"><.header>Hanoi</.header></div>
+            <div class="h-20 py-6"><.header>Hanoi</.header></div>
             <div class="flex flex-row w-48 h-20"><.render_reset_block/></div>
           </div>
           <div>
-              <p>Hanoi games with <%= @number_stones %> stones.</p>
+              <span class="prose">
+                <p>Hanoi games with <%= @number_stones %> stones.</p>
+              </span>
 
               <.render_error_text error_text={@error_text} />
               <.render_css number_stones={@number_stones}/>
