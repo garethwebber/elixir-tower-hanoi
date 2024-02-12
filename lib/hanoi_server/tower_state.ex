@@ -34,6 +34,10 @@ defmodule Hanoi.TowerState do
     GenServer.call(server, {:move_stone, from, to})
   end
 
+  def is_complete(server) do
+   GenServer.call(server, {:is_complete}) 
+  end
+
   def get_moves(server) do
     GenServer.call(server, {:get_moves})
   end
@@ -55,41 +59,37 @@ defmodule Hanoi.TowerState do
   end
 
   def handle_call({:get_state}, _sender, data) do
-    case :ets.lookup(data.table, :state) do
-      [{_key, state}] ->
+    with [{_key, state}] <- :ets.lookup(data.table, :state) do
         {:reply, state, data}
-
-      [] ->
+    else
+     _ ->
         {:reply, :error, data}
     end
   end
 
-  def handle_call({:get_state_as_text}, _sender, data) do
-    case :ets.lookup(data.table, :state) do
-      [{_key, state}] ->
+def handle_call({:get_state_as_text}, _sender, data) do
+    with [{_key, state}] <- :ets.lookup(data.table, :state) do
         {:reply, Hanoi.Render.render_to_string(state), data}
-
-      [] ->
+    else
+      _ ->
         {:reply, :error, data}
     end
   end
 
   def handle_call({:get_number_moves}, _sender, data) do
-    case :ets.lookup(data.table, :moves) do
-      [{_key, moves}] ->
+    with [{_key, moves}] <- :ets.lookup(data.table, :moves) do
         {:reply, moves, data}
-
-      [] ->
+    else 
+      _ ->
         {:reply, :error, data}
     end
   end
 
   def handle_call({:get_number_stones}, _sender, data) do
-    case :ets.lookup(data.table, :stones) do
-      [{_key, stones}] ->
+    with [{_key, stones}] <- :ets.lookup(data.table, :stones) do
         {:reply, stones, data}
-
-      [] ->
+    else
+      _ ->
         {:reply, :error, data}
     end
   end
@@ -104,6 +104,17 @@ defmodule Hanoi.TowerState do
     else
       _ ->
         Logger.error("Move stone from #{from} to #{to} failed.")
+        {:reply, :error, data}
+    end
+  end
+
+  def handle_call({:is_complete}, _sender, data) do
+    with [{_key, board}]  <- :ets.lookup(data.table, :state),
+         [{_key, stones}] <- :ets.lookup(data.table, :stones) do  
+      {:reply, Hanoi.Board.is_complete(board, stones), data}
+    else
+      _ -> 
+        Logger.error("Failed to carry out complete check.")
         {:reply, :error, data}
     end
   end

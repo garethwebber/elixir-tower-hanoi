@@ -65,6 +65,14 @@ defmodule Hanoi.TowerGame do
   def move_stone(name, from, to) do
     Hanoi.TowerState.move_stone(storage_name(name), from, to)
   end
+  
+  @doc """
+  Funtion returns true if game is complete
+  That is all stones in correct order on right hand pile
+  """
+  def is_complete(name) do
+    Hanoi.TowerState.is_complete(storage_name(name))
+  end
 
   @doc """
   Function that for a board with all stones on left pile will move them
