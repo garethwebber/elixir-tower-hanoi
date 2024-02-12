@@ -16,4 +16,19 @@ defmodule BoardTest do
     output = Hanoi.Board.create_board(3)
     assert output == expected_end
   end
+
+  test "Failed complete test" do
+    test = Hanoi.Board.create_board(3)
+
+    assert Hanoi.Board.is_complete(test, 3) == false 
+  end
+
+  test "Passed complete test" do
+    test = %Hanoi.Board{right: [1, 2, 3]}
+
+    assert Hanoi.Board.is_complete(test, 3) == true 
+  end
+
+
+    
 end
