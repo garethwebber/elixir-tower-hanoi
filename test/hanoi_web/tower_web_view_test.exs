@@ -51,13 +51,43 @@ defmodule TowerWebViewTest do
      "<span class=\"prose\">\n     Number of moves: 5\n   </span>"
   end
 
+  test "test render_move_count on completion" do
+    assert render_component(&render_number_moves/1, completed: true, number_moves: 7) ==  
+    "<span class=\"prose border border-green-500\">\n     Congratulations you completed the game in 7 moves.\n   </span>"
+  end
+
   test "test render_manual controls" do
    assert render_component(&render_game_controls/1, completed: false, auto_mode: false, number_moves: 5) ==
    "<hr class=\"h-px my-2 bg-gray-200 border-0 dark:bg-gray-700\">\n\n <div class=\"flex py-1 gap-x-2 justify-between\">\n   <button class=\"phx-submit-loading:opacity-75 rounded-lg bg-zinc-900 hover:bg-zinc-700 py-2 px-3 text-sm font-semibold leading-6 text-white active:text-white/80 disabled:bg-slate-200\" phx-click=\"move_stone\" phx-value-from=\"left\" phx-value-to=\"centre\">\n  Left to centre\n</button>\n   <button class=\"phx-submit-loading:opacity-75 rounded-lg bg-zinc-900 hover:bg-zinc-700 py-2 px-3 text-sm font-semibold leading-6 text-white active:text-white/80 disabled:bg-slate-200\" phx-click=\"move_stone\" phx-value-from=\"centre\" phx-value-to=\"left\">\n  Centre to left\n</button>\n   <button class=\"phx-submit-loading:opacity-75 rounded-lg bg-zinc-900 hover:bg-zinc-700 py-2 px-3 text-sm font-semibold leading-6 text-white active:text-white/80 disabled:bg-slate-200\" phx-click=\"move_stone\" phx-value-from=\"centre\" phx-value-to=\"right\">\n  Centre to right\n</button>\n   <button class=\"phx-submit-loading:opacity-75 rounded-lg bg-zinc-900 hover:bg-zinc-700 py-2 px-3 text-sm font-semibold leading-6 text-white active:text-white/80 disabled:bg-slate-200\" phx-click=\"move_stone\" phx-value-from=\"right\" phx-value-to=\"centre\">\n  Right to centre\n</button>\n   </div>\n   <div class=\"flex py-1 justify-between\">\n   <button class=\"phx-submit-loading:opacity-75 rounded-lg bg-zinc-900 hover:bg-zinc-700 py-2 px-3 text-sm font-semibold leading-6 text-white active:text-white/80 disabled:bg-slate-200\" phx-click=\"move_stone\" phx-value-from=\"left\" phx-value-to=\"right\">\n  Left to right\n</button>\n   <button class=\"phx-submit-loading:opacity-75 rounded-lg bg-zinc-900 hover:bg-zinc-700 py-2 px-3 text-sm font-semibold leading-6 text-white active:text-white/80 disabled:bg-slate-200\" phx-click=\"move_stone\" phx-value-from=\"right\" phx-value-to=\"left\">\n  Right to Left\n</button>\n </div>"
   end
+  
+  test "test render_manual controls disable on completion" do
+   assert render_component(&render_game_controls/1, completed: true, auto_mode: false, number_moves: 5) ==
+   "<hr class=\"h-px my-2 bg-gray-200 border-0 dark:bg-gray-700\">\n\n <div class=\"flex py-1 gap-x-2 justify-between\">\n   <button class=\"phx-submit-loading:opacity-75 rounded-lg bg-zinc-900 hover:bg-zinc-700 py-2 px-3 text-sm font-semibold leading-6 text-white active:text-white/80 disabled:bg-slate-200\" disabled phx-click=\"move_stone\" phx-value-from=\"left\" phx-value-to=\"centre\">\n  Left to centre\n</button>\n   <button class=\"phx-submit-loading:opacity-75 rounded-lg bg-zinc-900 hover:bg-zinc-700 py-2 px-3 text-sm font-semibold leading-6 text-white active:text-white/80 disabled:bg-slate-200\" disabled phx-click=\"move_stone\" phx-value-from=\"centre\" phx-value-to=\"left\">\n  Centre to left\n</button>\n   <button class=\"phx-submit-loading:opacity-75 rounded-lg bg-zinc-900 hover:bg-zinc-700 py-2 px-3 text-sm font-semibold leading-6 text-white active:text-white/80 disabled:bg-slate-200\" disabled phx-click=\"move_stone\" phx-value-from=\"centre\" phx-value-to=\"right\">\n  Centre to right\n</button>\n   <button class=\"phx-submit-loading:opacity-75 rounded-lg bg-zinc-900 hover:bg-zinc-700 py-2 px-3 text-sm font-semibold leading-6 text-white active:text-white/80 disabled:bg-slate-200\" disabled phx-click=\"move_stone\" phx-value-from=\"right\" phx-value-to=\"centre\">\n  Right to centre\n</button>\n   </div>\n   <div class=\"flex py-1 justify-between\">\n   <button class=\"phx-submit-loading:opacity-75 rounded-lg bg-zinc-900 hover:bg-zinc-700 py-2 px-3 text-sm font-semibold leading-6 text-white active:text-white/80 disabled:bg-slate-200\" disabled phx-click=\"move_stone\" phx-value-from=\"left\" phx-value-to=\"right\">\n  Left to right\n</button>\n   <button class=\"phx-submit-loading:opacity-75 rounded-lg bg-zinc-900 hover:bg-zinc-700 py-2 px-3 text-sm font-semibold leading-6 text-white active:text-white/80 disabled:bg-slate-200\" disabled phx-click=\"move_stone\" phx-value-from=\"right\" phx-value-to=\"left\">\n  Right to Left\n</button>\n </div>"
+   end
 
+  test "test render_manual controls disable on auto_mode" do
+   assert render_component(&render_game_controls/1, completed: false, auto_mode: true, number_moves: 5) ==
+   "<hr class=\"h-px my-2 bg-gray-200 border-0 dark:bg-gray-700\">\n\n <div class=\"flex py-1 gap-x-2 justify-between\">\n   <button class=\"phx-submit-loading:opacity-75 rounded-lg bg-zinc-900 hover:bg-zinc-700 py-2 px-3 text-sm font-semibold leading-6 text-white active:text-white/80 disabled:bg-slate-200\" disabled phx-click=\"move_stone\" phx-value-from=\"left\" phx-value-to=\"centre\">\n  Left to centre\n</button>\n   <button class=\"phx-submit-loading:opacity-75 rounded-lg bg-zinc-900 hover:bg-zinc-700 py-2 px-3 text-sm font-semibold leading-6 text-white active:text-white/80 disabled:bg-slate-200\" disabled phx-click=\"move_stone\" phx-value-from=\"centre\" phx-value-to=\"left\">\n  Centre to left\n</button>\n   <button class=\"phx-submit-loading:opacity-75 rounded-lg bg-zinc-900 hover:bg-zinc-700 py-2 px-3 text-sm font-semibold leading-6 text-white active:text-white/80 disabled:bg-slate-200\" disabled phx-click=\"move_stone\" phx-value-from=\"centre\" phx-value-to=\"right\">\n  Centre to right\n</button>\n   <button class=\"phx-submit-loading:opacity-75 rounded-lg bg-zinc-900 hover:bg-zinc-700 py-2 px-3 text-sm font-semibold leading-6 text-white active:text-white/80 disabled:bg-slate-200\" disabled phx-click=\"move_stone\" phx-value-from=\"right\" phx-value-to=\"centre\">\n  Right to centre\n</button>\n   </div>\n   <div class=\"flex py-1 justify-between\">\n   <button class=\"phx-submit-loading:opacity-75 rounded-lg bg-zinc-900 hover:bg-zinc-700 py-2 px-3 text-sm font-semibold leading-6 text-white active:text-white/80 disabled:bg-slate-200\" disabled phx-click=\"move_stone\" phx-value-from=\"left\" phx-value-to=\"right\">\n  Left to right\n</button>\n   <button class=\"phx-submit-loading:opacity-75 rounded-lg bg-zinc-900 hover:bg-zinc-700 py-2 px-3 text-sm font-semibold leading-6 text-white active:text-white/80 disabled:bg-slate-200\" disabled phx-click=\"move_stone\" phx-value-from=\"right\" phx-value-to=\"left\">\n  Right to Left\n</button>\n </div>"
+   end
+ 
   test "test render automode control" do
-   assert render_component(&render_automode_control/1, completed: false, auto_mode: false, number_moves: 5) ==
+   assert render_component(&render_automode_control/1, completed: false, auto_mode: false, number_moves: 0) ==
+   "<hr class=\"h-px my-2 bg-gray-200 border-0 dark:bg-gray-700\">\n  <button class=\"phx-submit-loading:opacity-75 rounded-lg bg-zinc-900 hover:bg-zinc-700 py-2 px-3 text-sm font-semibold leading-6 text-white active:text-white/80 disabled:bg-slate-200\" phx-click=\"auto_mode\">\n  Auto mode\n</button>"
+  end
+
+  test "test render automode control on moves > 0" do
+   assert render_component(&render_automode_control/1, completed: false, auto_mode: true, number_moves: 5) ==
+   "<hr class=\"h-px my-2 bg-gray-200 border-0 dark:bg-gray-700\">\n  <button class=\"phx-submit-loading:opacity-75 rounded-lg bg-zinc-900 hover:bg-zinc-700 py-2 px-3 text-sm font-semibold leading-6 text-white active:text-white/80 disabled:bg-slate-200\" disabled phx-click=\"auto_mode\">\n  Auto mode\n</button>"
+  end
+
+ test "test render automode control on automode" do
+   assert render_component(&render_automode_control/1, completed: false, auto_mode: true, number_moves: 0) ==
+   "<hr class=\"h-px my-2 bg-gray-200 border-0 dark:bg-gray-700\">\n  <button class=\"phx-submit-loading:opacity-75 rounded-lg bg-zinc-900 hover:bg-zinc-700 py-2 px-3 text-sm font-semibold leading-6 text-white active:text-white/80 disabled:bg-slate-200\" disabled phx-click=\"auto_mode\">\n  Auto mode\n</button>"
+  end
+
+ test "test render automode control on completion" do
+   assert render_component(&render_automode_control/1, completed: true, auto_mode: false, number_moves: 0) ==
    "<hr class=\"h-px my-2 bg-gray-200 border-0 dark:bg-gray-700\">\n  <button class=\"phx-submit-loading:opacity-75 rounded-lg bg-zinc-900 hover:bg-zinc-700 py-2 px-3 text-sm font-semibold leading-6 text-white active:text-white/80 disabled:bg-slate-200\" disabled phx-click=\"auto_mode\">\n  Auto mode\n</button>"
   end
 end

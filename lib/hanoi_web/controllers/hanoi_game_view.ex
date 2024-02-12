@@ -120,49 +120,58 @@ defmodule HanoiWeb.HanoiGameView do
   end
 
   @doc "Renders the current move count"
-  def render_number_moves(assigns) do
-    ~H"""
-         <span class="prose py-4">
-           Number of moves: <%= @number_moves  %>
-         </span>
-    """
+  def render_number_moves(%{completed: completed, number_moves: number_moves} = assigns) do
+    case completed do
+      false ->
+        ~H"""
+           <span class="prose">
+             Number of moves: <%= @number_moves  %>
+           </span>
+        """
+      true ->
+        ~H"""
+           <span class="prose border border-green-500">
+             Congratulations you completed the game in <%= @number_moves  %> moves.
+           </span>
+        """
+    end
   end
 
   @doc "Renders the controls for moving stones"
-  def render_game_controls(%{auto_mode: auto_mode} = assigns) do
+  def render_game_controls(%{auto_mode: auto_mode, completed: completed} = assigns) do
     ~H"""
      <hr class="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700">
 
      <div class="flex py-1 gap-x-2 justify-between">
        <.button 
-         disabled={@auto_mode}  
+         disabled={@auto_mode || @completed}  
          class="disabled:bg-slate-200"
          phx-click="move_stone" phx-value-from="left" phx-value-to="centre"
          >Left to centre</.button>
        <.button 
-         disabled={@auto_mode}  
+         disabled={@auto_mode || @completed}  
          class="disabled:bg-slate-200"
          phx-click="move_stone" phx-value-from="centre" phx-value-to="left"
          >Centre to left</.button>
        <.button 
-         disabled={@auto_mode}  
+         disabled={@auto_mode || @completed}  
          class="disabled:bg-slate-200"
          phx-click="move_stone" phx-value-from="centre" phx-value-to="right"
          >Centre to right</.button>
        <.button 
-         disabled={@auto_mode}  
+         disabled={@auto_mode || @completed}  
          class="disabled:bg-slate-200"
          phx-click="move_stone" phx-value-from="right" phx-value-to="centre"
          >Right to centre</.button>
        </div>
        <div class="flex py-1 justify-between">
        <.button 
-         disabled={@auto_mode}  
+         disabled={@auto_mode || @completed}  
          class="disabled:bg-slate-200"
          phx-click="move_stone" phx-value-from="left" phx-value-to="right"
          >Left to right</.button>
        <.button 
-         disabled={@auto_mode}  
+         disabled={@auto_mode || @completed}  
          class="disabled:bg-slate-200"
          phx-click="move_stone" phx-value-from="right" phx-value-to="left"
          >Right to Left</.button>
@@ -171,11 +180,13 @@ defmodule HanoiWeb.HanoiGameView do
   end
 
   @doc "Renders the demo automode block"
-  def render_automode_control(%{auto_mode: auto_mode, number_moves: number_moves} = assigns) do
+  def render_automode_control(%{auto_mode: auto_mode, 
+                                completed: completed,
+                                number_moves: number_moves} = assigns) do
     ~H"""
       <hr class="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700">
       <.button 
-        disabled={@auto_mode || @number_moves > 0}  
+        disabled={@auto_mode || @completed || @number_moves > 0}  
         class="disabled:bg-slate-200"
         phx-click="auto_mode"
         >Auto mode</.button>

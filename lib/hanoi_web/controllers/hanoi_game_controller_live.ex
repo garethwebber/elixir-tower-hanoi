@@ -24,7 +24,8 @@ defmodule HanoiWeb.HanoiGameControllerLive do
        number_moves: number_moves,
        number_stones: number_stones,
        error_text: nil,
-       auto_mode: false
+       auto_mode: false,
+       completed: false
      )}
   end
 
@@ -47,11 +48,12 @@ defmodule HanoiWeb.HanoiGameControllerLive do
               <.render_css number_stones={@number_stones}/>
               <.render_board board={@state} number_stones={@number_stones}/>
 
-              <.render_number_moves number_moves={@number_moves} />
-              <.render_game_controls auto_mode={@auto_mode} />
+              <.render_number_moves completed={@completed} number_moves={@number_moves} />
+              <.render_game_controls completed={@completed} auto_mode={@auto_mode} />
 
               <.render_automode_control 
                 number_moves={@number_moves} 
+                completed={@completed}
                 auto_mode={@auto_mode}/>
 
             </div>
@@ -74,6 +76,7 @@ defmodule HanoiWeb.HanoiGameControllerLive do
      assign(socket,
        state: Hanoi.TowerGame.get_state(:hanoi),
        number_moves: Hanoi.TowerGame.get_number_moves(:hanoi),
+       completed: Hanoi.TowerGame.is_complete(:hanoi),
        error_text: error_text
      )}
   end
@@ -89,6 +92,7 @@ defmodule HanoiWeb.HanoiGameControllerLive do
        number_moves: Hanoi.TowerGame.get_number_moves(:hanoi),
        number_stones: new_stones,
        error_text: nil,
+       completed: false,
        auto_mode: false
      )}
   end
