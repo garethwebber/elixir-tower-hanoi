@@ -47,14 +47,12 @@ defmodule HanoiWeb.HanoiGameControllerLive do
               <.render_css number_stones={@number_stones}/>
               <.render_board board={@state} number_stones={@number_stones}/>
 
-              <%= if @auto_mode == false do %>
-                <.render_number_moves number_moves={@number_moves} />
-                <.render_game_controls />
-              <% end %>
+              <.render_number_moves number_moves={@number_moves} />
+              <.render_game_controls auto_mode={@auto_mode} />
 
-              <%= if (@number_moves == 0) and (@auto_mode == false) do %>
-                <.render_automode_control />
-              <% end %>              
+              <.render_automode_control 
+                number_moves={@number_moves} 
+                auto_mode={@auto_mode}/>
 
             </div>
           </div>
@@ -121,7 +119,8 @@ defmodule HanoiWeb.HanoiGameControllerLive do
   def handle_info(:refresh_board, socket) do
     {:noreply,
      assign(socket,
-       state: Hanoi.TowerGame.get_state(:hanoi)
+       state: Hanoi.TowerGame.get_state(:hanoi),
+       number_moves: Hanoi.TowerGame.get_number_moves(:hanoi)
      )}
   end
 
