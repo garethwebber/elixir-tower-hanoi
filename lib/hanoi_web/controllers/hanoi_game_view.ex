@@ -39,6 +39,27 @@ defmodule HanoiWeb.HanoiGameView do
     """
   end
 
+  @doc "Show game instructions"
+  def render_help_modal(assigns) do
+     ~H"""
+       <.modal id="help_modal">
+         <span class="text:lg font-bold">
+         <p>Rules of Towers of Hanoi</p></span>
+         <span class="prose">
+         <p>There are three piles of stones. You start with all the stones
+         on the left pile. The goal is to move all the stones to the right
+         pile.</p>
+         <ul class="list-disc list-inside">
+           <li>Stones must be moved one at a time.</li>
+           <li>A larger stone cannot be placed on a smaller one.</li>
+         </ul>
+         <p>The goal is to complete the task in the smallest number
+         of moves.</p>
+         </span>
+       </.modal>
+     """
+  end 
+
   @doc "Renders the board as a pile of stones"
   def render_board(assigns) do
     ~H"""
@@ -185,11 +206,16 @@ defmodule HanoiWeb.HanoiGameView do
                                 number_moves: number_moves} = assigns) do
     ~H"""
       <hr class="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700">
-      <.button 
-        disabled={@auto_mode || @completed || @number_moves > 0}  
-        class="disabled:bg-slate-200"
-        phx-click="auto_mode"
-        >Auto mode</.button>
+      <div class="flex py-1 justify-between">
+        <.button 
+          disabled={@auto_mode || @completed || @number_moves > 0}  
+          class="disabled:bg-slate-200"
+          phx-click="auto_mode"
+          >Auto mode</.button>
+        <.button
+          phx-click={show_modal("help_modal")}
+          >Help</.button>
+      </div>
     """
   end
 end

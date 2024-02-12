@@ -56,13 +56,14 @@ defmodule HanoiWeb.HanoiGameControllerLive do
                 completed={@completed}
                 auto_mode={@auto_mode}/>
 
+              <.render_help_modal/>
             </div>
           </div>
         </main>
     """
   end
 
-  @doc "Handle the auto_mode, move_stone and reset clicks from the page"
+  @doc "Handle the auto_mode, move_stone & reset clicks from page"
   def handle_event("move_stone", %{"from" => from, "to" => to}, socket) do
     value = Hanoi.TowerGame.move_stone(:hanoi, stone_name(from), stone_name(to))
 
