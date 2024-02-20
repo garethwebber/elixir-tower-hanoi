@@ -48,6 +48,7 @@ defmodule TowerHanoi.MixProject do
     [
       {:logger_file_backend, "~> 0.0.10"},
       {:ex_doc, "~> 0.31", only: :dev, runtime: false},
+      {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false},
       {:phoenix, "~> 1.7.10"},
       {:phoenix_html, "~> 3.3"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},

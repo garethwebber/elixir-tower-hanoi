@@ -14,7 +14,7 @@ defmodule Hanoi.TowerGame do
   @doc false
   def child_spec(opts) do
     %{
-      id: opts[:name] || raise(ArgumentError, "Cache name is required"),
+      id: opts[:name] || raise(ArgumentError, "id is required"),
       start: {__MODULE__, :start_link, [opts]}
     }
   end
@@ -23,9 +23,9 @@ defmodule Hanoi.TowerGame do
   Call this function to start up the module. Name and Stones must be provided. 
   """
   def start_link(opts) do
-    name = opts[:name] || raise ArgumentError, "Cache name is required"
-    stones = opts[:stones] || raise ArgumentError, "Number of stones required"
-    Supervisor.start_link(__MODULE__, opts, name: name, stones: stones)
+    _name = opts[:name] || raise ArgumentError, "Cache name is required"
+    _stones = opts[:stones] || raise ArgumentError, "Number of stones required"
+    Supervisor.start_link(__MODULE__, opts)
   end
 
   @doc """
