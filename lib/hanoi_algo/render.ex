@@ -9,6 +9,7 @@ defmodule Hanoi.Render do
   @doc """
   Renders a board <struct> as a <String>. 
   """
+  @spec render_to_string(board :: Hanoi.Board.t()) :: String.t()
   def render_to_string(board) do
     "\n" <>
       "L" <> reverse_to_string(board.left) <> "\n" <>

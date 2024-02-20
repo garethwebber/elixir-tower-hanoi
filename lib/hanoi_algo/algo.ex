@@ -9,6 +9,7 @@ defmodule Hanoi.Algo do
   @doc """
   An algorithm to get the list of moves to transfer stones by recursion
   """
+  @spec get_moves(board :: Hanoi.Board.t()) :: {:ok, list()}
   def get_moves(board) do
     disk_numbers = length(board.left)
     {_board, moves} = moves_algo(board, [], disk_numbers, :left, :centre, :right, false)
@@ -18,6 +19,7 @@ defmodule Hanoi.Algo do
   @doc """
   An algorithm to move stones between stacks by recursion 
   """
+  @spec run_algo(board :: Hanoi.Board.t()) :: Hanoi.Board.t() 
   def run_algo(board) do
     disk_numbers = length(board.left)
     IO.puts(Hanoi.Render.render_to_string(board))
@@ -28,6 +30,7 @@ defmodule Hanoi.Algo do
   @doc """
   Returns a new board with stone moved, or an error if an invalid move 
   """
+  @spec move_stone(board :: Hanoi.Board.t(), from :: atom(), to :: atom(), debug :: boolean()) :: { :ok | :error, Hanoi.Board.t()}
   def move_stone(board, from, to, debug) do
     with {:ok, newboard, _moves} <- record_stone_move(board, [], from, to, debug) do
       {:ok, newboard}
@@ -79,6 +82,7 @@ defmodule Hanoi.Algo do
   A move is valid if the stone exists, the stack moved to is empty, 
   or has a larger stone on it
   """
+  @spec is_valid_move(board :: Hanoi.Board.t(), from :: atom(), to :: atom()) :: boolean()
   def is_valid_move(board, from, to) do
     case Map.fetch(board, from) == {:ok, []} do
       # Stone doesn't exist
