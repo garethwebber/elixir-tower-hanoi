@@ -37,11 +37,13 @@ alias ElixirLS.LanguageServer.CLI
   @doc """
   Main command-line entry point. Gets arguments parsed responds accordingly. 
   """
+  @spec main(argv :: list(String.t())) :: :ok
   def main(argv) do
     IO.puts("Tower of Hanoi")
     process(parse_args(argv))
   end
 
+  @spec process(stones :: atom() | pos_integer()) :: :ok
   defp process(:help) do
     IO.puts("Usage: tower_hanoi <stones>\n")
     IO.puts("Remember not to go to high. 20 takes 20 seconds and each extra")
@@ -57,13 +59,15 @@ alias ElixirLS.LanguageServer.CLI
     IO.puts("\n#{stones} stones took #{get_runtime(timer)}.")
   end
 
+  @spec start_timer(unit :: atom()) :: {atom(), integer()}
   defp start_timer(time_period) do
     {time_period, System.system_time(time_period)}
   end
 
+  @spec get_runtime({time_period :: atom(), start_time :: integer()}) :: String.t()
   defp get_runtime(timer) do
-    {time_period, start_time} = timer
-
+     {time_period, start_time} = timer
+    
     "#{System.system_time(time_period) - start_time} #{time_period}(s)"
   end
 end

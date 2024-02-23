@@ -6,6 +6,7 @@ defmodule Hanoi.CLI do
   @doc """
   Parses command like argumennts and returns number of stones, or help. 
   """
+  @spec parse_args(argv :: list(String.t())) :: pos_integer() | atom()
   def parse_args(argv) do
     OptionParser.parse(argv,
       switches: [help: :boolean],
