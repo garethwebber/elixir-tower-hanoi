@@ -24,7 +24,7 @@ directory.
 
 Run ```iex -S mix phx.server``` and then point your web-browser at http://localhost:4000
 
-<img width="800" alt="hanoi web-app screenshot" src="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/priv/web-view.jpg">
+<img width="800" alt="hanoi web-app screenshot" src="https://garethwebber.github.io/elixir-tower-hanoi/web-view.jpg">
 
 ## Running GenServer
 
