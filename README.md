@@ -8,7 +8,7 @@ Features
 3. Tracks how many steps are taken to complete 
 4. Can run localally or be built into a [docker](https://docs.docker.com) image
 5. Decent test coverage inc static analysis with [dialyzer](https://www.erlang.org/doc/man/dialyzer.html)
-6. API documentation including architecture diagrams
+6. [API documentation](https://garethwebber.github.io/elixir-tower-hanoi/api-reference.html) including [architecture diagrams](https://garethwebber.github.io/elixir-tower-hanoi/HanoiWeb.HanoiGameControllerLive.html)
 
 When I was learning elixir, the examples I saw felt ideomatically OO
 (e.g. [1]) rather than  functional so I decided to write one myself, leaning into FP. Having 
