@@ -11,9 +11,9 @@ Obviously having written this as a critique of structure - feel free to comment 
 
 ## How to run 
 
-Full details on how to run either as a webapp, gen_server or command line can be <a href="https://garethwebber.github.io/elixir-tower-hanoi/howtorun.html">on this page</a>.
+Full details on how to run either as a webapp, gen_server or command line can be [on this page](https://garethwebber.github.io/elixir-tower-hanoi/howtorun.html).
 
-<img width="800" alt="hanoi web-app screenshot" src="https://garethwebber.github.io/elixir-tower-hanoi/web-view.jpg">
+![hanoi web-app screenshot](https://garethwebber.github.io/elixir-tower-hanoi/web-view.jpg)
 
 ## References
 
