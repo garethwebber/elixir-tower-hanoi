@@ -93,7 +93,7 @@ defmodule TowerHanoi.MixProject do
   defp docs do
     [
       # Add the following files into the documents create by mix docs
-      extras: ["README.md", "LICENSE"]
+      extras: ["README.md", "HOWTORUN.md", "LICENSE"]
     ]
   end
 

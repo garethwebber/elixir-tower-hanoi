@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.31.0">
+    <meta name="project" content="Towers of Hanoi v0.6.0">
+
+
+    <title>How to Run — Towers of Hanoi v0.6.0</title>
+    <link rel="stylesheet" href="dist/html-elixir-3ZLIM5JF.css" />
+
+
+    <script src="dist/handlebars.runtime-NWIB6V2M.js"></script>
+    <script src="dist/handlebars.templates-43PMFBC7.js"></script>
+    <script src="dist/sidebar_items-1BFB2523.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/html-CILPWI2Q.js"></script>
+
+
+  </head>
+  <body data-type="extras" class="page-extra">
+    <script>
+
+      try {
+        var settings = JSON.parse(localStorage.getItem('ex_doc:settings') || '{}');
+
+        if (settings.theme === 'dark' ||
+           ((settings.theme === 'system' || settings.theme == null) &&
+             window.matchMedia('(prefers-color-scheme: dark)').matches)
+           ) {
+          document.body.classList.add('dark')
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle" aria-label="toggle sidebar" aria-controls="sidebar">
+  <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
+</button>
+
+<nav id="sidebar" class="sidebar">
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectInfo">
+
+      <div>
+        <a href="api-reference.html" class="sidebar-projectName" translate="no">
+Towers of Hanoi
+        </a>
+        <div class="sidebar-projectVersion" translate="no">
+          v0.6.0
+        </div>
+      </div>
+    </div>
+    <ul id="sidebar-listNav" class="sidebar-listNav" role="tablist">
+      <li>
+        <button id="extras-list-tab-button" role="tab" data-type="extras" aria-controls="extras-tab-panel" aria-selected="true" tabindex="0">
+Pages
+        </button>
+      </li>
+
+        <li>
+          <button id="modules-list-tab-button" role="tab" data-type="modules" aria-controls="modules-tab-panel" aria-selected="false" tabindex="-1">
+            Modules
+          </button>
+        </li>
+
+
+    </ul>
+  </div>
+
+  <div id="extras-tab-panel" class="sidebar-tabpanel" role="tabpanel" aria-labelledby="extras-list-tab-button">
+    <ul id="extras-full-list" class="full-list"></ul>
+  </div>
+
+    <div id="modules-tab-panel" class="sidebar-tabpanel" role="tabpanel" aria-labelledby="modules-list-tab-button" hidden>
+      <ul id="modules-full-list" class="full-list"></ul>
+    </div>
+
+
+</nav>
+
+<main class="content">
+  <output role="status" id="toast"></output>
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+      <div class="top-search">
+        <div class="search-settings">
+          <form class="search-bar" action="search.html">
+            <label class="search-label">
+              <span class="sr-only">Search documentation of Towers of Hanoi</span>
+              <input name="q" type="text" class="search-input" placeholder="Search Documentation (press /)" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+            </label>
+            <button type="submit" class="search-button" aria-label="Submit Search">
+              <i class="ri-search-2-line ri-lg" aria-hidden="true" title="Submit search"></i>
+            </button>
+            <button type="button" tabindex="-1" class="search-close-button" aria-hidden="true">
+              <i class="ri-close-line ri-lg" title="Cancel search"></i>
+            </button>
+          </form>
+          <button class="icon-settings display-settings">
+            <i class="ri-settings-3-line"></i>
+            <span class="sr-only">Settings</span>
+          </button>
+        </div>
+      </div>
+      <div class="autocomplete">
+      </div>
+
+<h1>
+
+    <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/HOWTORUN.md#L1" title="View Source" class="icon-action" rel="help">
+      <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+      <span class="sr-only">View Source</span>
+    </a>
+
+
+  <span>How to Run</span>
+</h1>
+
+<p>To run, first get dependencies, <a href="https://hexdocs.pm/mix/Mix.Tasks.Deps.Get.html"><code class="inline">mix deps.get</code></a>.  </p><p>Build with <a href="https://hexdocs.pm/mix/Mix.Tasks.Compile.html"><code class="inline">mix compile</code></a>.</p><p>If you want to run the tests, <a href="https://hexdocs.pm/mix/Mix.Tasks.Test.html"><code class="inline">mix test</code></a>.</p><p>If you want documents, run <a href="https://hexdocs.pm/ex_doc/0.31.0/Mix.Tasks.Docs.html"><code class="inline">mix docs</code></a> and point your browser at documents
+directory.</p><h2 id="running-in-web-server" class="section-heading">
+  <a href="#running-in-web-server" class="hover-link">
+    <i class="ri-link-m" aria-hidden="true"></i>
+  </a>
+  <span class="text">Running in web-server</span>
+</h2>
+<p>Run <code class="inline">iex -S mix phx.server</code> and then point your web-browser at <a href="http://localhost:4000">http://localhost:4000</a></p><img width="800" alt="hanoi web-app screenshot" src="https://garethwebber.github.io/elixir-tower-hanoi/web-view.jpg"/><h2 id="running-genserver" class="section-heading">
+  <a href="#running-genserver" class="hover-link">
+    <i class="ri-link-m" aria-hidden="true"></i>
+  </a>
+  <span class="text">Running GenServer</span>
+</h2>
+<p>To start run <code class="inline">iex -S mix</code>.</p><pre><code class="makeup elixir" translate="no"><span class="nc">Interactive</span><span class="w"> </span><span class="nc">Elixir</span><span class="w"> </span><span class="p" data-group-id="4804238848-1">(</span><span class="mf">1.16</span><span class="o">.</span><span class="mi">0</span><span class="p" data-group-id="4804238848-1">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">press</span><span class="w"> </span><span class="nc">Ctrl</span><span class="o">+</span><span class="nc">C</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">exit</span><span class="w"> </span><span class="p" data-group-id="4804238848-2">(</span><span class="n">type</span><span class="w"> </span><span class="n">h</span><span class="p" data-group-id="4804238848-3">(</span><span class="p" data-group-id="4804238848-3">)</span><span class="w"> </span><span class="nc">ENTER</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">help</span><span class="p" data-group-id="4804238848-2">)</span><span class="w">
+</span><span class="gp unselectable">iex(1)&gt; </span><span class="nc">Hanoi.TowerGame</span><span class="o">.</span><span class="n">start_link</span><span class="p" data-group-id="4804238848-4">(</span><span class="p" data-group-id="4804238848-5">%{</span><span class="ss">name</span><span class="p">:</span><span class="w"> </span><span class="ss">:hello</span><span class="p">,</span><span class="w"> </span><span class="ss">stones</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="4804238848-5">}</span><span class="p" data-group-id="4804238848-4">)</span><span class="w">
+</span><span class="p" data-group-id="4804238848-6">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="4804238848-7">#</span><span class="nc" data-group-id="4804238848-7">PID</span><span class="p" data-group-id="4804238848-7">&lt;</span><span class="mi">0</span><span class="o">.</span><span class="mi">186</span><span class="o">.</span><span class="mi">0</span><span class="p" data-group-id="4804238848-7">&gt;</span><span class="p" data-group-id="4804238848-6">}</span><span class="w">
+</span><span class="gp unselectable">iex(2)&gt; </span><span class="nc">Hanoi.TowerGame</span><span class="o">.</span><span class="n">get_state</span><span class="p" data-group-id="4804238848-8">(</span><span class="ss">:hello</span><span class="p" data-group-id="4804238848-8">)</span><span class="w">
+</span><span class="p" data-group-id="4804238848-9">%</span><span class="nc" data-group-id="4804238848-9">Hanoi.Board</span><span class="p" data-group-id="4804238848-9">{</span><span class="ss">left</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="4804238848-10">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="4804238848-10">]</span><span class="p">,</span><span class="w"> </span><span class="ss">centre</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="4804238848-11">[</span><span class="p" data-group-id="4804238848-11">]</span><span class="p">,</span><span class="w"> </span><span class="ss">right</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="4804238848-12">[</span><span class="p" data-group-id="4804238848-12">]</span><span class="p" data-group-id="4804238848-9">}</span><span class="w">
+</span><span class="gp unselectable">iex(3)&gt; </span><span class="nc">Hanoi.TowerGame</span><span class="o">.</span><span class="n">get_moves</span><span class="p" data-group-id="4804238848-13">(</span><span class="ss">:hello</span><span class="p" data-group-id="4804238848-13">)</span><span class="w">
+</span><span class="p" data-group-id="4804238848-14">[</span><span class="w">
+  </span><span class="ss">left</span><span class="p">:</span><span class="w"> </span><span class="ss">:right</span><span class="p">,</span><span class="w">
+  </span><span class="ss">left</span><span class="p">:</span><span class="w"> </span><span class="ss">:centre</span><span class="p">,</span><span class="w">
+  </span><span class="ss">right</span><span class="p">:</span><span class="w"> </span><span class="ss">:centre</span><span class="p">,</span><span class="w">
+  </span><span class="ss">left</span><span class="p">:</span><span class="w"> </span><span class="ss">:right</span><span class="p">,</span><span class="w">
+  </span><span class="ss">centre</span><span class="p">:</span><span class="w"> </span><span class="ss">:left</span><span class="p">,</span><span class="w">
+  </span><span class="ss">centre</span><span class="p">:</span><span class="w"> </span><span class="ss">:right</span><span class="p">,</span><span class="w">
+  </span><span class="ss">left</span><span class="p">:</span><span class="w"> </span><span class="ss">:right</span><span class="w">
+</span><span class="p" data-group-id="4804238848-14">]</span><span class="w">
+</span><span class="gp unselectable">iex(4)&gt; </span><span class="nc">Hanoi.TowerGame</span><span class="o">.</span><span class="n">move_stone</span><span class="p" data-group-id="4804238848-15">(</span><span class="ss">:hello</span><span class="p">,</span><span class="w"> </span><span class="ss">:left</span><span class="p">,</span><span class="w"> </span><span class="ss">:centre</span><span class="p" data-group-id="4804238848-15">)</span><span class="w">
+</span><span class="ss">:ok</span><span class="w">
+</span><span class="gp unselectable">iex(5)&gt; </span><span class="nc">Hanoi.TowerGame</span><span class="o">.</span><span class="n">move_stone</span><span class="p" data-group-id="4804238848-16">(</span><span class="ss">:hello</span><span class="p">,</span><span class="w"> </span><span class="ss">:left</span><span class="p">,</span><span class="w"> </span><span class="ss">:right</span><span class="p" data-group-id="4804238848-16">)</span><span class="w">
+</span><span class="ss">:ok</span><span class="w">
+</span><span class="gp unselectable">iex(6)&gt; </span><span class="nc">Hanoi.TowerGame</span><span class="o">.</span><span class="n">get_state</span><span class="p" data-group-id="4804238848-17">(</span><span class="ss">:hello</span><span class="p" data-group-id="4804238848-17">)</span><span class="w">
+</span><span class="p" data-group-id="4804238848-18">%</span><span class="nc" data-group-id="4804238848-18">Hanoi.Board</span><span class="p" data-group-id="4804238848-18">{</span><span class="ss">left</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="4804238848-19">[</span><span class="mi">3</span><span class="p" data-group-id="4804238848-19">]</span><span class="p">,</span><span class="w"> </span><span class="ss">centre</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="4804238848-20">[</span><span class="mi">1</span><span class="p" data-group-id="4804238848-20">]</span><span class="p">,</span><span class="w"> </span><span class="ss">right</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="4804238848-21">[</span><span class="mi">2</span><span class="p" data-group-id="4804238848-21">]</span><span class="p" data-group-id="4804238848-18">}</span></code></pre><h2 id="running-from-command-line" class="section-heading">
+  <a href="#running-from-command-line" class="hover-link">
+    <i class="ri-link-m" aria-hidden="true"></i>
+  </a>
+  <span class="text">Running from command line</span>
+</h2>
+<p>Build the executable with <a href="https://hexdocs.pm/mix/Mix.Tasks.Escript.Build.html"><code class="inline">mix escript.build</code></a>.</p><p>To run then call <code class="inline">./hanoi &lt;stones&gt;</code> being careful not to set the
+number too high (20 takes 20 odd seconds and each extra doubles it).</p><h3 id="results" class="section-heading">
+  <a href="#results" class="hover-link">
+    <i class="ri-link-m" aria-hidden="true"></i>
+  </a>
+  <span class="text">Results</span>
+</h3>
+<p>Example results</p><pre><code class="makeup elixir" translate="no"><span class="nc">Tower</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="nc">Hanoi</span><span class="w">
+
+</span><span class="nc">L</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span><span class="nc">C</span><span class="w">
+</span><span class="nc">R</span><span class="w">
+
+</span><span class="nc">L</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">2</span><span class="w">
+</span><span class="nc">C</span><span class="w">
+</span><span class="nc">R</span><span class="w"> </span><span class="mi">1</span><span class="w">
+
+</span><span class="nc">L</span><span class="w"> </span><span class="mi">3</span><span class="w">
+</span><span class="nc">C</span><span class="w"> </span><span class="mi">2</span><span class="w">
+</span><span class="nc">R</span><span class="w"> </span><span class="mi">1</span><span class="w">
+
+</span><span class="nc">L</span><span class="w"> </span><span class="mi">3</span><span class="w">
+</span><span class="nc">C</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span><span class="nc">R</span><span class="w">
+
+</span><span class="nc">L</span><span class="w">
+</span><span class="nc">C</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span><span class="nc">R</span><span class="w"> </span><span class="mi">3</span><span class="w">
+
+</span><span class="nc">L</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span><span class="nc">C</span><span class="w"> </span><span class="mi">2</span><span class="w">
+</span><span class="nc">R</span><span class="w"> </span><span class="mi">3</span><span class="w">
+
+</span><span class="nc">L</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span><span class="nc">C</span><span class="w">
+</span><span class="nc">R</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">2</span><span class="w">
+
+</span><span class="nc">L</span><span class="w">
+</span><span class="nc">C</span><span class="w">
+</span><span class="nc">R</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">1</span><span class="w">
+
+</span><span class="mi">3</span><span class="w"> </span><span class="n">stones</span><span class="w"> </span><span class="n">took</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="n">millisecond</span><span class="p" data-group-id="6637702347-1">(</span><span class="n">s</span><span class="p" data-group-id="6637702347-1">)</span><span class="o">.</span></code></pre><h2 id="references" class="section-heading">
+  <a href="#references" class="hover-link">
+    <i class="ri-link-m" aria-hidden="true"></i>
+  </a>
+  <span class="text">References</span>
+</h2>
+<p>[1] <a href="https://github.com/wouterken/towers-of-hanoi-elixir">https://github.com/wouterken/towers-of-hanoi-elixir</a></p>
+<div class="bottom-actions">
+  <div class="bottom-actions-item">
+
+      <a href="readme.html" class="bottom-actions-button" rel="prev">
+        <span class="subheader">
+          ← Previous Page
+        </span>
+        <span class="title">
+Elixir: Towers of Hanoi
+        </span>
+      </a>
+
+  </div>
+  <div class="bottom-actions-item">
+
+      <a href="license.html" class="bottom-actions-button" rel="next">
+        <span class="subheader">
+          Next Page →
+        </span>
+        <span class="title">
+LICENSE
+        </span>
+      </a>
+
+  </div>
+</div>
+      <footer class="footer">
+        <p>
+
+            <span class="line">
+              <a href="https://hex.pm/packages/hanoi/0.6.0" class="footer-hex-package">Hex Package</a>
+
+              <a href="https://preview.hex.pm/preview/hanoi/0.6.0">Hex Preview</a>
+
+                (<a href="https://preview.hex.pm/preview/hanoi/0.6.0/show/HOWTORUN.md">current file</a>)
+
+            </span>
+
+          <span class="line">
+            <button class="a-main footer-button display-quick-switch" title="Search HexDocs packages">
+              Search HexDocs
+            </button>
+
+              <a href="Towers of Hanoi.epub" title="ePub version">
+                Download ePub version
+              </a>
+
+          </span>
+        </p>
+
+        <p class="built-using">
+          Built using
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.31.0) for the
+
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank" translate="no">Elixir programming language</a>
+
+        </p>
+      </footer>
+    </div>
+  </div>
+</main>
+</div>
+
+
+  </body>
+</html>
