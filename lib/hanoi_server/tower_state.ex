@@ -14,34 +14,42 @@ defmodule Hanoi.TowerState do
     GenServer.start_link(__MODULE__, opts, name: opts[:name])
   end
 
+  @spec get_state(name :: atom()) :: Hanoi.Board.t()
   def get_state(server) do
     GenServer.call(server, {:get_state})
   end
 
+  @spec get_state_as_text(name :: atom()) :: String.t()
   def get_state_as_text(server) do
     GenServer.call(server, {:get_state_as_text})
   end
 
+  @spec get_number_moves(name :: atom()) :: non_neg_integer()
   def get_number_moves(server) do
     GenServer.call(server, {:get_number_moves})
   end
 
+  @spec get_number_stones(name :: atom()) :: non_neg_integer()
   def get_number_stones(server) do
     GenServer.call(server, {:get_number_stones})
   end
 
+  @spec move_stone(name :: atom(), from :: atom(), to :: atom()) :: :ok | :error
   def move_stone(server, from, to) do
     GenServer.call(server, {:move_stone, from, to})
   end
 
+  @spec is_complete(name :: atom()) :: boolean() | :error
   def is_complete(server) do
    GenServer.call(server, {:is_complete}) 
   end
 
+  @spec get_moves(name :: atom()) :: list() | :error
   def get_moves(server) do
     GenServer.call(server, {:get_moves})
   end
 
+  @spec reset(name :: atom(), new_stones :: pos_integer()) :: :ok
   def reset(server, new_stones) do
     GenServer.call(server, {:reset, new_stones})
   end
