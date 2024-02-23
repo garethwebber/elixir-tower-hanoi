@@ -14,7 +14,7 @@
 
     <script src="dist/handlebars.runtime-NWIB6V2M.js"></script>
     <script src="dist/handlebars.templates-43PMFBC7.js"></script>
-    <script src="dist/sidebar_items-1BFB2523.js"></script>
+    <script src="dist/sidebar_items-FC8A4892.js"></script>
 
       <script src="docs_config.js"></script>
 
@@ -127,7 +127,37 @@ Pages
 
   <section id="moduledoc">
 <p>Controller that renders the main Hanoi game page</p><p>Receives liveview events from the page and updates state accordingly</p><p>Main page furniture is rendered here. The main board visual rendering 
-functions are in RenderBoard.</p>
+functions are in RenderBoard.</p><div class="mermaid">%%{init: {'theme':'dark'}}%%
+graph LR;
+classDef server fill:#709421,stroke:#AD9121,stroke-width:1px;
+classDef supervision fill:#D000FF,stroke:#D0B441,stroke-width:1px;
+classDef topic fill:#0059DF,stroke:#312378,stroke-width:1px;
+classDef db fill:#9E74BE,stroke:#4E1C74,stroke-width:1px;
+subgraph App
+T0(Application):::supervision
+end
+subgraph Web
+T2(Hanoi_GameControllerLive):::topic
+T3(Hanoi_GameView):::topic
+T4(CoreComponents):::topic
+end
+subgraph Server
+G1(TowerGame):::supervision;
+G2(TowerState):::server;
+end
+subgraph Algo
+T5(Board):::topic;
+T6(Algo):::topic;
+end
+T0(Application):::supervision --> T1{{Phoenix Webserver}}:::topic;
+T1{{Phoenix Webserver}}:::topic -- Controller --> T2(hanoi_game_controller_live):::topic;
+T2(Hanoi_GameControllerLive):::topic -- View --> T3(HanoiGameView):::topic;
+T3(Hanoi_GameView):::topic --> T4(CoreComponents):::topic;
+T2(Hanoi_GameControllerLive):::topic -- Model --> G1(TowerGame):::supervision;
+G1(TowerGame):::supervision --> G2(TowerState):::server; 
+G2(TowerState):::server --> DB[("ETS#nbsp;")]:::db;
+G2(TowerState):::server --> T5(Board):::topic;
+G2(TowerState):::server --> T6(Algo):::topic;</div>
   </section>
 
 
@@ -205,7 +235,7 @@ functions are in RenderBoard.</p>
     </a>
     <h1 class="signature" translate="no">handle_event(binary, arg2, socket)</h1>
 
-      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_web/controllers/hanoi_game_controller_live.ex#L67" class="icon-action" rel="help" title="View Source">
+      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_web/controllers/hanoi_game_controller_live.ex#L103" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -227,7 +257,7 @@ functions are in RenderBoard.</p>
     </a>
     <h1 class="signature" translate="no">handle_info(atom, socket)</h1>
 
-      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_web/controllers/hanoi_game_controller_live.ex#L124" class="icon-action" rel="help" title="View Source">
+      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_web/controllers/hanoi_game_controller_live.ex#L160" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -249,7 +279,7 @@ functions are in RenderBoard.</p>
     </a>
     <h1 class="signature" translate="no">mount(params, _, socket)</h1>
 
-      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_web/controllers/hanoi_game_controller_live.ex#L16" class="icon-action" rel="help" title="View Source">
+      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_web/controllers/hanoi_game_controller_live.ex#L52" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -271,7 +301,7 @@ functions are in RenderBoard.</p>
     </a>
     <h1 class="signature" translate="no">render(assigns)</h1>
 
-      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_web/controllers/hanoi_game_controller_live.ex#L33" class="icon-action" rel="help" title="View Source">
+      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_web/controllers/hanoi_game_controller_live.ex#L69" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -325,6 +355,8 @@ functions are in RenderBoard.</p>
 </main>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad: true})</script>
 
   </body>
 </html>

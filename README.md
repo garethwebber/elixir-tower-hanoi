@@ -7,7 +7,8 @@ Features
 2. Can play yourself (manual mode) or be shown how to do it (auto-play)
 3. Tracks how many steps are taken to complete 
 4. Can run localally or be built into a [docker](https://docs.docker.com) image
-5. Decent test coverage inc static analysis [dialyzer](https://www.erlang.org/doc/man/dialyzer.html)
+5. Decent test coverage inc static analysis with [dialyzer](https://www.erlang.org/doc/man/dialyzer.html)
+6. API documentation including architecture diagrams
 
 When I was learning elixir, the examples I saw felt ideomatically OO
 (e.g. [1]) rather than  functional so I decided to write one myself, leaning into FP. Having 
@@ -19,7 +20,11 @@ Obviously having written this as a critique of structure - feel free to comment 
 
 Full details on how to run either as a webapp, gen_server or command line can be [on this page](https://garethwebber.github.io/elixir-tower-hanoi/howtorun.html).
 
-![hanoi web-app screenshot](https://garethwebber.github.io/elixir-tower-hanoi/web-view.jpg)
+![screenshot](https://garethwebber.github.io/elixir-tower-hanoi/web-view.jpg)
+
+## Architecture
+
+![architecture](https://garethwebber.github.io/elixir-tower-hanoi/architecture.jpg)
 
 ## References
 

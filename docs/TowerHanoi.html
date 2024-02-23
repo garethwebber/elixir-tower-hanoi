@@ -14,7 +14,7 @@
 
     <script src="dist/handlebars.runtime-NWIB6V2M.js"></script>
     <script src="dist/handlebars.templates-43PMFBC7.js"></script>
-    <script src="dist/sidebar_items-1BFB2523.js"></script>
+    <script src="dist/sidebar_items-FC8A4892.js"></script>
 
       <script src="docs_config.js"></script>
 
@@ -127,7 +127,15 @@ Pages
 
   <section id="moduledoc">
 <p>Command Line application version of the Tower of Hanoi.</p><p>Sets up a board and then runs the algorithm. Just uses the domain model
-and alorithm, avoiding OTP.</p><p>An alternative to the OTP Phoenix application</p>
+and alorithm, avoiding OTP.</p><p>An alternative to the OTP Phoenix application</p><div class="mermaid">graph TD;
+classDef server fill:#D0B441,stroke:#AD9121,stroke-width:1px;
+classDef supervision fill:#D000FF,stroke:#D0B441,stroke-width:1px;
+classDef topic fill:#B5ADDF,stroke:#312378,stroke-width:1px;
+classDef db fill:#9E74BE,stroke:#4E1C74,stroke-width:1px;
+G1(TowerHanoi):::supervision ==> T1(CLI):::topic; 
+G1(TowerHanoi):::supervision ==> T2(Board):::topic;
+G1(TowerHanoi):::supervision ==> T3(Algo):::topic;
+G1(TowerHanoi):::supervision ==> T4(Render):::topic; </div>
   </section>
 
 
@@ -175,7 +183,7 @@ and alorithm, avoiding OTP.</p><p>An alternative to the OTP Phoenix application<
     </a>
     <h1 class="signature" translate="no">main(argv)</h1>
 
-      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_cli/tower_hanoi.ex#L18" class="icon-action" rel="help" title="View Source">
+      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_cli/tower_hanoi.ex#L30" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -229,6 +237,8 @@ and alorithm, avoiding OTP.</p><p>An alternative to the OTP Phoenix application<
 </main>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad: true})</script>
 
   </body>
 </html>
