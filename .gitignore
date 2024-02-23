@@ -2,6 +2,7 @@
 /cover
 /deps
 /doc
+/rel
 /.fetch
 erl_crash.dump
 *.ez
@@ -9,6 +10,7 @@ erl_crash.dump
 /config/*.secret.exs
 .elixir_ls/
 .DS_Store
+fly.toml
 hanoi 
 hanoi.log
 /priv/static/assets/
