@@ -14,7 +14,7 @@
 
     <script src="dist/handlebars.runtime-NWIB6V2M.js"></script>
     <script src="dist/handlebars.templates-43PMFBC7.js"></script>
-    <script src="dist/sidebar_items-FC8A4892.js"></script>
+    <script src="dist/sidebar_items-021D04BA.js"></script>
 
       <script src="docs_config.js"></script>
 
@@ -132,6 +132,15 @@ classDef server fill:#D0B441,stroke:#AD9121,stroke-width:1px;
 classDef supervision fill:#D000FF,stroke:#D0B441,stroke-width:1px;
 classDef topic fill:#B5ADDF,stroke:#312378,stroke-width:1px;
 classDef db fill:#9E74BE,stroke:#4E1C74,stroke-width:1px;
+subgraph CLI
+G1(TowerHanoi):::supervision; 
+T1(CLI):::topic; 
+end
+subgraph Algo
+T2(Board):::topic;
+T3(Algo):::topic;
+T4(Render):::topic; 
+end
 G1(TowerHanoi):::supervision ==> T1(CLI):::topic; 
 G1(TowerHanoi):::supervision ==> T2(Board):::topic;
 G1(TowerHanoi):::supervision ==> T3(Algo):::topic;
@@ -183,7 +192,7 @@ G1(TowerHanoi):::supervision ==> T4(Render):::topic; </div>
     </a>
     <h1 class="signature" translate="no">main(argv)</h1>
 
-      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_cli/tower_hanoi.ex#L30" class="icon-action" rel="help" title="View Source">
+      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_cli/tower_hanoi.ex#L40" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>

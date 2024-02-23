@@ -17,12 +17,22 @@ defmodule TowerHanoi do
   classDef supervision fill:#D000FF,stroke:#D0B441,stroke-width:1px;
   classDef topic fill:#B5ADDF,stroke:#312378,stroke-width:1px;
   classDef db fill:#9E74BE,stroke:#4E1C74,stroke-width:1px;
+  subgraph CLI
+  G1(TowerHanoi):::supervision; 
+  T1(CLI):::topic; 
+  end
+  subgraph Algo
+  T2(Board):::topic;
+  T3(Algo):::topic;
+  T4(Render):::topic; 
+  end
   G1(TowerHanoi):::supervision ==> T1(CLI):::topic; 
   G1(TowerHanoi):::supervision ==> T2(Board):::topic;
   G1(TowerHanoi):::supervision ==> T3(Algo):::topic;
   G1(TowerHanoi):::supervision ==> T4(Render):::topic; 
   </div>
   """
+alias ElixirLS.LanguageServer.CLI
 
   @doc """
   Main command-line entry point. Gets arguments parsed responds accordingly. 

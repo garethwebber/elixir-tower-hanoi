@@ -22,9 +22,15 @@ Full details on how to run either as a webapp, gen_server or command line can be
 
 ![screenshot](https://garethwebber.github.io/elixir-tower-hanoi/web-view.jpg)
 
-## Architecture
+## Web Architecture
 
 ![architecture](https://garethwebber.github.io/elixir-tower-hanoi/architecture.jpg)
+
+## Command-line Architecture
+
+![cli-architecture](https://garethwebber.github.io/elixir-tower-hanoi/architecture-cli.jpg)
+
+
 
 ## References
 

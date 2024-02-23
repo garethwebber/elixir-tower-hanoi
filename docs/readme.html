@@ -14,7 +14,7 @@
 
     <script src="dist/handlebars.runtime-NWIB6V2M.js"></script>
     <script src="dist/handlebars.templates-43PMFBC7.js"></script>
-    <script src="dist/sidebar_items-FC8A4892.js"></script>
+    <script src="dist/sidebar_items-021D04BA.js"></script>
 
       <script src="docs_config.js"></script>
 
@@ -123,7 +123,7 @@ Pages
   <span>Elixir: Towers of Hanoi</span>
 </h1>
 
-<p>An implementation of Towers of Hanoi written in Elixir. </p><p>Features</p><ol><li>Simple example of how to use <a href="https://hexdocs.pm/phoenix_live_view/Phoenix.LiveView.html">phoenix live-view</a>, genserver and <a href="https://tailwindcss.com">tailwind</a></li><li>Can play yourself (manual mode) or be shown how to do it (auto-play)</li><li>Tracks how many steps are taken to complete </li><li>Can run localally or be built into a <a href="https://docs.docker.com">docker</a> image</li><li>Decent test coverage inc static analysis with <a href="https://www.erlang.org/doc/man/dialyzer.html">dialyzer</a></li><li>API documentation including architecture diagrams</li></ol><p>When I was learning elixir, the examples I saw felt ideomatically OO
+<p>An implementation of Towers of Hanoi written in Elixir. </p><p>Features</p><ol><li>Simple example of how to use <a href="https://hexdocs.pm/phoenix_live_view/Phoenix.LiveView.html">phoenix live-view</a>, genserver and <a href="https://tailwindcss.com">tailwind</a></li><li>Can play yourself (manual mode) or be shown how to do it (auto-play)</li><li>Tracks how many steps are taken to complete </li><li>Can run localally or be built into a <a href="https://docs.docker.com">docker</a> image</li><li>Decent test coverage inc static analysis with <a href="https://www.erlang.org/doc/man/dialyzer.html">dialyzer</a></li><li><a href="https://garethwebber.github.io/elixir-tower-hanoi/api-reference.html">API documentation</a> including <a href="https://garethwebber.github.io/elixir-tower-hanoi/HanoiWeb.HanoiGameControllerLive.html">architecture diagrams</a></li></ol><p>When I was learning elixir, the examples I saw felt ideomatically OO
 (e.g. [1]) rather than  functional so I decided to write one myself, leaning into FP. Having 
 got the CLI running, I didn't stop there and ended up building a LiveView web-app because, why not?</p><p>Obviously having written this as a critique of structure - feel free to comment on what I have done. All greatfully accepted.</p><h2 id="how-to-run" class="section-heading">
   <a href="#how-to-run" class="hover-link">
@@ -131,13 +131,19 @@ got the CLI running, I didn't stop there and ended up building a LiveView web-ap
   </a>
   <span class="text">How to run</span>
 </h2>
-<p>Full details on how to run either as a webapp, gen_server or command line can be <a href="https://garethwebber.github.io/elixir-tower-hanoi/howtorun.html">on this page</a>.</p><p><img src="https://garethwebber.github.io/elixir-tower-hanoi/web-view.jpg" alt="screenshot"/></p><h2 id="architecture" class="section-heading">
-  <a href="#architecture" class="hover-link">
+<p>Full details on how to run either as a webapp, gen_server or command line can be <a href="https://garethwebber.github.io/elixir-tower-hanoi/howtorun.html">on this page</a>.</p><p><img src="https://garethwebber.github.io/elixir-tower-hanoi/web-view.jpg" alt="screenshot"/></p><h2 id="web-architecture" class="section-heading">
+  <a href="#web-architecture" class="hover-link">
     <i class="ri-link-m" aria-hidden="true"></i>
   </a>
-  <span class="text">Architecture</span>
+  <span class="text">Web Architecture</span>
 </h2>
-<p><img src="https://garethwebber.github.io/elixir-tower-hanoi/architecture.jpg" alt="architecture"/></p><h2 id="references" class="section-heading">
+<p><img src="https://garethwebber.github.io/elixir-tower-hanoi/architecture.jpg" alt="architecture"/></p><h2 id="command-line-architecture" class="section-heading">
+  <a href="#command-line-architecture" class="hover-link">
+    <i class="ri-link-m" aria-hidden="true"></i>
+  </a>
+  <span class="text">Command-line Architecture</span>
+</h2>
+<p><img src="https://garethwebber.github.io/elixir-tower-hanoi/architecture-cli.jpg" alt="cli-architecture"/></p><h2 id="references" class="section-heading">
   <a href="#references" class="hover-link">
     <i class="ri-link-m" aria-hidden="true"></i>
   </a>
