@@ -10,7 +10,43 @@ defmodule HanoiWeb.HanoiGameControllerLive do
 
   Main page furniture is rendered here. The main board visual rendering 
   functions are in RenderBoard.
+
+  <div class="mermaid">
+  %%{init: {'theme':'dark'}}%%
+  graph LR;
+  classDef server fill:#709421,stroke:#AD9121,stroke-width:1px;
+  classDef supervision fill:#D000FF,stroke:#D0B441,stroke-width:1px;
+  classDef topic fill:#0059DF,stroke:#312378,stroke-width:1px;
+  classDef db fill:#9E74BE,stroke:#4E1C74,stroke-width:1px;
+  subgraph App
+  T0(Application):::supervision
+  end
+  subgraph Web
+  T2(Hanoi_GameControllerLive):::topic
+  T3(Hanoi_GameView):::topic
+  T4(CoreComponents):::topic
+  end
+  subgraph Server
+  G1(TowerGame):::supervision;
+  G2(TowerState):::server;
+  end
+  subgraph Algo
+  T5(Board):::topic;
+  T6(Algo):::topic;
+  end
+  T0(Application):::supervision --> T1{{Phoenix Webserver}}:::topic;
+  T1{{Phoenix Webserver}}:::topic -- Controller --> T2(hanoi_game_controller_live):::topic;
+  T2(Hanoi_GameControllerLive):::topic -- View --> T3(HanoiGameView):::topic;
+  T3(Hanoi_GameView):::topic --> T4(CoreComponents):::topic;
+  T2(Hanoi_GameControllerLive):::topic -- Model --> G1(TowerGame):::supervision;
+  G1(TowerGame):::supervision --> G2(TowerState):::server; 
+  G2(TowerState):::server --> DB[("ETS#nbsp;")]:::db;
+  G2(TowerState):::server --> T5(Board):::topic;
+  G2(TowerState):::server --> T6(Algo):::topic;
+  </div>
   """
+alias Logger.App
+alias Agent.Server
 
   @doc "Set up initial liveview state"
   def mount(_params, _, socket) do

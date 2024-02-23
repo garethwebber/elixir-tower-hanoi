@@ -93,7 +93,15 @@ defmodule TowerHanoi.MixProject do
   defp docs do
     [
       # Add the following files into the documents create by mix docs
-      extras: ["README.md", "HOWTORUN.md", "LICENSE"]
+      extras: ["README.md", "HOWTORUN.md", "LICENSE"],
+      before_closing_body_tag: fn
+        :html ->
+          """
+          <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+          <script>mermaid.initialize({startOnLoad: true})</script>
+          """
+        _ -> ""
+      end
     ]
   end
 

@@ -10,6 +10,18 @@ defmodule TowerHanoi do
   and alorithm, avoiding OTP.
 
   An alternative to the OTP Phoenix application
+
+  <div class="mermaid">
+  graph TD;
+  classDef server fill:#D0B441,stroke:#AD9121,stroke-width:1px;
+  classDef supervision fill:#D000FF,stroke:#D0B441,stroke-width:1px;
+  classDef topic fill:#B5ADDF,stroke:#312378,stroke-width:1px;
+  classDef db fill:#9E74BE,stroke:#4E1C74,stroke-width:1px;
+  G1(TowerHanoi):::supervision ==> T1(CLI):::topic; 
+  G1(TowerHanoi):::supervision ==> T2(Board):::topic;
+  G1(TowerHanoi):::supervision ==> T3(Algo):::topic;
+  G1(TowerHanoi):::supervision ==> T4(Render):::topic; 
+  </div>
   """
 
   @doc """
