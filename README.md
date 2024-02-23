@@ -6,7 +6,7 @@ Features
 1. Simple example of how to use [phoenix live-view](https://hexdocs.pm/phoenix_live_view/Phoenix.LiveView.html), genserver and [tailwind](https://tailwindcss.com)
 2. Can play yourself (manual mode) or be shown how to do it (auto-play)
 3. Tracks how many steps are taken to complete 
-4. Can run localally or be built into a [docker](https://docs.docker.com) image
+4. Can run locally or be built into a [docker](https://docs.docker.com) image
 5. Decent test coverage inc static analysis with [dialyzer](https://www.erlang.org/doc/man/dialyzer.html)
 6. [API documentation](https://garethwebber.github.io/elixir-tower-hanoi/api-reference.html) including [architecture diagrams](https://garethwebber.github.io/elixir-tower-hanoi/HanoiWeb.HanoiGameControllerLive.html)
 
