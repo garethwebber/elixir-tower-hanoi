@@ -49,6 +49,7 @@ alias Logger.App
 alias Agent.Server
 
   @doc "Set up initial liveview state"
+  @spec mount(params :: Phoenix.LiveView.unsigned_params(), session :: map(), socket :: Phoenix.LiveView.Socket.t()) :: {:ok, Phoenix.LiveView.Socket.t()} 
   def mount(_params, _, socket) do
     state = Hanoi.TowerGame.get_state(:hanoi)
     number_moves = Hanoi.TowerGame.get_number_moves(:hanoi)
@@ -66,6 +67,7 @@ alias Agent.Server
   end
 
   @doc "Render the page based on current state"
+  @spec render(assigns :: Phoenix.LiveView.Socket.assigns()) :: Phoenix.LiveView.Rendered.t()
   def render(assigns) do
     ~H"""
         <.flash_group flash={@flash} />
@@ -100,6 +102,7 @@ alias Agent.Server
   end
 
   @doc "Handle the auto_mode, move_stone & reset clicks from page"
+  @spec handle_event(event :: binary(), Phoenix.LiveView.unsigned_params(), socket :: Phoenix.LiveView.Socket.t()) :: {:noreply, Phoenix.LiveView.Socket.t()}
   def handle_event("move_stone", %{"from" => from, "to" => to}, socket) do
     value = Hanoi.TowerGame.move_stone(:hanoi, stone_name(from), stone_name(to))
 
@@ -157,6 +160,7 @@ alias Agent.Server
   end
 
   @doc "Handle the refresh_board messages triggered by auto_mode"
+  @spec handle_info(msg :: term(), socket :: Phoenix.LiveView.Socket.t()) :: {:noreply, Phoenix.LiveView.Socket.t()}
   def handle_info(:refresh_board, socket) do
     {:noreply,
      assign(socket,
