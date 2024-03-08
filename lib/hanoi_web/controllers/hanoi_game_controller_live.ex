@@ -50,13 +50,16 @@ alias Agent.Server
 
   @doc "Set up initial liveview state"
   @spec mount(params :: Phoenix.LiveView.unsigned_params(), session :: map(), socket :: Phoenix.LiveView.Socket.t()) :: {:ok, Phoenix.LiveView.Socket.t()} 
-  def mount(_params, _, socket) do
+  def mount(_params, session, socket) do
+    session_id = session_name(session["session_id"])
+    
     state = Hanoi.TowerGame.get_state(:hanoi)
     number_moves = Hanoi.TowerGame.get_number_moves(:hanoi)
     number_stones = Hanoi.TowerGame.get_number_stones(:hanoi)
 
     {:ok,
      assign(socket,
+       session_id: session_id,
        state: state,
        number_moves: number_moves,
        number_stones: number_stones,
@@ -95,6 +98,7 @@ alias Agent.Server
                 auto_mode={@auto_mode}/>
 
               <.render_help_modal/>
+              <p align="right">Session id:  <%= inspect @session_id %></p>
             </div>
           </div>
         </main>
@@ -104,6 +108,7 @@ alias Agent.Server
   @doc "Handle the auto_mode, move_stone & reset clicks from page"
   @spec handle_event(event :: binary(), Phoenix.LiveView.unsigned_params(), socket :: Phoenix.LiveView.Socket.t()) :: {:noreply, Phoenix.LiveView.Socket.t()}
   def handle_event("move_stone", %{"from" => from, "to" => to}, socket) do
+    session_id = socket.assigns()[:session_id]
     value = Hanoi.TowerGame.move_stone(:hanoi, stone_name(from), stone_name(to))
 
     error_text =
@@ -123,6 +128,7 @@ alias Agent.Server
 
   # Creates a new board with X stones, and resets error_text and move_counter
   def handle_event("reset", %{"stone" => stone}, socket) do
+    session_id = socket.assigns()[:session_id]
     {new_stones, _rest} = Integer.parse(stone)
     Hanoi.TowerGame.reset(:hanoi, new_stones)
 
@@ -139,6 +145,7 @@ alias Agent.Server
 
   # Demo auto-mode: disables manual controls then moves stones automatically
   def handle_event("auto_mode", _params, socket) do
+    session_id = socket.assigns()[:session_id]
     live_view_pid = self()
 
     socket
@@ -162,11 +169,16 @@ alias Agent.Server
   @doc "Handle the refresh_board messages triggered by auto_mode"
   @spec handle_info(msg :: term(), socket :: Phoenix.LiveView.Socket.t()) :: {:noreply, Phoenix.LiveView.Socket.t()}
   def handle_info(:refresh_board, socket) do
+    session_id = socket.assigns()[:session_id]
     {:noreply,
      assign(socket,
        state: Hanoi.TowerGame.get_state(:hanoi),
        number_moves: Hanoi.TowerGame.get_number_moves(:hanoi)
      )}
+  end
+
+  defp session_name(name) do
+    :"Hanoi_#{name}"
   end
 
   defp stone_name(name) do
