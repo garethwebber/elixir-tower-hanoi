@@ -1,23 +1,10 @@
 defmodule TowerGameTest do
   use ExUnit.Case
-
   require Hanoi.TowerGame
-
-  test "does the server check its arguments" do
-    # No name
-    assert_raise ArgumentError, fn ->
-      Hanoi.TowerGame.start_link(%{stones: 3})
-    end
-
-    # No stones
-    assert_raise ArgumentError, fn ->
-      Hanoi.TowerGame.start_link(%{name: :testname})
-    end
-  end
-
+  
   test "does server create board correctly" do
     name = :create_board
-    {:ok, _pid} = Hanoi.TowerGame.start_link(%{name: name, stones: 3})
+    Hanoi.TowerGame.addGame(name, 3)
     expected_state = %Hanoi.Board{left: [1, 2, 3], centre: [], right: []}
     expected_string = "\nL 3 2 1\nC\nR"
 
@@ -30,7 +17,7 @@ defmodule TowerGameTest do
 
   test "does server move stone correctly" do
     name = :move_stone
-    {:ok, _pid} = Hanoi.TowerGame.start_link(%{name: name, stones: 4})
+    Hanoi.TowerGame.addGame(name, 4)
     before_string = "\nL 4 3 2 1\nC\nR"
     after_string = "\nL 4 3 2\nC\nR 1"
 
@@ -52,8 +39,8 @@ defmodule TowerGameTest do
 
   test "does server run get moves correctly" do
     name = :get_moves
-    {:ok, _pid} = Hanoi.TowerGame.start_link(%{name: name, stones: 3})
-
+    Hanoi.TowerGame.addGame(name, 3)
+ 
     expected = [
       {:left, :right},
       {:left, :centre},
@@ -69,7 +56,7 @@ defmodule TowerGameTest do
 
   test "does server reset board correctly" do
     name = :server_reset
-    {:ok, _pid} = Hanoi.TowerGame.start_link(%{name: name, stones: 3})
+    Hanoi.TowerGame.addGame(name, 3)
     :ok = Hanoi.TowerGame.move_stone(name, :left, :right)
     
     expected_state = %Hanoi.Board{left: [2, 3], centre: [], right: [1]}
@@ -87,14 +74,14 @@ defmodule TowerGameTest do
 
   test "Does server failed complete test correctly" do
     name = :complete_fail
-    {:ok, _pid} = Hanoi.TowerGame.start_link(%{name: name, stones: 3})
+    Hanoi.TowerGame.addGame(name, 3)
 
     assert Hanoi.TowerGame.is_complete(name) == false 
   end
 
   test "Does server pass complete test correctly" do
     name = :complete_pass 
-    {:ok, _pid} = Hanoi.TowerGame.start_link(%{name: name, stones: 3})
+    Hanoi.TowerGame.addGame(name, 3)
     moves = Hanoi.TowerGame.get_moves(name) 
 
     Enum.map(moves, fn {from, to} ->

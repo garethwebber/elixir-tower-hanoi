@@ -1,6 +1,5 @@
 defmodule TowerWebViewTest do
   use ExUnit.Case
-
   import HanoiWeb.HanoiGameView
   import Phoenix.LiveViewTest
 
@@ -10,25 +9,25 @@ defmodule TowerWebViewTest do
   end
 
   test "test render_board - initial state" do
-    name = :test_tower
+    name = :test_tower_initial
     stones = 3
-    {:ok, _pid} = Hanoi.TowerGame.start_link(%{name: name, stones: stones})
+    Hanoi.TowerGame.addGame(name, stones)
     board = Hanoi.TowerGame.get_state(name)
 
     assert render_component(&render_board/1, board: board, number_stones: stones) ==
-     "  <!--33-->\n  <div name=\"board\" class=\"board\">\n  \n  <div name=\"left\" class=\"pile\">   \n  <div name=\"st1\" class=\"stone\" \n              style=\"width:33%; background: var(--color2)\"></div><div name=\"st2\" class=\"stone\" \n              style=\"width:66%; background: var(--color3)\"></div><div name=\"st3\" class=\"stone\" \n              style=\"width:99%; background: var(--color4)\"></div>\n       \n  </div>                               \n\n  <div name=\"left\" class=\"pile\">   \n  \n       \n  </div>                               \n\n  <div name=\"left\" class=\"pile\">   \n  \n       \n  </div>                               \n\n  </div>" 
+    "  <!--33-->\n  <div name=\"board\" class=\"board\">\n  \n  <div name=\"left\" class=\"pile\">   \n  <div name=\"st1\" class=\"stone\" \n              style=\"width:33%; background: var(--color2)\"></div><div name=\"st2\" class=\"stone\" \n              style=\"width:66%; background: var(--color3)\"></div><div name=\"st3\" class=\"stone\" \n              style=\"width:99%; background: var(--color4)\"></div>\n       \n  </div>                               \n\n  <div name=\"left\" class=\"pile\">   \n  \n       \n  </div>                               \n\n  <div name=\"left\" class=\"pile\">   \n  \n       \n  </div>                               \n\n  </div>" 
   end
 
   test "test render_board - mid-play" do
-    name = :test_tower
+    name = :test_tower_mid
     stones = 5
-    {:ok, _pid} = Hanoi.TowerGame.start_link(%{name: name, stones: stones})
+    Hanoi.TowerGame.addGame(name, stones)
     Hanoi.TowerGame.move_stone(name, :left, :centre)
     Hanoi.TowerGame.move_stone(name, :left, :right)
     board = Hanoi.TowerGame.get_state(name)
 
     assert render_component(&render_board/1, board: board, number_stones: stones) ==
-    "  <!--20-->\n  <div name=\"board\" class=\"board\">\n  \n  <div name=\"left\" class=\"pile\">   \n  <div name=\"st3\" class=\"stone\" \n              style=\"width:60%; background: var(--color4)\"></div><div name=\"st4\" class=\"stone\" \n              style=\"width:80%; background: var(--color1)\"></div><div name=\"st5\" class=\"stone\" \n              style=\"width:100%; background: var(--color2)\"></div>\n       \n  </div>                               \n\n  <div name=\"left\" class=\"pile\">   \n  <div name=\"st1\" class=\"stone\" \n              style=\"width:20%; background: var(--color2)\"></div>\n       \n  </div>                               \n\n  <div name=\"left\" class=\"pile\">   \n  <div name=\"st2\" class=\"stone\" \n              style=\"width:40%; background: var(--color3)\"></div>\n       \n  </div>                               \n\n  </div>" 
+        "  <!--20-->\n  <div name=\"board\" class=\"board\">\n  \n  <div name=\"left\" class=\"pile\">   \n  <div name=\"st3\" class=\"stone\" \n              style=\"width:60%; background: var(--color4)\"></div><div name=\"st4\" class=\"stone\" \n              style=\"width:80%; background: var(--color1)\"></div><div name=\"st5\" class=\"stone\" \n              style=\"width:100%; background: var(--color2)\"></div>\n       \n  </div>                               \n\n  <div name=\"left\" class=\"pile\">   \n  <div name=\"st1\" class=\"stone\" \n              style=\"width:20%; background: var(--color2)\"></div>\n       \n  </div>                               \n\n  <div name=\"left\" class=\"pile\">   \n  <div name=\"st2\" class=\"stone\" \n              style=\"width:40%; background: var(--color3)\"></div>\n       \n  </div>                               \n\n  </div>"
   end
 
   test "test render_reset_block" do

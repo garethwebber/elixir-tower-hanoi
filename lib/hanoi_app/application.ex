@@ -19,7 +19,7 @@ defmodule Hanoi.Application do
       {Phoenix.PubSub, name: Hanoi.PubSub},
       # Start the Finch HTTP client for sending emails
       {Finch, name: Hanoi.Finch},
-      {Hanoi.TowerGame, name: :hanoi, stones: 3},
+      Hanoi.TowerGame,
       # Start a worker by calling: Hanoi.Worker.start_link(arg)
       # {Hanoi.Worker, arg},
       # Start to serve requests, typically the last entry
@@ -30,6 +30,7 @@ defmodule Hanoi.Application do
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: Hanoi.Supervisor]
     Supervisor.start_link(children, opts)
+    Hanoi.TowerGame.addGame(:hanoi, 3)
   end
 
   # Tell Phoenix to update the endpoint configuration

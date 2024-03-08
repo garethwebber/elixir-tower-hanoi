@@ -1,5 +1,5 @@
 defmodule Hanoi.TowerGame do
-  use Supervisor
+  use DynamicSupervisor
 
   @moduledoc """
   The Hanoi game as a public API & state.
@@ -11,22 +11,12 @@ defmodule Hanoi.TowerGame do
   ETS instance to hold state. Usually run as part of an OTP application.
   """
 
-  @doc false
-  def child_spec(opts) do
-    %{
-      id: opts[:name] || raise(ArgumentError, "id is required"),
-      start: {__MODULE__, :start_link, [opts]}
-    }
-  end
-
   @doc """
   Call this function to start up the module. Name and Stones must be provided. 
   """
   @spec start_link(opts :: list()) :: {:error, any()} | {:ok, pid()} 
-  def start_link(opts) do
-    _name = opts[:name] || raise ArgumentError, "Cache name is required"
-    _stones = opts[:stones] || raise ArgumentError, "Number of stones required"
-    Supervisor.start_link(__MODULE__, opts)
+  def start_link(_opts) do
+    DynamicSupervisor.start_link(__MODULE__, :ok, name: __MODULE__)
   end
 
   @doc """
@@ -96,16 +86,37 @@ defmodule Hanoi.TowerGame do
   end
 
   @doc false
-  def init(opts) do
-    name = opts[:name]
-    stones = opts[:stones]
+  def init(:ok) do
+    DynamicSupervisor.init(strategy: :one_for_one)
+  end
+  
+  @doc """
+  Functions that adds another game
+  A game is an ETS table and a genserver under supervision
+  """
+  @spec addGame(name :: atom, stones :: pos_integer()) :: atom() | tuple()  
+  def addGame(name, stones) do
     _table = :ets.new(storage_name(name), [:named_table, :public, :set])
 
-    children = [
-      {Hanoi.TowerState, [name: storage_name(name), stones: stones]}
-    ]
+    child_spec = {Hanoi.TowerState, [id: storage_name(name), name: storage_name(name), stones: stones]}
 
-    Supervisor.init(children, strategy: :one_for_one)
+    DynamicSupervisor.start_child(__MODULE__, child_spec)
+  end
+
+  @doc """
+  Functions that returns information on the games currently running
+  """ 
+  @spec showGames() :: list()
+  def showGames() do
+    DynamicSupervisor.which_children(__MODULE__)
+  end
+
+  @doc """
+  Functions that returns how many games are currently running
+  """
+  @spec countGames() :: map() 
+  def countGames() do
+    DynamicSupervisor.count_children(__MODULE__)
   end
 
   defp storage_name(name) do
