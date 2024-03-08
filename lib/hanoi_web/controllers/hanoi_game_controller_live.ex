@@ -51,11 +51,12 @@ alias Agent.Server
   @doc "Set up initial liveview state"
   @spec mount(params :: Phoenix.LiveView.unsigned_params(), session :: map(), socket :: Phoenix.LiveView.Socket.t()) :: {:ok, Phoenix.LiveView.Socket.t()} 
   def mount(_params, session, socket) do
-    session_id = session_name(session["session_id"])
+    session_id = session["session_id"]
+    Hanoi.TowerGame.addGame(session_id, 3)
     
-    state = Hanoi.TowerGame.get_state(:hanoi)
-    number_moves = Hanoi.TowerGame.get_number_moves(:hanoi)
-    number_stones = Hanoi.TowerGame.get_number_stones(:hanoi)
+    state = Hanoi.TowerGame.get_state(session_id)
+    number_moves = Hanoi.TowerGame.get_number_moves(session_id)
+    number_stones = Hanoi.TowerGame.get_number_stones(session_id)
 
     {:ok,
      assign(socket,
@@ -109,7 +110,7 @@ alias Agent.Server
   @spec handle_event(event :: binary(), Phoenix.LiveView.unsigned_params(), socket :: Phoenix.LiveView.Socket.t()) :: {:noreply, Phoenix.LiveView.Socket.t()}
   def handle_event("move_stone", %{"from" => from, "to" => to}, socket) do
     session_id = socket.assigns()[:session_id]
-    value = Hanoi.TowerGame.move_stone(:hanoi, stone_name(from), stone_name(to))
+    value = Hanoi.TowerGame.move_stone(session_id, stone_name(from), stone_name(to))
 
     error_text =
       case value do
@@ -119,9 +120,9 @@ alias Agent.Server
 
     {:noreply,
      assign(socket,
-       state: Hanoi.TowerGame.get_state(:hanoi),
-       number_moves: Hanoi.TowerGame.get_number_moves(:hanoi),
-       completed: Hanoi.TowerGame.is_complete(:hanoi),
+       state: Hanoi.TowerGame.get_state(session_id),
+       number_moves: Hanoi.TowerGame.get_number_moves(session_id),
+       completed: Hanoi.TowerGame.is_complete(session_id),
        error_text: error_text
      )}
   end
@@ -130,12 +131,12 @@ alias Agent.Server
   def handle_event("reset", %{"stone" => stone}, socket) do
     session_id = socket.assigns()[:session_id]
     {new_stones, _rest} = Integer.parse(stone)
-    Hanoi.TowerGame.reset(:hanoi, new_stones)
+    Hanoi.TowerGame.reset(session_id, new_stones)
 
     {:noreply,
      assign(socket,
-       state: Hanoi.TowerGame.get_state(:hanoi),
-       number_moves: Hanoi.TowerGame.get_number_moves(:hanoi),
+       state: Hanoi.TowerGame.get_state(session_id),
+       number_moves: Hanoi.TowerGame.get_number_moves(session_id),
        number_stones: new_stones,
        error_text: nil,
        completed: false,
@@ -150,11 +151,11 @@ alias Agent.Server
 
     socket
     |> start_async(:running_task, fn ->
-      moves = Hanoi.TowerGame.get_moves(:hanoi)
+      moves = Hanoi.TowerGame.get_moves(session_id)
 
       Enum.map(moves, fn {from, to} ->
         :timer.sleep(250)
-        Hanoi.TowerGame.move_stone(:hanoi, from, to)
+        Hanoi.TowerGame.move_stone(session_id, from, to)
         send(live_view_pid, :refresh_board)
       end)
     end)
@@ -172,13 +173,9 @@ alias Agent.Server
     session_id = socket.assigns()[:session_id]
     {:noreply,
      assign(socket,
-       state: Hanoi.TowerGame.get_state(:hanoi),
-       number_moves: Hanoi.TowerGame.get_number_moves(:hanoi)
+       state: Hanoi.TowerGame.get_state(session_id),
+       number_moves: Hanoi.TowerGame.get_number_moves(session_id)
      )}
-  end
-
-  defp session_name(name) do
-    :"Hanoi_#{name}"
   end
 
   defp stone_name(name) do

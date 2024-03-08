@@ -55,6 +55,8 @@ defmodule Hanoi.TowerState do
   end
 
   def init(opts) do
+     _table = :ets.new(opts[:name], [:named_table, :public, :set])
+
     {:ok, %{table: opts[:name], stones: opts[:stones]}, {:continue, :load}}
   end
 

@@ -96,9 +96,9 @@ defmodule Hanoi.TowerGame do
   """
   @spec addGame(name :: atom, stones :: pos_integer()) :: atom() | tuple()  
   def addGame(name, stones) do
-    _table = :ets.new(storage_name(name), [:named_table, :public, :set])
+    game_name = storage_name(name)
 
-    child_spec = {Hanoi.TowerState, [id: storage_name(name), name: storage_name(name), stones: stones]}
+    child_spec = {Hanoi.TowerState, [id: game_name, name: game_name, stones: stones]}
 
     DynamicSupervisor.start_child(__MODULE__, child_spec)
   end
@@ -120,6 +120,6 @@ defmodule Hanoi.TowerGame do
   end
 
   defp storage_name(name) do
-    :"#{name}.Storage"
+    :"Hanoi_#{name}"
   end
 end

@@ -20,8 +20,4 @@ defmodule HanoiWeb.SessionId do
   defp unique_session_id() do
     :crypto.strong_rand_bytes(4) |> Base.encode16()
   end
-  
-  defp session_name(name) do
-    :"Hanoi_#{name}"
-  end
 end

@@ -30,7 +30,6 @@ defmodule Hanoi.Application do
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: Hanoi.Supervisor]
     Supervisor.start_link(children, opts)
-    Hanoi.TowerGame.addGame(:hanoi, 3)
   end
 
   # Tell Phoenix to update the endpoint configuration
