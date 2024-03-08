@@ -94,8 +94,8 @@ defmodule Hanoi.TowerGame do
   Functions that adds another game
   A game is an ETS table and a genserver under supervision
   """
-  @spec addGame(name :: atom, stones :: pos_integer()) :: atom() | tuple()  
-  def addGame(name, stones) do
+  @spec add_game(name :: atom, stones :: pos_integer()) :: atom() | tuple()  
+  def add_game(name, stones) do
     game_name = storage_name(name)
 
     child_spec = {Hanoi.TowerState, [id: game_name, name: game_name, stones: stones]}
@@ -106,16 +106,16 @@ defmodule Hanoi.TowerGame do
   @doc """
   Functions that returns information on the games currently running
   """ 
-  @spec showGames() :: list()
-  def showGames() do
+  @spec show_games() :: list()
+  def show_games() do
     DynamicSupervisor.which_children(__MODULE__)
   end
 
   @doc """
   Functions that returns how many games are currently running
   """
-  @spec countGames() :: map() 
-  def countGames() do
+  @spec count_games() :: map() 
+  def count_games() do
     DynamicSupervisor.count_children(__MODULE__)
   end
 

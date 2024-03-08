@@ -11,7 +11,7 @@ defmodule TowerWebViewTest do
   test "test render_board - initial state" do
     name = :test_tower_initial
     stones = 3
-    Hanoi.TowerGame.addGame(name, stones)
+    Hanoi.TowerGame.add_game(name, stones)
     board = Hanoi.TowerGame.get_state(name)
 
     assert render_component(&render_board/1, board: board, number_stones: stones) ==
@@ -21,7 +21,7 @@ defmodule TowerWebViewTest do
   test "test render_board - mid-play" do
     name = :test_tower_mid
     stones = 5
-    Hanoi.TowerGame.addGame(name, stones)
+    Hanoi.TowerGame.add_game(name, stones)
     Hanoi.TowerGame.move_stone(name, :left, :centre)
     Hanoi.TowerGame.move_stone(name, :left, :right)
     board = Hanoi.TowerGame.get_state(name)

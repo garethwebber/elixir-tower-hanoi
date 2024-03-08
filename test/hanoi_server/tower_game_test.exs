@@ -4,7 +4,7 @@ defmodule TowerGameTest do
   
   test "does server create board correctly" do
     name = :create_board
-    Hanoi.TowerGame.addGame(name, 3)
+    Hanoi.TowerGame.add_game(name, 3)
     expected_state = %Hanoi.Board{left: [1, 2, 3], centre: [], right: []}
     expected_string = "\nL 3 2 1\nC\nR"
 
@@ -17,7 +17,7 @@ defmodule TowerGameTest do
 
   test "does server move stone correctly" do
     name = :move_stone
-    Hanoi.TowerGame.addGame(name, 4)
+    Hanoi.TowerGame.add_game(name, 4)
     before_string = "\nL 4 3 2 1\nC\nR"
     after_string = "\nL 4 3 2\nC\nR 1"
 
@@ -39,7 +39,7 @@ defmodule TowerGameTest do
 
   test "does server run get moves correctly" do
     name = :get_moves
-    Hanoi.TowerGame.addGame(name, 3)
+    Hanoi.TowerGame.add_game(name, 3)
  
     expected = [
       {:left, :right},
@@ -56,7 +56,7 @@ defmodule TowerGameTest do
 
   test "does server reset board correctly" do
     name = :server_reset
-    Hanoi.TowerGame.addGame(name, 3)
+    Hanoi.TowerGame.add_game(name, 3)
     :ok = Hanoi.TowerGame.move_stone(name, :left, :right)
     
     expected_state = %Hanoi.Board{left: [2, 3], centre: [], right: [1]}
@@ -74,14 +74,14 @@ defmodule TowerGameTest do
 
   test "Does server failed complete test correctly" do
     name = :complete_fail
-    Hanoi.TowerGame.addGame(name, 3)
+    Hanoi.TowerGame.add_game(name, 3)
 
     assert Hanoi.TowerGame.is_complete(name) == false 
   end
 
   test "Does server pass complete test correctly" do
     name = :complete_pass 
-    Hanoi.TowerGame.addGame(name, 3)
+    Hanoi.TowerGame.add_game(name, 3)
     moves = Hanoi.TowerGame.get_moves(name) 
 
     Enum.map(moves, fn {from, to} ->

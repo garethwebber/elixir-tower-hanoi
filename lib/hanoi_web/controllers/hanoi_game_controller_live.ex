@@ -52,7 +52,7 @@ alias Agent.Server
   @spec mount(params :: Phoenix.LiveView.unsigned_params(), session :: map(), socket :: Phoenix.LiveView.Socket.t()) :: {:ok, Phoenix.LiveView.Socket.t()} 
   def mount(_params, session, socket) do
     session_id = session["session_id"]
-    Hanoi.TowerGame.addGame(session_id, 3)
+    Hanoi.TowerGame.add_game(session_id, 3)
     
     state = Hanoi.TowerGame.get_state(session_id)
     number_moves = Hanoi.TowerGame.get_number_moves(session_id)
@@ -73,6 +73,7 @@ alias Agent.Server
   @doc "Render the page based on current state"
   @spec render(assigns :: Phoenix.LiveView.Socket.assigns()) :: Phoenix.LiveView.Rendered.t()
   def render(assigns) do
+    %{active: concurrent_games, workers: _w, supervisors: _s, specs: _p} = Hanoi.TowerGame.count_games()
     ~H"""
         <.flash_group flash={@flash} />
         <main class="min-h-screen bg-slate-400 flex items-center justify-center">
@@ -99,7 +100,7 @@ alias Agent.Server
                 auto_mode={@auto_mode}/>
 
               <.render_help_modal/>
-              <p align="right">Session id:  <%= inspect @session_id %></p>
+              <p align="right">Current games:  <%= concurrent_games %></p>
             </div>
           </div>
         </main>
