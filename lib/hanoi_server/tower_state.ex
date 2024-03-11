@@ -13,6 +13,11 @@ defmodule Hanoi.TowerState do
   def start_link(opts) do
     GenServer.start_link(__MODULE__, opts, name: opts[:name])
   end
+  
+  @spec get_info(name :: atom()) :: tuple()
+  def get_info(server) do
+    GenServer.call(server, {:get_info})
+  end
 
   @spec get_state(name :: atom()) :: Hanoi.Board.t()
   def get_state(server) do
@@ -66,6 +71,16 @@ defmodule Hanoi.TowerState do
     true = :ets.insert(data.table, {:stones, data.stones})
     Logger.info("Placed #{data.stones} stones onto #{data.table} board")
     {:noreply, data}
+  end
+
+  def handle_call({:get_info}, _sender, data) do 
+    with [{_key, stones}] <- :ets.lookup(data.table, :stones), 
+         [{_key, moves}] <- :ets.lookup(data.table, :moves)
+    do
+      {:reply, {__MODULE__, name: data.table, stones: stones, moves: moves}, data} 
+    else
+      _ -> {:reply, :error, data}
+    end
   end
 
   def handle_call({:get_state}, _sender, data) do

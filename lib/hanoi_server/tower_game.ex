@@ -109,6 +109,7 @@ defmodule Hanoi.TowerGame do
   @spec show_games() :: list()
   def show_games() do
     DynamicSupervisor.which_children(__MODULE__)
+    |> Enum.map(fn {_a, pid, _type, _list} -> Hanoi.TowerState.get_info(pid) end)
   end
 
   @doc """
