@@ -111,11 +111,11 @@ defmodule Hanoi.TowerGame do
   Functions that returns information on the games currently running
   
       [
-        {Hanoi.TowerState, [name: :Hanoi_91924B39, stones: 7, moves: 0, age: -152]},
-        {Hanoi.TowerState, [name: :Hanoi_31148637, stones: 6, moves: 32, age: -83]}
+        [class: Hanoi.TowerState, name: :Hanoi_91924B39, pid: #PID<0.486.0>, stones: 7, moves: 0, age: -152],
+        [class: Hanoi.TowerState, name: :Hanoi_31148637, pid: #PID<0.515.0>, stones: 6, moves: 32, age: -83]
       ]
   """ 
-  @spec show_games() :: list()
+  @spec show_games() :: Keyword.t()
   def show_games() do
     DynamicSupervisor.which_children(__MODULE__)
     |> Enum.map(fn {_a, pid, _type, _list} -> Hanoi.TowerState.get_info(pid) end)
