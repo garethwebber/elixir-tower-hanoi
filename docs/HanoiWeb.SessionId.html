@@ -8,7 +8,7 @@
     <meta name="project" content="Towers of Hanoi v0.7.0">
 
 
-    <title>TowerHanoi — Towers of Hanoi v0.7.0</title>
+    <title>HanoiWeb.SessionId — Towers of Hanoi v0.7.0</title>
     <link rel="stylesheet" href="dist/html-elixir-3ZLIM5JF.css" />
 
 
@@ -114,106 +114,18 @@ Pages
 
 <h1>
 
-    <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_cli/tower_hanoi.ex#L1" title="View Source" class="icon-action" rel="help">
+    <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_web/session_id.ex#L1" title="View Source" class="icon-action" rel="help">
       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
       <span class="sr-only">View Source</span>
     </a>
 
-  <span translate="no">TowerHanoi</span> 
+  <span translate="no">HanoiWeb.SessionId</span> 
   <small class="app-vsn" translate="no">(Towers of Hanoi v0.7.0)</small>
 
 </h1>
 
 
-  <section id="moduledoc">
-<p>Command Line application version of the Tower of Hanoi.</p><p>Sets up a board and then runs the algorithm. Just uses the domain model
-and alorithm, avoiding OTP.</p><p>An alternative to the OTP Phoenix application</p><div class="mermaid">graph TD;
-classDef server fill:#D0B441,stroke:#AD9121,stroke-width:1px;
-classDef supervision fill:#D000FF,stroke:#D0B441,stroke-width:1px;
-classDef topic fill:#B5ADDF,stroke:#312378,stroke-width:1px;
-classDef db fill:#9E74BE,stroke:#4E1C74,stroke-width:1px;
-subgraph CLI
-G1(TowerHanoi):::supervision; 
-T1(CLI):::topic; 
-end
-subgraph Algo
-T2(Board):::topic;
-T3(Algo):::topic;
-T4(Render):::topic; 
-end
-G1(TowerHanoi):::supervision ==> T1(CLI):::topic; 
-G1(TowerHanoi):::supervision ==> T2(Board):::topic;
-G1(TowerHanoi):::supervision ==> T3(Algo):::topic;
-G1(TowerHanoi):::supervision ==> T4(Render):::topic; </div>
-  </section>
 
-
-  <section id="summary" class="details-list">
-    <h1 class="section-heading">
-      <a class="hover-link" href="#summary">
-        <i class="ri-link-m" aria-hidden="true"></i>
-      </a>
-      <span class="text">Summary</span>
-    </h1>
-<div class="summary-functions summary">
-  <h2>
-    <a href="#functions">Functions</a>
-  </h2>
-
-    <div class="summary-row">
-      <div class="summary-signature">
-        <a href="#main/1" translate="no">main(argv)</a>
-
-      </div>
-
-        <div class="summary-synopsis"><p>Main command-line entry point. Gets arguments parsed responds accordingly. </p></div>
-
-    </div>
-
-</div>
-
-  </section>
-
-
-  <section id="functions" class="details-list">
-    <h1 class="section-heading">
-      <a class="hover-link" href="#functions">
-        <i class="ri-link-m" aria-hidden="true"></i>
-      </a>
-      <span class="text">Functions</span>
-    </h1>
-    <div class="functions-list">
-<section class="detail" id="main/1">
-
-  <div class="detail-header">
-    <a href="#main/1" class="detail-link" title="Link to this function">
-      <i class="ri-link-m" aria-hidden="true"></i>
-      <span class="sr-only">Link to this function</span>
-    </a>
-    <h1 class="signature" translate="no">main(argv)</h1>
-
-      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_cli/tower_hanoi.ex#L41" class="icon-action" rel="help" title="View Source">
-       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
-       <span class="sr-only">View Source</span>
-     </a>
-
-
-  </div>
-
-  <section class="docstring">
-
-      <div class="specs">
-
-          <pre translate="no"><span class="attribute">@spec</span> main(argv :: [<a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()]) :: :ok</pre>
-
-      </div>
-
-<p>Main command-line entry point. Gets arguments parsed responds accordingly. </p>
-  </section>
-</section>
-
-    </div>
-  </section>
 
       <footer class="footer">
         <p>
@@ -223,7 +135,7 @@ G1(TowerHanoi):::supervision ==> T4(Render):::topic; </div>
 
               <a href="https://preview.hex.pm/preview/hanoi/0.7.0">Hex Preview</a>
 
-                (<a href="https://preview.hex.pm/preview/hanoi/0.7.0/show/lib/hanoi_cli/tower_hanoi.ex">current file</a>)
+                (<a href="https://preview.hex.pm/preview/hanoi/0.7.0/show/lib/hanoi_web/session_id.ex">current file</a>)
 
             </span>
 

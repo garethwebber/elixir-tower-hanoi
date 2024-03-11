@@ -80,6 +80,10 @@ defmodule Hanoi.TowerGame do
     Hanoi.TowerState.get_moves(storage_name(name))
   end
 
+  @doc """
+  Restarts a game with a new number of stones on the board.
+  Resets move count
+  """
   @spec reset(name :: atom(), new_stones :: pos_integer()) :: :ok
   def reset(name, new_stones) do
     Hanoi.TowerState.reset(storage_name(name), new_stones)
@@ -105,6 +109,11 @@ defmodule Hanoi.TowerGame do
 
   @doc """
   Functions that returns information on the games currently running
+  
+      [
+        {Hanoi.TowerState, [name: :Hanoi_91924B39, stones: 7, moves: 0, age: -152]},
+        {Hanoi.TowerState, [name: :Hanoi_31148637, stones: 6, moves: 32, age: -83]}
+      ]
   """ 
   @spec show_games() :: list()
   def show_games() do
