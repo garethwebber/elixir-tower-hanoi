@@ -69,15 +69,18 @@ defmodule Hanoi.TowerState do
     true = :ets.insert(data.table, {:state, Hanoi.Board.create_board(data.stones)})
     true = :ets.insert(data.table, {:moves, 0})
     true = :ets.insert(data.table, {:stones, data.stones})
+    true = :ets.insert(data.table, {:created, DateTime.utc_now()})
     Logger.info("Placed #{data.stones} stones onto #{data.table} board")
     {:noreply, data}
   end
 
   def handle_call({:get_info}, _sender, data) do 
     with [{_key, stones}] <- :ets.lookup(data.table, :stones), 
-         [{_key, moves}] <- :ets.lookup(data.table, :moves)
+         [{_key, moves}] <- :ets.lookup(data.table, :moves),
+         [{_key, created}] <- :ets.lookup(data.table, :created)
     do
-      {:reply, {__MODULE__, name: data.table, stones: stones, moves: moves}, data} 
+      age = DateTime.diff(created, DateTime.utc_now()) 
+      {:reply, {__MODULE__, name: data.table, stones: stones, moves: moves, age: age}, data} 
     else
       _ -> {:reply, :error, data}
     end
