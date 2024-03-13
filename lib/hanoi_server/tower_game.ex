@@ -108,11 +108,20 @@ defmodule Hanoi.TowerGame do
   end
 
   @doc """
+  Function that terminates a session. Called by Session Purger for games where no move
+  has been made for a while
+  """
+  @spec delete_game(pid :: pid()) :: :ok | {:error, :not_found}
+  def delete_game(pid) do
+    DynamicSupervisor.terminate_child(__MODULE__, pid)
+  end
+
+  @doc """
   Functions that returns information on the games currently running
   
       [
-        [class: Hanoi.TowerState, name: :Hanoi_91924B39, pid: #PID<0.486.0>, stones: 7, moves: 0, age: -152],
-        [class: Hanoi.TowerState, name: :Hanoi_31148637, pid: #PID<0.515.0>, stones: 6, moves: 32, age: -83]
+        [class: Hanoi.TowerState, name: :Hanoi_91924B39, pid: #PID<0.486.0>, stones: 7, moves: 0, age: 152],
+        [class: Hanoi.TowerState, name: :Hanoi_31148637, pid: #PID<0.515.0>, stones: 6, moves: 32, age: 83]
       ]
   """ 
   @spec show_games() :: Keyword.t()

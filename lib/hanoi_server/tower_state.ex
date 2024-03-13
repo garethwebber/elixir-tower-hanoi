@@ -79,7 +79,7 @@ defmodule Hanoi.TowerState do
          [{_key, moves}] <- :ets.lookup(data.table, :moves),
          [{_key, created}] <- :ets.lookup(data.table, :created)
     do
-      age = DateTime.diff(created, DateTime.utc_now()) 
+      age = DateTime.diff(DateTime.utc_now(), created) 
       {:reply, [class: __MODULE__, name: data.table, pid: self(), stones: stones, moves: moves, age: age], data} 
     else
       _ -> {:reply, :error, data}
