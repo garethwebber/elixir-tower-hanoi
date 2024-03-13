@@ -1,4 +1,4 @@
-defmodule HanoiWeb.SessionId do
+defmodule HanoiWeb.Session.IdPlug do
   @behaviour Plug
   import Plug.Conn
 
