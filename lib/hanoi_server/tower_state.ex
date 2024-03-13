@@ -127,7 +127,8 @@ def handle_call({:get_state_as_text}, _sender, data) do
          {:ok, newstate} <- Hanoi.Algo.move_stone(state, from, to, false),
          true <- :ets.insert(data.table, {:state, newstate}),
          [{_key2, moves}] <- :ets.lookup(data.table, :moves),
-         true <- :ets.insert(data.table, {:moves, moves + 1}) do
+         true <- :ets.insert(data.table, {:moves, moves + 1}), 
+         true <- :ets.insert(data.table, {:created, DateTime.utc_now()}) do
       {:reply, :ok, data}
     else
       _ ->
