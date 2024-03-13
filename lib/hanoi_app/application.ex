@@ -19,10 +19,9 @@ defmodule Hanoi.Application do
       {Phoenix.PubSub, name: Hanoi.PubSub},
       # Start the Finch HTTP client for sending emails
       {Finch, name: Hanoi.Finch},
+      # Game server, session purger then page serving
       Hanoi.TowerGame,
-      # Start a worker by calling: Hanoi.Worker.start_link(arg)
-      # {Hanoi.Worker, arg},
-      # Start to serve requests, typically the last entry
+      {HanoiWeb.Session.Purge, purge_time: 3600},
       HanoiWeb.Endpoint
     ]
 

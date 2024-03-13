@@ -21,6 +21,10 @@ defmodule HanoiWeb.HanoiGameControllerLive do
   subgraph App
   T0(Application):::supervision
   end
+  subgraph Session
+  S1(IdPlug):::topic
+  S2(Purger):::server
+  end
   subgraph Web
   T2(Hanoi_GameControllerLive):::topic
   T3(Hanoi_GameView):::topic
@@ -35,16 +39,20 @@ defmodule HanoiWeb.HanoiGameControllerLive do
   T6(Algo):::topic;
   end
   T0(Application):::supervision --> T1{{Phoenix Webserver}}:::topic;
+  T0(Application):::supervision --> S2(Purger):::server;
   T1{{Phoenix Webserver}}:::topic -- Controller --> T2(hanoi_game_controller_live):::topic;
+  T1{{Phoenix Webserver}}:::topic --> S1(IdPlug):::topic
   T2(Hanoi_GameControllerLive):::topic -- View --> T3(HanoiGameView):::topic;
   T3(Hanoi_GameView):::topic --> T4(CoreComponents):::topic;
   T2(Hanoi_GameControllerLive):::topic -- Model --> G1(TowerGame):::supervision;
-  G1(TowerGame):::supervision --> G2(TowerState):::server; 
+  S2(Purger):::server --> G1(TowerGame)
+  G1(TowerGame):::supervision -- per game --> G2(TowerState):::server; 
   G2(TowerState):::server --> DB[("ETS#nbsp;")]:::db;
   G2(TowerState):::server --> T5(Board):::topic;
   G2(TowerState):::server --> T6(Algo):::topic;
   </div>
   """
+alias Agent.Server
 alias Logger.App
 alias Agent.Server
 
