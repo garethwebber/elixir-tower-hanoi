@@ -15,11 +15,9 @@ defmodule HanoiWeb.Session.Purge do
   end
 
   def handle_info(:run_purge, purge_time) do
-    games = Hanoi.TowerGame.show_games()
-   
-    old = games
-          |> Enum.filter(&(filter_age(&1, purge_time)))
-          |> Enum.map(&(purge_session(&1)))
+      Hanoi.TowerGame.show_games()
+      |> Enum.filter(&(filter_age(&1, purge_time)))
+      |> Enum.map(&(purge_session(&1)))
 
     Process.send_after(self(), :run_purge, @purge_gap)
 
