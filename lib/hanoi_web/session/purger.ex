@@ -17,7 +17,7 @@ alias Code.Identifier
   end
 
   @doc """
-  Stores :purge_time in GenServer state
+  Stores :purge_time in GenServer state. 
   Sends first message to :run_purge, starting the continuous purging cycle.
   """
   def init(opts) do

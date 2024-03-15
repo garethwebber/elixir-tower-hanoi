@@ -2,7 +2,7 @@ defmodule HanoiWeb.Session.IdPlug do
   @behaviour Plug
   import Plug.Conn
   @moduledoc """
-  This module plugs into the phoenix request handling and checks is a session_id exists. If it doesn't
+  This module plugs into the phoenix request handling and checks if a session_id exists. If it doesn't
   it creates one based on a 4-digit hexadecimal random number.
 
   A TowerState GenServer and ETS table are created per-session and use this id as their unique name.
