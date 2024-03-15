@@ -9,15 +9,15 @@ defmodule HanoiWeb.Session.Purge do
   end
 
   def init(opts) do
-     purge_time = opts[:purge_time]
-     Process.send_after(self(), :run_purge, @purge_gap)
-     {:ok, purge_time}
+    purge_time = opts[:purge_time]
+    Process.send_after(self(), :run_purge, @purge_gap)
+    {:ok, purge_time}
   end
 
   def handle_info(:run_purge, purge_time) do
-      Hanoi.TowerGame.show_games()
-      |> Enum.filter(&(filter_age(&1, purge_time)))
-      |> Enum.map(&(purge_session(&1)))
+    Hanoi.TowerGame.show_games()
+    |> Enum.filter(&filter_age(&1, purge_time))
+    |> Enum.map(&purge_session(&1))
 
     Process.send_after(self(), :run_purge, @purge_gap)
 
@@ -26,6 +26,7 @@ defmodule HanoiWeb.Session.Purge do
 
   defp filter_age(game_info, age_limit) do
     age = game_info[:age]
+
     cond do
       age > age_limit -> true
       true            -> false
@@ -34,9 +35,8 @@ defmodule HanoiWeb.Session.Purge do
 
   defp purge_session(game_info) do
     name = game_info[:name]
-    pid = game_info[:pid] 
+    pid = game_info[:pid]
     Logger.info("Purging session #{name}")
     games = Hanoi.TowerGame.delete_game(pid)
   end
-
 end

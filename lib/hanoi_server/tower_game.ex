@@ -14,7 +14,7 @@ defmodule Hanoi.TowerGame do
   @doc """
   Call this function to start up the module. Name and Stones must be provided. 
   """
-  @spec start_link(opts :: list()) :: {:error, any()} | {:ok, pid()} 
+  @spec start_link(opts :: list()) :: {:error, any()} | {:ok, pid()}
   def start_link(_opts) do
     DynamicSupervisor.start_link(__MODULE__, :ok, name: __MODULE__)
   end
@@ -61,7 +61,7 @@ defmodule Hanoi.TowerGame do
   def move_stone(name, from, to) do
     Hanoi.TowerState.move_stone(storage_name(name), from, to)
   end
-  
+
   @doc """
   Funtion returns true if game is complete
   That is all stones in correct order on right hand pile
@@ -93,12 +93,12 @@ defmodule Hanoi.TowerGame do
   def init(:ok) do
     DynamicSupervisor.init(strategy: :one_for_one)
   end
-  
+
   @doc """
   Functions that adds another game
   A game is an ETS table and a genserver under supervision
   """
-  @spec add_game(name :: atom, stones :: pos_integer()) :: atom() | tuple()  
+  @spec add_game(name :: atom, stones :: pos_integer()) :: atom() | tuple()
   def add_game(name, stones) do
     game_name = storage_name(name)
 
@@ -118,12 +118,12 @@ defmodule Hanoi.TowerGame do
 
   @doc """
   Functions that returns information on the games currently running
-  
+
       [
         [class: Hanoi.TowerState, name: :Hanoi_91924B39, pid: #PID<0.486.0>, stones: 7, moves: 0, age: 152],
         [class: Hanoi.TowerState, name: :Hanoi_31148637, pid: #PID<0.515.0>, stones: 6, moves: 32, age: 83]
       ]
-  """ 
+  """
   @spec show_games() :: Keyword.t()
   def show_games() do
     DynamicSupervisor.which_children(__MODULE__)
@@ -133,7 +133,7 @@ defmodule Hanoi.TowerGame do
   @doc """
   Functions that returns how many games are currently running
   """
-  @spec count_games() :: map() 
+  @spec count_games() :: map()
   def count_games() do
     DynamicSupervisor.count_children(__MODULE__)
   end

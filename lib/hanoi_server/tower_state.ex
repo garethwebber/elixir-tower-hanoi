@@ -13,7 +13,7 @@ defmodule Hanoi.TowerState do
   def start_link(opts) do
     GenServer.start_link(__MODULE__, opts, name: opts[:name])
   end
-  
+
   @spec get_info(name :: atom()) :: tuple()
   def get_info(server) do
     GenServer.call(server, {:get_info})
@@ -46,7 +46,7 @@ defmodule Hanoi.TowerState do
 
   @spec is_complete(name :: atom()) :: boolean() | :error
   def is_complete(server) do
-   GenServer.call(server, {:is_complete}) 
+    GenServer.call(server, {:is_complete})
   end
 
   @spec get_moves(name :: atom()) :: list() | :error
@@ -60,7 +60,7 @@ defmodule Hanoi.TowerState do
   end
 
   def init(opts) do
-     _table = :ets.new(opts[:name], [:named_table, :public, :set])
+    _table = :ets.new(opts[:name], [:named_table, :public, :set])
 
     {:ok, %{table: opts[:name], stones: opts[:stones]}, {:continue, :load}}
   end
@@ -74,13 +74,15 @@ defmodule Hanoi.TowerState do
     {:noreply, data}
   end
 
-  def handle_call({:get_info}, _sender, data) do 
-    with [{_key, stones}] <- :ets.lookup(data.table, :stones), 
+  def handle_call({:get_info}, _sender, data) do
+    with [{_key, stones}] <- :ets.lookup(data.table, :stones),
          [{_key, moves}] <- :ets.lookup(data.table, :moves),
-         [{_key, created}] <- :ets.lookup(data.table, :created)
-    do
-      age = DateTime.diff(DateTime.utc_now(), created) 
-      {:reply, [class: __MODULE__, name: data.table, pid: self(), stones: stones, moves: moves, age: age], data} 
+         [{_key, created}] <- :ets.lookup(data.table, :created) do
+      age = DateTime.diff(DateTime.utc_now(), created)
+
+      {:reply,
+       [class: __MODULE__, name: data.table, pid: self(), stones: stones, moves: moves, age: age],
+       data}
     else
       _ -> {:reply, :error, data}
     end
@@ -88,16 +90,16 @@ defmodule Hanoi.TowerState do
 
   def handle_call({:get_state}, _sender, data) do
     with [{_key, state}] <- :ets.lookup(data.table, :state) do
-        {:reply, state, data}
+      {:reply, state, data}
     else
-     _ ->
+      _ ->
         {:reply, :error, data}
     end
   end
 
-def handle_call({:get_state_as_text}, _sender, data) do
+  def handle_call({:get_state_as_text}, _sender, data) do
     with [{_key, state}] <- :ets.lookup(data.table, :state) do
-        {:reply, Hanoi.Render.render_to_string(state), data}
+      {:reply, Hanoi.Render.render_to_string(state), data}
     else
       _ ->
         {:reply, :error, data}
@@ -106,8 +108,8 @@ def handle_call({:get_state_as_text}, _sender, data) do
 
   def handle_call({:get_number_moves}, _sender, data) do
     with [{_key, moves}] <- :ets.lookup(data.table, :moves) do
-        {:reply, moves, data}
-    else 
+      {:reply, moves, data}
+    else
       _ ->
         {:reply, :error, data}
     end
@@ -115,7 +117,7 @@ def handle_call({:get_state_as_text}, _sender, data) do
 
   def handle_call({:get_number_stones}, _sender, data) do
     with [{_key, stones}] <- :ets.lookup(data.table, :stones) do
-        {:reply, stones, data}
+      {:reply, stones, data}
     else
       _ ->
         {:reply, :error, data}
@@ -127,7 +129,7 @@ def handle_call({:get_state_as_text}, _sender, data) do
          {:ok, newstate} <- Hanoi.Algo.move_stone(state, from, to, false),
          true <- :ets.insert(data.table, {:state, newstate}),
          [{_key2, moves}] <- :ets.lookup(data.table, :moves),
-         true <- :ets.insert(data.table, {:moves, moves + 1}), 
+         true <- :ets.insert(data.table, {:moves, moves + 1}),
          true <- :ets.insert(data.table, {:created, DateTime.utc_now()}) do
       {:reply, :ok, data}
     else
@@ -138,11 +140,11 @@ def handle_call({:get_state_as_text}, _sender, data) do
   end
 
   def handle_call({:is_complete}, _sender, data) do
-    with [{_key, board}]  <- :ets.lookup(data.table, :state),
-         [{_key, stones}] <- :ets.lookup(data.table, :stones) do  
+    with [{_key, board}] <- :ets.lookup(data.table, :state),
+         [{_key, stones}] <- :ets.lookup(data.table, :stones) do
       {:reply, Hanoi.Board.is_complete(board, stones), data}
     else
-      _ -> 
+      _ ->
         Logger.error("Failed to carry out complete check.")
         {:reply, :error, data}
     end

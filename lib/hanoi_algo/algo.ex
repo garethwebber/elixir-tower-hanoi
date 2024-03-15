@@ -19,7 +19,7 @@ defmodule Hanoi.Algo do
   @doc """
   An algorithm to move stones between stacks by recursion 
   """
-  @spec run_algo(board :: Hanoi.Board.t()) :: Hanoi.Board.t() 
+  @spec run_algo(board :: Hanoi.Board.t()) :: Hanoi.Board.t()
   def run_algo(board) do
     disk_numbers = length(board.left)
     IO.puts(Hanoi.Render.render_to_string(board))
@@ -30,7 +30,8 @@ defmodule Hanoi.Algo do
   @doc """
   Returns a new board with stone moved, or an error if an invalid move 
   """
-  @spec move_stone(board :: Hanoi.Board.t(), from :: atom(), to :: atom(), debug :: boolean()) :: { :ok | :error, Hanoi.Board.t()}
+  @spec move_stone(board :: Hanoi.Board.t(), from :: atom(), to :: atom(), debug :: boolean()) ::
+          {:ok | :error, Hanoi.Board.t()}
   def move_stone(board, from, to, debug) do
     with {:ok, newboard, _moves} <- record_stone_move(board, [], from, to, debug) do
       {:ok, newboard}

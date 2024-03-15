@@ -1,21 +1,23 @@
 defmodule Hanoi.Board do
   alias Hanoi.Board
+
   @moduledoc """
   The domain model.
 
   The type and functions that define and create the domain data model
   """
-  
+
   @typedoc """
   A hanoi board formed of three piles of stones.
   """
   defstruct left: [],
             centre: [],
             right: []
+
   @type t() :: %__MODULE__{
           left: list(),
           centre: list(),
-          right: list() 
+          right: list()
         }
 
   @doc """
@@ -53,5 +55,4 @@ defmodule Hanoi.Board do
   defp create_stack_int(stack, stonesleft) do
     create_stack_int([stonesleft | stack], stonesleft - 1)
   end
-
 end

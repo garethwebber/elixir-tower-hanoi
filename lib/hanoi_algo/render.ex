@@ -5,19 +5,21 @@ defmodule Hanoi.Render do
 
   Generally used by the command line application
   """
-  
+
   @doc """
   Renders a board <struct> as a <String>. 
   """
   @spec render_to_string(board :: Hanoi.Board.t()) :: String.t()
   def render_to_string(board) do
     "\n" <>
-      "L" <> reverse_to_string(board.left) <> "\n" <>
-      "C" <> reverse_to_string(board.centre) <> "\n" <>
-      "R" <> reverse_to_string(board.right)
+    "L" <> reverse_to_string(board.left) <> "\n" <>
+    "C" <> reverse_to_string(board.centre) <> "\n" <>
+    "R" <> reverse_to_string(board.right)
   end
 
-  defp reverse_to_string([]) do "" end 
+  defp reverse_to_string([]) do
+    ""
+  end
 
   defp reverse_to_string(input) do
     [head | tail] = input
