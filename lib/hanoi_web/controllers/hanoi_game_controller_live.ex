@@ -52,16 +52,20 @@ defmodule HanoiWeb.HanoiGameControllerLive do
   G2(TowerState):::server --> T6(Algo):::topic;
   </div>
   """
-alias Agent.Server
-alias Logger.App
-alias Agent.Server
+  alias Agent.Server
+  alias Logger.App
+  alias Agent.Server
 
   @doc "Set up initial liveview state"
-  @spec mount(params :: Phoenix.LiveView.unsigned_params(), session :: map(), socket :: Phoenix.LiveView.Socket.t()) :: {:ok, Phoenix.LiveView.Socket.t()} 
+  @spec mount(
+          params :: Phoenix.LiveView.unsigned_params(),
+          session :: map(),
+          socket :: Phoenix.LiveView.Socket.t()
+        ) :: {:ok, Phoenix.LiveView.Socket.t()}
   def mount(_params, session, socket) do
     session_id = session["session_id"]
     Hanoi.TowerGame.add_game(session_id, 3)
-    
+
     state = Hanoi.TowerGame.get_state(session_id)
     number_moves = Hanoi.TowerGame.get_number_moves(session_id)
     number_stones = Hanoi.TowerGame.get_number_stones(session_id)
@@ -81,7 +85,9 @@ alias Agent.Server
   @doc "Render the page based on current state"
   @spec render(assigns :: Phoenix.LiveView.Socket.assigns()) :: Phoenix.LiveView.Rendered.t()
   def render(assigns) do
-    %{active: concurrent_games, workers: _w, supervisors: _s, specs: _p} = Hanoi.TowerGame.count_games()
+    %{active: concurrent_games, workers: _w, supervisors: _s, specs: _p} =
+      Hanoi.TowerGame.count_games()
+
     ~H"""
         <.flash_group flash={@flash} />
         <main class="min-h-screen bg-slate-400 flex items-center justify-center">
@@ -116,7 +122,11 @@ alias Agent.Server
   end
 
   @doc "Handle the auto_mode, move_stone & reset clicks from page"
-  @spec handle_event(event :: binary(), Phoenix.LiveView.unsigned_params(), socket :: Phoenix.LiveView.Socket.t()) :: {:noreply, Phoenix.LiveView.Socket.t()}
+  @spec handle_event(
+          event :: binary(),
+          Phoenix.LiveView.unsigned_params(),
+          socket :: Phoenix.LiveView.Socket.t()
+        ) :: {:noreply, Phoenix.LiveView.Socket.t()}
   def handle_event("move_stone", %{"from" => from, "to" => to}, socket) do
     session_id = socket.assigns()[:session_id]
     value = Hanoi.TowerGame.move_stone(session_id, stone_name(from), stone_name(to))
@@ -177,9 +187,11 @@ alias Agent.Server
   end
 
   @doc "Handle the refresh_board messages triggered by auto_mode"
-  @spec handle_info(msg :: term(), socket :: Phoenix.LiveView.Socket.t()) :: {:noreply, Phoenix.LiveView.Socket.t()}
+  @spec handle_info(msg :: term(), socket :: Phoenix.LiveView.Socket.t()) ::
+          {:noreply, Phoenix.LiveView.Socket.t()}
   def handle_info(:refresh_board, socket) do
     session_id = socket.assigns()[:session_id]
+
     {:noreply,
      assign(socket,
        state: Hanoi.TowerGame.get_state(session_id),

@@ -7,7 +7,7 @@ defmodule HanoiWeb.HanoiGameView do
   """
 
   @doc "Define the CSS needed to render the stones board"
-  @spec render_css(assigns :: map()) :: struct() 
+  @spec render_css(assigns :: map()) :: struct()
   def render_css(assigns) do
     ~H"""
      <style>
@@ -41,29 +41,29 @@ defmodule HanoiWeb.HanoiGameView do
   end
 
   @doc "Show game instructions"
-  @spec render_help_modal(assigns :: map()) :: struct() 
+  @spec render_help_modal(assigns :: map()) :: struct()
   def render_help_modal(assigns) do
-     ~H"""
-       <.modal id="help_modal">
-         <span class="text:lg font-bold">
-         <p>Rules of Towers of Hanoi</p></span>
-         <span class="prose">
-         <p>There are three piles of stones. You start with all the stones
-         on the left pile. The goal is to move all the stones to the right
-         pile.</p>
-         <ul class="list-disc list-inside">
-           <li>Stones must be moved one at a time.</li>
-           <li>A larger stone cannot be placed on a smaller one.</li>
-         </ul>
-         <p>The goal is to complete the task in the smallest number
-         of moves.</p>
-         </span>
-       </.modal>
-     """
-  end 
+    ~H"""
+      <.modal id="help_modal">
+        <span class="text:lg font-bold">
+        <p>Rules of Towers of Hanoi</p></span>
+        <span class="prose">
+        <p>There are three piles of stones. You start with all the stones
+        on the left pile. The goal is to move all the stones to the right
+        pile.</p>
+        <ul class="list-disc list-inside">
+          <li>Stones must be moved one at a time.</li>
+          <li>A larger stone cannot be placed on a smaller one.</li>
+        </ul>
+        <p>The goal is to complete the task in the smallest number
+        of moves.</p>
+        </span>
+      </.modal>
+    """
+  end
 
   @doc "Renders the board as a pile of stones"
-  @spec render_board(assigns :: map()) :: struct() 
+  @spec render_board(assigns :: map()) :: struct()
   def render_board(assigns) do
     ~H"""
       <!--<%= width = div(100, @number_stones) %>-->
@@ -106,7 +106,7 @@ defmodule HanoiWeb.HanoiGameView do
   end
 
   @doc "Renders reset dropdown and button"
-  @spec render_reset_block(assigns :: map()) :: struct() 
+  @spec render_reset_block(assigns :: map()) :: struct()
   def render_reset_block(assigns) do
     form = to_form(%{"stone" => 3})
 
@@ -125,7 +125,7 @@ defmodule HanoiWeb.HanoiGameView do
   end
 
   @doc "Renders any error messages"
-  @spec render_error_text(assigns :: map()) :: struct() 
+  @spec render_error_text(assigns :: map()) :: struct()
   def render_error_text(%{error_text: error_text} = assigns) do
     cond do
       error_text == nil ->
@@ -148,7 +148,7 @@ defmodule HanoiWeb.HanoiGameView do
   end
 
   @doc "Renders the current move count"
-  @spec render_number_moves(assigns :: map()) :: struct() 
+  @spec render_number_moves(assigns :: map()) :: struct()
   def render_number_moves(%{completed: completed, number_moves: number_moves} = assigns) do
     case completed do
       false ->
@@ -157,6 +157,7 @@ defmodule HanoiWeb.HanoiGameView do
              Number of moves: <%= @number_moves  %>
            </span>
         """
+
       true ->
         ~H"""
            <span class="prose border border-green-500">
@@ -167,7 +168,7 @@ defmodule HanoiWeb.HanoiGameView do
   end
 
   @doc "Renders the controls for moving stones"
-  @spec render_game_controls(assigns :: map()) :: struct() 
+  @spec render_game_controls(assigns :: map()) :: struct()
   def render_game_controls(%{auto_mode: auto_mode, completed: completed} = assigns) do
     ~H"""
      <hr class="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700">
@@ -210,8 +211,8 @@ defmodule HanoiWeb.HanoiGameView do
   end
 
   @doc "Renders the demo automode block"
-  @spec render_automode_control(assigns :: map()) :: struct() 
-  def render_automode_control(%{auto_mode: auto_mode, 
+  @spec render_automode_control(assigns :: map()) :: struct()
+  def render_automode_control(%{auto_mode: auto_mode,
                                 completed: completed,
                                 number_moves: number_moves} = assigns) do
     ~H"""
