@@ -126,7 +126,7 @@ Pages
 
 
   <section id="moduledoc">
-<p>The game creates a TowerState GenServer process and ETS table per user-session.</p><p>To make sure these don't build up over time, we check for last used time (created, or last move). Every
+<p>Purges per-session TowerState GenServer process and ETS table when no longer needed.</p><p>To make sure these don't build up over time, we check for last used time (created, or last move). Every
 purge_gap, a process runs looking for old sessions - that is last used &gt; purge_time - and deletes them.</p>
   </section>
 
@@ -170,7 +170,7 @@ It then calls itself creating continuous loop of purging.</p></div>
 
       </div>
 
-        <div class="summary-synopsis"><p>Stores :purge_time in GenServer state
+        <div class="summary-synopsis"><p>Stores :purge_time in GenServer state. 
 Sends first message to :run_purge, starting the continuous purging cycle.</p></div>
 
     </div>
@@ -252,7 +252,7 @@ It then calls itself creating continuous loop of purging.</p>
 
   <section class="docstring">
 
-<p>Stores :purge_time in GenServer state
+<p>Stores :purge_time in GenServer state. 
 Sends first message to :run_purge, starting the continuous purging cycle.</p>
   </section>
 </section>

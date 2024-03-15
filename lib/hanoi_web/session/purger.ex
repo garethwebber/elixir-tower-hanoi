@@ -2,7 +2,7 @@ defmodule HanoiWeb.Session.Purge do
   use GenServer
   require Logger
   @moduledoc """
-  The game creates a TowerState GenServer process and ETS table per user-session.
+  Purges per-session TowerState GenServer process and ETS table when no longer needed.
 
   To make sure these don't build up over time, we check for last used time (created, or last move). Every
   purge_gap, a process runs looking for old sessions - that is last used > purge_time - and deletes them.
