@@ -135,7 +135,8 @@ defmodule Hanoi.TowerGame do
   """
   @spec count_games() :: map()
   def count_games() do
-    DynamicSupervisor.count_children(__MODULE__)
+  %{active: games, workers: _b, supervisors: _c, specs: _d} = DynamicSupervisor.count_children(__MODULE__)
+    games
   end
 
   defp storage_name(name) do
