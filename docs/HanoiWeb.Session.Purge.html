@@ -14,7 +14,7 @@
 
     <script src="dist/handlebars.runtime-NWIB6V2M.js"></script>
     <script src="dist/handlebars.templates-43PMFBC7.js"></script>
-    <script src="dist/sidebar_items-4E786B7D.js"></script>
+    <script src="dist/sidebar_items-D7181C55.js"></script>
 
       <script src="docs_config.js"></script>
 
@@ -125,6 +125,11 @@ Pages
 </h1>
 
 
+  <section id="moduledoc">
+<p>The game creates a TowerState GenServer process and ETS table per user-session.</p><p>To make sure these don't build up over time, we check for last used time (created, or last move). Every
+purge_gap, a process runs looking for old sessions - that is last used &gt; purge_time - and deletes them.</p>
+  </section>
+
 
   <section id="summary" class="details-list">
     <h1 class="section-heading">
@@ -150,19 +155,23 @@ Pages
 
     <div class="summary-row">
       <div class="summary-signature">
-        <a href="#init/1" translate="no">init(opts)</a>
+        <a href="#handle_info/2" translate="no">handle_info(msg, state)</a>
 
       </div>
 
-        <div class="summary-synopsis"><p>Callback implementation for <a href="https://hexdocs.pm/elixir/GenServer.html#c:init/1"><code class="inline">GenServer.init/1</code></a>.</p></div>
+        <div class="summary-synopsis"><p>Function collects all the current game sessions, filters by age and deletes old ones.
+It then calls itself creating continuous loop of purging.</p></div>
 
     </div>
 
     <div class="summary-row">
       <div class="summary-signature">
-        <a href="#start_link/1" translate="no">start_link(opts)</a>
+        <a href="#init/1" translate="no">init(opts)</a>
 
       </div>
+
+        <div class="summary-synopsis"><p>Stores :purge_time in GenServer state
+Sends first message to :run_purge, starting the continuous purging cycle.</p></div>
 
     </div>
 
@@ -201,6 +210,29 @@ Pages
 <p>Returns a specification to start this module under a supervisor.</p><p>See <a href="https://hexdocs.pm/elixir/Supervisor.html"><code class="inline">Supervisor</code></a>.</p>
   </section>
 </section>
+<section class="detail" id="handle_info/2">
+
+  <div class="detail-header">
+    <a href="#handle_info/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">handle_info(msg, state)</h1>
+
+      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_web/session/purger.ex#L33" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Function collects all the current game sessions, filters by age and deletes old ones.
+It then calls itself creating continuous loop of purging.</p>
+  </section>
+</section>
 <section class="detail" id="init/1">
 
   <div class="detail-header">
@@ -210,7 +242,7 @@ Pages
     </a>
     <h1 class="signature" translate="no">init(opts)</h1>
 
-      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_web/session/purger.ex#L11" class="icon-action" rel="help" title="View Source">
+      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_web/session/purger.ex#L23" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -220,29 +252,8 @@ Pages
 
   <section class="docstring">
 
-<p>Callback implementation for <a href="https://hexdocs.pm/elixir/GenServer.html#c:init/1"><code class="inline">GenServer.init/1</code></a>.</p>
-  </section>
-</section>
-<section class="detail" id="start_link/1">
-
-  <div class="detail-header">
-    <a href="#start_link/1" class="detail-link" title="Link to this function">
-      <i class="ri-link-m" aria-hidden="true"></i>
-      <span class="sr-only">Link to this function</span>
-    </a>
-    <h1 class="signature" translate="no">start_link(opts)</h1>
-
-      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_web/session/purger.ex#L7" class="icon-action" rel="help" title="View Source">
-       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
-       <span class="sr-only">View Source</span>
-     </a>
-
-
-  </div>
-
-  <section class="docstring">
-
-
+<p>Stores :purge_time in GenServer state
+Sends first message to :run_purge, starting the continuous purging cycle.</p>
   </section>
 </section>
 
