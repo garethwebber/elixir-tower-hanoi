@@ -66,7 +66,7 @@ defmodule HanoiWeb.HanoiGameControllerLive do
     session_id = session["session_id"]
     Hanoi.TowerGame.add_game(session_id, 3)
 
-    state = Hanoi.TowerGame.get_state(session_id)
+    state = Hanoi.TowerGame.get_board_state(session_id)
     number_moves = Hanoi.TowerGame.get_number_moves(session_id)
     number_stones = Hanoi.TowerGame.get_number_stones(session_id)
 
@@ -85,8 +85,7 @@ defmodule HanoiWeb.HanoiGameControllerLive do
   @doc "Render the page based on current state"
   @spec render(assigns :: Phoenix.LiveView.Socket.assigns()) :: Phoenix.LiveView.Rendered.t()
   def render(assigns) do
-    %{active: concurrent_games, workers: _w, supervisors: _s, specs: _p} =
-      Hanoi.TowerGame.count_games()
+    concurrent_games = Hanoi.TowerGame.count_games()
 
     ~H"""
         <.flash_group flash={@flash} />
@@ -139,7 +138,7 @@ defmodule HanoiWeb.HanoiGameControllerLive do
 
     {:noreply,
      assign(socket,
-       state: Hanoi.TowerGame.get_state(session_id),
+       state: Hanoi.TowerGame.get_board_state(session_id),
        number_moves: Hanoi.TowerGame.get_number_moves(session_id),
        completed: Hanoi.TowerGame.is_complete(session_id),
        error_text: error_text
@@ -150,11 +149,11 @@ defmodule HanoiWeb.HanoiGameControllerLive do
   def handle_event("reset", %{"stone" => stone}, socket) do
     session_id = socket.assigns()[:session_id]
     {new_stones, _rest} = Integer.parse(stone)
-    Hanoi.TowerGame.reset(session_id, new_stones)
+    Hanoi.TowerGame.reset_game(session_id, new_stones)
 
     {:noreply,
      assign(socket,
-       state: Hanoi.TowerGame.get_state(session_id),
+       state: Hanoi.TowerGame.get_board_state(session_id),
        number_moves: Hanoi.TowerGame.get_number_moves(session_id),
        number_stones: new_stones,
        error_text: nil,
@@ -170,7 +169,7 @@ defmodule HanoiWeb.HanoiGameControllerLive do
 
     socket
     |> start_async(:running_task, fn ->
-      moves = Hanoi.TowerGame.get_moves(session_id)
+      moves = Hanoi.TowerGame.get_moves_to_win(session_id)
 
       Enum.map(moves, fn {from, to} ->
         :timer.sleep(250)
@@ -194,7 +193,7 @@ defmodule HanoiWeb.HanoiGameControllerLive do
 
     {:noreply,
      assign(socket,
-       state: Hanoi.TowerGame.get_state(session_id),
+       state: Hanoi.TowerGame.get_board_state(session_id),
        number_moves: Hanoi.TowerGame.get_number_moves(session_id)
      )}
   end

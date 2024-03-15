@@ -31,7 +31,7 @@ alias Code.Identifier
   It then calls itself creating continuous loop of purging.
   """
   def handle_info(:run_purge, purge_time) do
-    Hanoi.TowerGame.show_games()
+    Hanoi.TowerGame.show_games_state()
     |> Enum.filter(&filter_age(&1, purge_time))
     |> Enum.map(&purge_session(&1))
 

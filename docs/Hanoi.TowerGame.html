@@ -14,7 +14,7 @@
 
     <script src="dist/handlebars.runtime-NWIB6V2M.js"></script>
     <script src="dist/handlebars.templates-43PMFBC7.js"></script>
-    <script src="dist/sidebar_items-D7181C55.js"></script>
+    <script src="dist/sidebar_items-F5F310C6.js"></script>
 
       <script src="docs_config.js"></script>
 
@@ -188,7 +188,28 @@ has been made for a while</p></div>
 
     <div class="summary-row">
       <div class="summary-signature">
-        <a href="#get_moves/1" translate="no">get_moves(name)</a>
+        <a href="#get_board_state/1" translate="no">get_board_state(name)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Function returning the current state of the hanoi board</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#get_board_state_as_text/1" translate="no">get_board_state_as_text(name)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Debug function returning current state of hanoi board in a textual
+representation.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#get_moves_to_win/1" translate="no">get_moves_to_win(name)</a>
 
       </div>
 
@@ -219,27 +240,6 @@ in a legal way (no big stone on small stone) to the right hand pile</p></div>
 
     <div class="summary-row">
       <div class="summary-signature">
-        <a href="#get_state/1" translate="no">get_state(name)</a>
-
-      </div>
-
-        <div class="summary-synopsis"><p>Function returning the current state of the hanoi board</p></div>
-
-    </div>
-
-    <div class="summary-row">
-      <div class="summary-signature">
-        <a href="#get_state_as_text/1" translate="no">get_state_as_text(name)</a>
-
-      </div>
-
-        <div class="summary-synopsis"><p>Debug function returning current state of hanoi board in a textual
-representation.</p></div>
-
-    </div>
-
-    <div class="summary-row">
-      <div class="summary-signature">
         <a href="#is_complete/1" translate="no">is_complete(name)</a>
 
       </div>
@@ -263,7 +263,7 @@ Increments moves taken.</p></div>
 
     <div class="summary-row">
       <div class="summary-signature">
-        <a href="#reset/2" translate="no">reset(name, new_stones)</a>
+        <a href="#reset_game/2" translate="no">reset_game(name, new_stones)</a>
 
       </div>
 
@@ -274,7 +274,7 @@ Resets move count</p></div>
 
     <div class="summary-row">
       <div class="summary-signature">
-        <a href="#show_games/0" translate="no">show_games()</a>
+        <a href="#show_games_state/0" translate="no">show_games_state()</a>
 
       </div>
 
@@ -377,7 +377,7 @@ A game is an ETS table and a genserver under supervision</p>
 
       <div class="specs">
 
-          <pre translate="no"><span class="attribute">@spec</span> count_games() :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>()</pre>
+          <pre translate="no"><span class="attribute">@spec</span> count_games() :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">non_neg_integer</a>()</pre>
 
       </div>
 
@@ -413,14 +413,71 @@ A game is an ETS table and a genserver under supervision</p>
 has been made for a while</p>
   </section>
 </section>
-<section class="detail" id="get_moves/1">
+<section class="detail" id="get_board_state/1">
 
   <div class="detail-header">
-    <a href="#get_moves/1" class="detail-link" title="Link to this function">
+    <a href="#get_board_state/1" class="detail-link" title="Link to this function">
       <i class="ri-link-m" aria-hidden="true"></i>
       <span class="sr-only">Link to this function</span>
     </a>
-    <h1 class="signature" translate="no">get_moves(name)</h1>
+    <h1 class="signature" translate="no">get_board_state(name)</h1>
+
+      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_server/tower_game.ex#L26" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> get_board_state(name :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()) :: <a href="Hanoi.Board.html#t:t/0">Hanoi.Board.t</a>()</pre>
+
+      </div>
+
+<p>Function returning the current state of the hanoi board</p>
+  </section>
+</section>
+<section class="detail" id="get_board_state_as_text/1">
+
+  <div class="detail-header">
+    <a href="#get_board_state_as_text/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">get_board_state_as_text(name)</h1>
+
+      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_server/tower_game.ex#L35" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> get_board_state_as_text(name :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()) :: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()</pre>
+
+      </div>
+
+<p>Debug function returning current state of hanoi board in a textual
+representation.</p>
+  </section>
+</section>
+<section class="detail" id="get_moves_to_win/1">
+
+  <div class="detail-header">
+    <a href="#get_moves_to_win/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">get_moves_to_win(name)</h1>
 
       <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_server/tower_game.ex#L79" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
@@ -434,7 +491,7 @@ has been made for a while</p>
 
       <div class="specs">
 
-          <pre translate="no"><span class="attribute">@spec</span> get_moves(name :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">list</a>() | :error</pre>
+          <pre translate="no"><span class="attribute">@spec</span> get_moves_to_win(name :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">list</a>() | :error</pre>
 
       </div>
 
@@ -498,63 +555,6 @@ in a legal way (no big stone on small stone) to the right hand pile</p>
 <p>Function that returns the number of stones on the board.</p>
   </section>
 </section>
-<section class="detail" id="get_state/1">
-
-  <div class="detail-header">
-    <a href="#get_state/1" class="detail-link" title="Link to this function">
-      <i class="ri-link-m" aria-hidden="true"></i>
-      <span class="sr-only">Link to this function</span>
-    </a>
-    <h1 class="signature" translate="no">get_state(name)</h1>
-
-      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_server/tower_game.ex#L26" class="icon-action" rel="help" title="View Source">
-       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
-       <span class="sr-only">View Source</span>
-     </a>
-
-
-  </div>
-
-  <section class="docstring">
-
-      <div class="specs">
-
-          <pre translate="no"><span class="attribute">@spec</span> get_state(name :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()) :: <a href="Hanoi.Board.html#t:t/0">Hanoi.Board.t</a>()</pre>
-
-      </div>
-
-<p>Function returning the current state of the hanoi board</p>
-  </section>
-</section>
-<section class="detail" id="get_state_as_text/1">
-
-  <div class="detail-header">
-    <a href="#get_state_as_text/1" class="detail-link" title="Link to this function">
-      <i class="ri-link-m" aria-hidden="true"></i>
-      <span class="sr-only">Link to this function</span>
-    </a>
-    <h1 class="signature" translate="no">get_state_as_text(name)</h1>
-
-      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_server/tower_game.ex#L35" class="icon-action" rel="help" title="View Source">
-       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
-       <span class="sr-only">View Source</span>
-     </a>
-
-
-  </div>
-
-  <section class="docstring">
-
-      <div class="specs">
-
-          <pre translate="no"><span class="attribute">@spec</span> get_state_as_text(name :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()) :: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()</pre>
-
-      </div>
-
-<p>Debug function returning current state of hanoi board in a textual
-representation.</p>
-  </section>
-</section>
 <section class="detail" id="is_complete/1">
 
   <div class="detail-header">
@@ -614,14 +614,14 @@ Will error if the stone is bigger than the one at the top of the pile.
 Increments moves taken.</p>
   </section>
 </section>
-<section class="detail" id="reset/2">
+<section class="detail" id="reset_game/2">
 
   <div class="detail-header">
-    <a href="#reset/2" class="detail-link" title="Link to this function">
+    <a href="#reset_game/2" class="detail-link" title="Link to this function">
       <i class="ri-link-m" aria-hidden="true"></i>
       <span class="sr-only">Link to this function</span>
     </a>
-    <h1 class="signature" translate="no">reset(name, new_stones)</h1>
+    <h1 class="signature" translate="no">reset_game(name, new_stones)</h1>
 
       <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_server/tower_game.ex#L88" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
@@ -635,7 +635,7 @@ Increments moves taken.</p>
 
       <div class="specs">
 
-          <pre translate="no"><span class="attribute">@spec</span> reset(name :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(), new_stones :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">pos_integer</a>()) :: :ok</pre>
+          <pre translate="no"><span class="attribute">@spec</span> reset_game(name :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(), new_stones :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">pos_integer</a>()) :: :ok</pre>
 
       </div>
 
@@ -643,14 +643,14 @@ Increments moves taken.</p>
 Resets move count</p>
   </section>
 </section>
-<section class="detail" id="show_games/0">
+<section class="detail" id="show_games_state/0">
 
   <div class="detail-header">
-    <a href="#show_games/0" class="detail-link" title="Link to this function">
+    <a href="#show_games_state/0" class="detail-link" title="Link to this function">
       <i class="ri-link-m" aria-hidden="true"></i>
       <span class="sr-only">Link to this function</span>
     </a>
-    <h1 class="signature" translate="no">show_games()</h1>
+    <h1 class="signature" translate="no">show_games_state()</h1>
 
       <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_server/tower_game.ex#L128" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
@@ -664,14 +664,14 @@ Resets move count</p>
 
       <div class="specs">
 
-          <pre translate="no"><span class="attribute">@spec</span> show_games() :: <a href="https://hexdocs.pm/elixir/Keyword.html#t:t/0">Keyword.t</a>()</pre>
+          <pre translate="no"><span class="attribute">@spec</span> show_games_state() :: <a href="https://hexdocs.pm/elixir/Keyword.html#t:t/0">Keyword.t</a>()</pre>
 
       </div>
 
-<p>Functions that returns information on the games currently running</p><pre><code class="makeup elixir" translate="no"><span class="p" data-group-id="7813411891-1">[</span><span class="w">
-  </span><span class="p" data-group-id="7813411891-2">[</span><span class="ss">class</span><span class="p">:</span><span class="w"> </span><span class="nc">Hanoi.TowerState</span><span class="p">,</span><span class="w"> </span><span class="ss">name</span><span class="p">:</span><span class="w"> </span><span class="ss">:Hanoi_91924B39</span><span class="p">,</span><span class="w"> </span><span class="ss">pid</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="7813411891-3">#</span><span class="nc" data-group-id="7813411891-3">PID</span><span class="p" data-group-id="7813411891-3">&lt;</span><span class="mi">0</span><span class="o">.</span><span class="mi">486</span><span class="o">.</span><span class="mi">0</span><span class="p" data-group-id="7813411891-3">&gt;</span><span class="p">,</span><span class="w"> </span><span class="ss">stones</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="ss">moves</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="ss">age</span><span class="p">:</span><span class="w"> </span><span class="mi">152</span><span class="p" data-group-id="7813411891-2">]</span><span class="p">,</span><span class="w">
-  </span><span class="p" data-group-id="7813411891-4">[</span><span class="ss">class</span><span class="p">:</span><span class="w"> </span><span class="nc">Hanoi.TowerState</span><span class="p">,</span><span class="w"> </span><span class="ss">name</span><span class="p">:</span><span class="w"> </span><span class="ss">:Hanoi_31148637</span><span class="p">,</span><span class="w"> </span><span class="ss">pid</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="7813411891-5">#</span><span class="nc" data-group-id="7813411891-5">PID</span><span class="p" data-group-id="7813411891-5">&lt;</span><span class="mi">0</span><span class="o">.</span><span class="mi">515</span><span class="o">.</span><span class="mi">0</span><span class="p" data-group-id="7813411891-5">&gt;</span><span class="p">,</span><span class="w"> </span><span class="ss">stones</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="ss">moves</span><span class="p">:</span><span class="w"> </span><span class="mi">32</span><span class="p">,</span><span class="w"> </span><span class="ss">age</span><span class="p">:</span><span class="w"> </span><span class="mi">83</span><span class="p" data-group-id="7813411891-4">]</span><span class="w">
-</span><span class="p" data-group-id="7813411891-1">]</span></code></pre>
+<p>Functions that returns information on the games currently running</p><pre><code class="makeup elixir" translate="no"><span class="p" data-group-id="4108587440-1">[</span><span class="w">
+  </span><span class="p" data-group-id="4108587440-2">[</span><span class="ss">class</span><span class="p">:</span><span class="w"> </span><span class="nc">Hanoi.TowerState</span><span class="p">,</span><span class="w"> </span><span class="ss">name</span><span class="p">:</span><span class="w"> </span><span class="ss">:Hanoi_91924B39</span><span class="p">,</span><span class="w"> </span><span class="ss">pid</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="4108587440-3">#</span><span class="nc" data-group-id="4108587440-3">PID</span><span class="p" data-group-id="4108587440-3">&lt;</span><span class="mi">0</span><span class="o">.</span><span class="mi">486</span><span class="o">.</span><span class="mi">0</span><span class="p" data-group-id="4108587440-3">&gt;</span><span class="p">,</span><span class="w"> </span><span class="ss">stones</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="ss">moves</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="ss">age</span><span class="p">:</span><span class="w"> </span><span class="mi">152</span><span class="p" data-group-id="4108587440-2">]</span><span class="p">,</span><span class="w">
+  </span><span class="p" data-group-id="4108587440-4">[</span><span class="ss">class</span><span class="p">:</span><span class="w"> </span><span class="nc">Hanoi.TowerState</span><span class="p">,</span><span class="w"> </span><span class="ss">name</span><span class="p">:</span><span class="w"> </span><span class="ss">:Hanoi_31148637</span><span class="p">,</span><span class="w"> </span><span class="ss">pid</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="4108587440-5">#</span><span class="nc" data-group-id="4108587440-5">PID</span><span class="p" data-group-id="4108587440-5">&lt;</span><span class="mi">0</span><span class="o">.</span><span class="mi">515</span><span class="o">.</span><span class="mi">0</span><span class="p" data-group-id="4108587440-5">&gt;</span><span class="p">,</span><span class="w"> </span><span class="ss">stones</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="ss">moves</span><span class="p">:</span><span class="w"> </span><span class="mi">32</span><span class="p">,</span><span class="w"> </span><span class="ss">age</span><span class="p">:</span><span class="w"> </span><span class="mi">83</span><span class="p" data-group-id="4108587440-4">]</span><span class="w">
+</span><span class="p" data-group-id="4108587440-1">]</span></code></pre>
   </section>
 </section>
 <section class="detail" id="start_link/1">

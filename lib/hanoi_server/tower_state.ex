@@ -1,7 +1,9 @@
 defmodule Hanoi.TowerState do
-  @moduledoc false
   use GenServer
   require Logger
+  @moduledoc """
+  GenServer represnting the game. Created by TowerGame along with ETS table to hold state.
+  """
 
   def child_spec(opts) do
     %{
@@ -14,19 +16,19 @@ defmodule Hanoi.TowerState do
     GenServer.start_link(__MODULE__, opts, name: opts[:name])
   end
 
-  @spec get_info(name :: atom()) :: tuple()
-  def get_info(server) do
-    GenServer.call(server, {:get_info})
+  @spec get_game_state(name :: atom()) :: tuple()
+  def get_game_state(server) do
+    GenServer.call(server, {:get_game_state})
   end
 
-  @spec get_state(name :: atom()) :: Hanoi.Board.t()
-  def get_state(server) do
-    GenServer.call(server, {:get_state})
+  @spec get_board_state(name :: atom()) :: Hanoi.Board.t()
+  def get_board_state(server) do
+    GenServer.call(server, {:get_board_state})
   end
 
-  @spec get_state_as_text(name :: atom()) :: String.t()
-  def get_state_as_text(server) do
-    GenServer.call(server, {:get_state_as_text})
+  @spec get_board_state_as_text(name :: atom()) :: String.t()
+  def get_board_state_as_text(server) do
+    GenServer.call(server, {:get_board_state_as_text})
   end
 
   @spec get_number_moves(name :: atom()) :: non_neg_integer()
@@ -49,14 +51,14 @@ defmodule Hanoi.TowerState do
     GenServer.call(server, {:is_complete})
   end
 
-  @spec get_moves(name :: atom()) :: list() | :error
-  def get_moves(server) do
-    GenServer.call(server, {:get_moves})
+  @spec get_moves_to_win(name :: atom()) :: list() | :error
+  def get_moves_to_win(server) do
+    GenServer.call(server, {:get_moves_to_win})
   end
 
-  @spec reset(name :: atom(), new_stones :: pos_integer()) :: :ok
-  def reset(server, new_stones) do
-    GenServer.call(server, {:reset, new_stones})
+  @spec reset_game(name :: atom(), new_stones :: pos_integer()) :: :ok
+  def reset_game(server, new_stones) do
+    GenServer.call(server, {:reset_game, new_stones})
   end
 
   def init(opts) do
@@ -74,7 +76,7 @@ defmodule Hanoi.TowerState do
     {:noreply, data}
   end
 
-  def handle_call({:get_info}, _sender, data) do
+  def handle_call({:get_game_state}, _sender, data) do
     with [{_key, stones}] <- :ets.lookup(data.table, :stones),
          [{_key, moves}] <- :ets.lookup(data.table, :moves),
          [{_key, created}] <- :ets.lookup(data.table, :created) do
@@ -88,7 +90,7 @@ defmodule Hanoi.TowerState do
     end
   end
 
-  def handle_call({:get_state}, _sender, data) do
+  def handle_call({:get_board_state}, _sender, data) do
     with [{_key, state}] <- :ets.lookup(data.table, :state) do
       {:reply, state, data}
     else
@@ -97,7 +99,7 @@ defmodule Hanoi.TowerState do
     end
   end
 
-  def handle_call({:get_state_as_text}, _sender, data) do
+  def handle_call({:get_board_state_as_text}, _sender, data) do
     with [{_key, state}] <- :ets.lookup(data.table, :state) do
       {:reply, Hanoi.Render.render_to_string(state), data}
     else
@@ -150,7 +152,7 @@ defmodule Hanoi.TowerState do
     end
   end
 
-  def handle_call({:reset, new_stones}, _sender, data) do
+  def handle_call({:reset_game, new_stones}, _sender, data) do
     true = :ets.insert(data.table, {:state, Hanoi.Board.create_board(new_stones)})
     true = :ets.insert(data.table, {:moves, 0})
     true = :ets.insert(data.table, {:stones, new_stones})
@@ -158,7 +160,7 @@ defmodule Hanoi.TowerState do
     {:reply, :ok, data}
   end
 
-  def handle_call({:get_moves}, _sender, data) do
+  def handle_call({:get_moves_to_win}, _sender, data) do
     with [{_key, state}] <- :ets.lookup(data.table, :state),
          {:ok, moves} <- Hanoi.Algo.get_moves(state) do
       {:reply, moves, data}

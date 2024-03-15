@@ -22,18 +22,18 @@ defmodule Hanoi.TowerGame do
   @doc """
   Function returning the current state of the hanoi board
   """
-  @spec get_state(name :: atom()) :: Hanoi.Board.t()
-  def get_state(name) do
-    Hanoi.TowerState.get_state(storage_name(name))
+  @spec get_board_state(name :: atom()) :: Hanoi.Board.t()
+  def get_board_state(name) do
+    Hanoi.TowerState.get_board_state(storage_name(name))
   end
 
   @doc """
   Debug function returning current state of hanoi board in a textual
   representation.
   """
-  @spec get_state_as_text(name :: atom()) :: String.t()
-  def get_state_as_text(name) do
-    Hanoi.TowerState.get_state_as_text(storage_name(name))
+  @spec get_board_state_as_text(name :: atom()) :: String.t()
+  def get_board_state_as_text(name) do
+    Hanoi.TowerState.get_board_state_as_text(storage_name(name))
   end
 
   @doc """
@@ -75,18 +75,18 @@ defmodule Hanoi.TowerGame do
   Function that for a board with all stones on left pile will move them
   in a legal way (no big stone on small stone) to the right hand pile
   """
-  @spec get_moves(name :: atom()) :: list() | :error
-  def get_moves(name) do
-    Hanoi.TowerState.get_moves(storage_name(name))
+  @spec get_moves_to_win(name :: atom()) :: list() | :error
+  def get_moves_to_win(name) do
+    Hanoi.TowerState.get_moves_to_win(storage_name(name))
   end
 
   @doc """
   Restarts a game with a new number of stones on the board.
   Resets move count
   """
-  @spec reset(name :: atom(), new_stones :: pos_integer()) :: :ok
-  def reset(name, new_stones) do
-    Hanoi.TowerState.reset(storage_name(name), new_stones)
+  @spec reset_game(name :: atom(), new_stones :: pos_integer()) :: :ok
+  def reset_game(name, new_stones) do
+    Hanoi.TowerState.reset_game(storage_name(name), new_stones)
   end
 
   @doc false
@@ -124,16 +124,16 @@ defmodule Hanoi.TowerGame do
         [class: Hanoi.TowerState, name: :Hanoi_31148637, pid: #PID<0.515.0>, stones: 6, moves: 32, age: 83]
       ]
   """
-  @spec show_games() :: Keyword.t()
-  def show_games() do
+  @spec show_games_state() :: Keyword.t()
+  def show_games_state() do
     DynamicSupervisor.which_children(__MODULE__)
-    |> Enum.map(fn {_a, pid, _type, _list} -> Hanoi.TowerState.get_info(pid) end)
+    |> Enum.map(fn {_a, pid, _type, _list} -> Hanoi.TowerState.get_game_state(pid) end)
   end
 
   @doc """
   Functions that returns how many games are currently running
   """
-  @spec count_games() :: map()
+  @spec count_games() :: non_neg_integer()
   def count_games() do
   %{active: games, workers: _b, supervisors: _c, specs: _d} = DynamicSupervisor.count_children(__MODULE__)
     games
