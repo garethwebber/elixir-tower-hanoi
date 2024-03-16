@@ -2,6 +2,8 @@ defmodule HanoiWeb.Session.IdPlug do
   @behaviour Plug
   import Plug.Conn
   @moduledoc """
+  Ensures each user-session has a unique identifier.
+
   This module plugs into the phoenix request handling and checks if a session_id exists. If it doesn't
   it creates one based on a 4-digit hexadecimal random number.
 

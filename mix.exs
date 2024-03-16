@@ -1,7 +1,7 @@
 defmodule TowerHanoi.MixProject do
   use Mix.Project
 
-  @version "0.8.0"
+  @version "1.0.0"
   @repo_url "https://github.com/garethwebber/elixir-tower-hanoi"
 
   def project do

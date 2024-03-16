@@ -1,6 +1,6 @@
 defmodule Hanoi.Application do
   @moduledoc """
-  OTP Application supervises the game. 
+  OTP Application that supervises the games. 
 
   It starts 
   - the phoenix liveview web app
