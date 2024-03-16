@@ -21,7 +21,7 @@ To start run ```iex -S mix```.
 Interactive Elixir (1.16.0) - press Ctrl+C to exit (type h() ENTER for help)
 iex(1)> Hanoi.TowerGame.start_link(%{name: :hello, stones: 3})
 {:ok, #PID<0.186.0>}
-iex(2)> Hanoi.TowerGame.get_state(:hello)
+iex(2)> Hanoi.TowerGame.get_board_state(:hello)
 %Hanoi.Board{left: [1, 2, 3], centre: [], right: []}
 iex(3)> Hanoi.TowerGame.get_moves(:hello)
 [
@@ -37,7 +37,7 @@ iex(4)> Hanoi.TowerGame.move_stone(:hello, :left, :centre)
 :ok
 iex(5)> Hanoi.TowerGame.move_stone(:hello, :left, :right)
 :ok
-iex(6)> Hanoi.TowerGame.get_state(:hello)
+iex(6)> Hanoi.TowerGame.get_board_state(:hello)
 %Hanoi.Board{left: [3], centre: [1], right: [2]}
 ```
 
