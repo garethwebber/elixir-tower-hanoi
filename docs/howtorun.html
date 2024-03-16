@@ -5,16 +5,16 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.31.0">
-    <meta name="project" content="Towers of Hanoi v0.7.0">
+    <meta name="project" content="Towers of Hanoi v0.8.0">
 
 
-    <title>How to Run — Towers of Hanoi v0.7.0</title>
+    <title>How to Run — Towers of Hanoi v0.8.0</title>
     <link rel="stylesheet" href="dist/html-elixir-3ZLIM5JF.css" />
 
 
     <script src="dist/handlebars.runtime-NWIB6V2M.js"></script>
     <script src="dist/handlebars.templates-43PMFBC7.js"></script>
-    <script src="dist/sidebar_items-F5F310C6.js"></script>
+    <script src="dist/sidebar_items-06A0B776.js"></script>
 
       <script src="docs_config.js"></script>
 
@@ -53,7 +53,7 @@
 Towers of Hanoi
         </a>
         <div class="sidebar-projectVersion" translate="no">
-          v0.7.0
+          v0.8.0
         </div>
       </div>
     </div>
@@ -136,13 +136,13 @@ directory.</p><h2 id="running-in-web-server" class="section-heading">
   </a>
   <span class="text">Running GenServer</span>
 </h2>
-<p>To start run <code class="inline">iex -S mix</code>.</p><pre><code class="makeup elixir" translate="no"><span class="nc">Interactive</span><span class="w"> </span><span class="nc">Elixir</span><span class="w"> </span><span class="p" data-group-id="4663461134-1">(</span><span class="mf">1.16</span><span class="o">.</span><span class="mi">0</span><span class="p" data-group-id="4663461134-1">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">press</span><span class="w"> </span><span class="nc">Ctrl</span><span class="o">+</span><span class="nc">C</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">exit</span><span class="w"> </span><span class="p" data-group-id="4663461134-2">(</span><span class="n">type</span><span class="w"> </span><span class="n">h</span><span class="p" data-group-id="4663461134-3">(</span><span class="p" data-group-id="4663461134-3">)</span><span class="w"> </span><span class="nc">ENTER</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">help</span><span class="p" data-group-id="4663461134-2">)</span><span class="w">
-</span><span class="gp unselectable">iex(1)&gt; </span><span class="nc">Hanoi.TowerGame</span><span class="o">.</span><span class="n">start_link</span><span class="p" data-group-id="4663461134-4">(</span><span class="p" data-group-id="4663461134-5">%{</span><span class="ss">name</span><span class="p">:</span><span class="w"> </span><span class="ss">:hello</span><span class="p">,</span><span class="w"> </span><span class="ss">stones</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="4663461134-5">}</span><span class="p" data-group-id="4663461134-4">)</span><span class="w">
-</span><span class="p" data-group-id="4663461134-6">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="4663461134-7">#</span><span class="nc" data-group-id="4663461134-7">PID</span><span class="p" data-group-id="4663461134-7">&lt;</span><span class="mi">0</span><span class="o">.</span><span class="mi">186</span><span class="o">.</span><span class="mi">0</span><span class="p" data-group-id="4663461134-7">&gt;</span><span class="p" data-group-id="4663461134-6">}</span><span class="w">
-</span><span class="gp unselectable">iex(2)&gt; </span><span class="nc">Hanoi.TowerGame</span><span class="o">.</span><span class="n">get_state</span><span class="p" data-group-id="4663461134-8">(</span><span class="ss">:hello</span><span class="p" data-group-id="4663461134-8">)</span><span class="w">
-</span><span class="p" data-group-id="4663461134-9">%</span><span class="nc" data-group-id="4663461134-9">Hanoi.Board</span><span class="p" data-group-id="4663461134-9">{</span><span class="ss">left</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="4663461134-10">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="4663461134-10">]</span><span class="p">,</span><span class="w"> </span><span class="ss">centre</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="4663461134-11">[</span><span class="p" data-group-id="4663461134-11">]</span><span class="p">,</span><span class="w"> </span><span class="ss">right</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="4663461134-12">[</span><span class="p" data-group-id="4663461134-12">]</span><span class="p" data-group-id="4663461134-9">}</span><span class="w">
-</span><span class="gp unselectable">iex(3)&gt; </span><span class="nc">Hanoi.TowerGame</span><span class="o">.</span><span class="n">get_moves</span><span class="p" data-group-id="4663461134-13">(</span><span class="ss">:hello</span><span class="p" data-group-id="4663461134-13">)</span><span class="w">
-</span><span class="p" data-group-id="4663461134-14">[</span><span class="w">
+<p>To start run <code class="inline">iex -S mix</code>.</p><pre><code class="makeup elixir" translate="no"><span class="nc">Interactive</span><span class="w"> </span><span class="nc">Elixir</span><span class="w"> </span><span class="p" data-group-id="9369825019-1">(</span><span class="mf">1.16</span><span class="o">.</span><span class="mi">0</span><span class="p" data-group-id="9369825019-1">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">press</span><span class="w"> </span><span class="nc">Ctrl</span><span class="o">+</span><span class="nc">C</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">exit</span><span class="w"> </span><span class="p" data-group-id="9369825019-2">(</span><span class="n">type</span><span class="w"> </span><span class="n">h</span><span class="p" data-group-id="9369825019-3">(</span><span class="p" data-group-id="9369825019-3">)</span><span class="w"> </span><span class="nc">ENTER</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">help</span><span class="p" data-group-id="9369825019-2">)</span><span class="w">
+</span><span class="gp unselectable">iex(1)&gt; </span><span class="nc">Hanoi.TowerGame</span><span class="o">.</span><span class="n">start_link</span><span class="p" data-group-id="9369825019-4">(</span><span class="p" data-group-id="9369825019-5">%{</span><span class="ss">name</span><span class="p">:</span><span class="w"> </span><span class="ss">:hello</span><span class="p">,</span><span class="w"> </span><span class="ss">stones</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="9369825019-5">}</span><span class="p" data-group-id="9369825019-4">)</span><span class="w">
+</span><span class="p" data-group-id="9369825019-6">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="9369825019-7">#</span><span class="nc" data-group-id="9369825019-7">PID</span><span class="p" data-group-id="9369825019-7">&lt;</span><span class="mi">0</span><span class="o">.</span><span class="mi">186</span><span class="o">.</span><span class="mi">0</span><span class="p" data-group-id="9369825019-7">&gt;</span><span class="p" data-group-id="9369825019-6">}</span><span class="w">
+</span><span class="gp unselectable">iex(2)&gt; </span><span class="nc">Hanoi.TowerGame</span><span class="o">.</span><span class="n">get_state</span><span class="p" data-group-id="9369825019-8">(</span><span class="ss">:hello</span><span class="p" data-group-id="9369825019-8">)</span><span class="w">
+</span><span class="p" data-group-id="9369825019-9">%</span><span class="nc" data-group-id="9369825019-9">Hanoi.Board</span><span class="p" data-group-id="9369825019-9">{</span><span class="ss">left</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="9369825019-10">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="9369825019-10">]</span><span class="p">,</span><span class="w"> </span><span class="ss">centre</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="9369825019-11">[</span><span class="p" data-group-id="9369825019-11">]</span><span class="p">,</span><span class="w"> </span><span class="ss">right</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="9369825019-12">[</span><span class="p" data-group-id="9369825019-12">]</span><span class="p" data-group-id="9369825019-9">}</span><span class="w">
+</span><span class="gp unselectable">iex(3)&gt; </span><span class="nc">Hanoi.TowerGame</span><span class="o">.</span><span class="n">get_moves</span><span class="p" data-group-id="9369825019-13">(</span><span class="ss">:hello</span><span class="p" data-group-id="9369825019-13">)</span><span class="w">
+</span><span class="p" data-group-id="9369825019-14">[</span><span class="w">
   </span><span class="ss">left</span><span class="p">:</span><span class="w"> </span><span class="ss">:right</span><span class="p">,</span><span class="w">
   </span><span class="ss">left</span><span class="p">:</span><span class="w"> </span><span class="ss">:centre</span><span class="p">,</span><span class="w">
   </span><span class="ss">right</span><span class="p">:</span><span class="w"> </span><span class="ss">:centre</span><span class="p">,</span><span class="w">
@@ -150,13 +150,13 @@ directory.</p><h2 id="running-in-web-server" class="section-heading">
   </span><span class="ss">centre</span><span class="p">:</span><span class="w"> </span><span class="ss">:left</span><span class="p">,</span><span class="w">
   </span><span class="ss">centre</span><span class="p">:</span><span class="w"> </span><span class="ss">:right</span><span class="p">,</span><span class="w">
   </span><span class="ss">left</span><span class="p">:</span><span class="w"> </span><span class="ss">:right</span><span class="w">
-</span><span class="p" data-group-id="4663461134-14">]</span><span class="w">
-</span><span class="gp unselectable">iex(4)&gt; </span><span class="nc">Hanoi.TowerGame</span><span class="o">.</span><span class="n">move_stone</span><span class="p" data-group-id="4663461134-15">(</span><span class="ss">:hello</span><span class="p">,</span><span class="w"> </span><span class="ss">:left</span><span class="p">,</span><span class="w"> </span><span class="ss">:centre</span><span class="p" data-group-id="4663461134-15">)</span><span class="w">
+</span><span class="p" data-group-id="9369825019-14">]</span><span class="w">
+</span><span class="gp unselectable">iex(4)&gt; </span><span class="nc">Hanoi.TowerGame</span><span class="o">.</span><span class="n">move_stone</span><span class="p" data-group-id="9369825019-15">(</span><span class="ss">:hello</span><span class="p">,</span><span class="w"> </span><span class="ss">:left</span><span class="p">,</span><span class="w"> </span><span class="ss">:centre</span><span class="p" data-group-id="9369825019-15">)</span><span class="w">
 </span><span class="ss">:ok</span><span class="w">
-</span><span class="gp unselectable">iex(5)&gt; </span><span class="nc">Hanoi.TowerGame</span><span class="o">.</span><span class="n">move_stone</span><span class="p" data-group-id="4663461134-16">(</span><span class="ss">:hello</span><span class="p">,</span><span class="w"> </span><span class="ss">:left</span><span class="p">,</span><span class="w"> </span><span class="ss">:right</span><span class="p" data-group-id="4663461134-16">)</span><span class="w">
+</span><span class="gp unselectable">iex(5)&gt; </span><span class="nc">Hanoi.TowerGame</span><span class="o">.</span><span class="n">move_stone</span><span class="p" data-group-id="9369825019-16">(</span><span class="ss">:hello</span><span class="p">,</span><span class="w"> </span><span class="ss">:left</span><span class="p">,</span><span class="w"> </span><span class="ss">:right</span><span class="p" data-group-id="9369825019-16">)</span><span class="w">
 </span><span class="ss">:ok</span><span class="w">
-</span><span class="gp unselectable">iex(6)&gt; </span><span class="nc">Hanoi.TowerGame</span><span class="o">.</span><span class="n">get_state</span><span class="p" data-group-id="4663461134-17">(</span><span class="ss">:hello</span><span class="p" data-group-id="4663461134-17">)</span><span class="w">
-</span><span class="p" data-group-id="4663461134-18">%</span><span class="nc" data-group-id="4663461134-18">Hanoi.Board</span><span class="p" data-group-id="4663461134-18">{</span><span class="ss">left</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="4663461134-19">[</span><span class="mi">3</span><span class="p" data-group-id="4663461134-19">]</span><span class="p">,</span><span class="w"> </span><span class="ss">centre</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="4663461134-20">[</span><span class="mi">1</span><span class="p" data-group-id="4663461134-20">]</span><span class="p">,</span><span class="w"> </span><span class="ss">right</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="4663461134-21">[</span><span class="mi">2</span><span class="p" data-group-id="4663461134-21">]</span><span class="p" data-group-id="4663461134-18">}</span></code></pre><h2 id="running-from-command-line" class="section-heading">
+</span><span class="gp unselectable">iex(6)&gt; </span><span class="nc">Hanoi.TowerGame</span><span class="o">.</span><span class="n">get_state</span><span class="p" data-group-id="9369825019-17">(</span><span class="ss">:hello</span><span class="p" data-group-id="9369825019-17">)</span><span class="w">
+</span><span class="p" data-group-id="9369825019-18">%</span><span class="nc" data-group-id="9369825019-18">Hanoi.Board</span><span class="p" data-group-id="9369825019-18">{</span><span class="ss">left</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="9369825019-19">[</span><span class="mi">3</span><span class="p" data-group-id="9369825019-19">]</span><span class="p">,</span><span class="w"> </span><span class="ss">centre</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="9369825019-20">[</span><span class="mi">1</span><span class="p" data-group-id="9369825019-20">]</span><span class="p">,</span><span class="w"> </span><span class="ss">right</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="9369825019-21">[</span><span class="mi">2</span><span class="p" data-group-id="9369825019-21">]</span><span class="p" data-group-id="9369825019-18">}</span></code></pre><h2 id="running-from-command-line" class="section-heading">
   <a href="#running-from-command-line" class="hover-link">
     <i class="ri-link-m" aria-hidden="true"></i>
   </a>
@@ -203,7 +203,7 @@ number too high (20 takes 20 odd seconds and each extra doubles it).</p><h3 id="
 </span><span class="nc">C</span><span class="w">
 </span><span class="nc">R</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">1</span><span class="w">
 
-</span><span class="mi">3</span><span class="w"> </span><span class="n">stones</span><span class="w"> </span><span class="n">took</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="n">millisecond</span><span class="p" data-group-id="7989347063-1">(</span><span class="n">s</span><span class="p" data-group-id="7989347063-1">)</span><span class="o">.</span></code></pre><h2 id="references" class="section-heading">
+</span><span class="mi">3</span><span class="w"> </span><span class="n">stones</span><span class="w"> </span><span class="n">took</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="n">millisecond</span><span class="p" data-group-id="0058579956-1">(</span><span class="n">s</span><span class="p" data-group-id="0058579956-1">)</span><span class="o">.</span></code></pre><h2 id="references" class="section-heading">
   <a href="#references" class="hover-link">
     <i class="ri-link-m" aria-hidden="true"></i>
   </a>
@@ -240,11 +240,11 @@ LICENSE
         <p>
 
             <span class="line">
-              <a href="https://hex.pm/packages/hanoi/0.7.0" class="footer-hex-package">Hex Package</a>
+              <a href="https://hex.pm/packages/hanoi/0.8.0" class="footer-hex-package">Hex Package</a>
 
-              <a href="https://preview.hex.pm/preview/hanoi/0.7.0">Hex Preview</a>
+              <a href="https://preview.hex.pm/preview/hanoi/0.8.0">Hex Preview</a>
 
-                (<a href="https://preview.hex.pm/preview/hanoi/0.7.0/show/HOWTORUN.md">current file</a>)
+                (<a href="https://preview.hex.pm/preview/hanoi/0.8.0/show/HOWTORUN.md">current file</a>)
 
             </span>
 

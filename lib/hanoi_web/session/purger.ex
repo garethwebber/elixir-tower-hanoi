@@ -7,7 +7,6 @@ defmodule HanoiWeb.Session.Purge do
   To make sure these don't build up over time, we check for last used time (created, or last move). Every
   purge_gap, a process runs looking for old sessions - that is last used > purge_time - and deletes them.
   """
-alias Code.Identifier
 
   @purge_gap 600000
 

@@ -5,16 +5,16 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.31.0">
-    <meta name="project" content="Towers of Hanoi v0.7.0">
+    <meta name="project" content="Towers of Hanoi v0.8.0">
 
 
-    <title>Hanoi.TowerGame — Towers of Hanoi v0.7.0</title>
+    <title>Hanoi.TowerGame — Towers of Hanoi v0.8.0</title>
     <link rel="stylesheet" href="dist/html-elixir-3ZLIM5JF.css" />
 
 
     <script src="dist/handlebars.runtime-NWIB6V2M.js"></script>
     <script src="dist/handlebars.templates-43PMFBC7.js"></script>
-    <script src="dist/sidebar_items-F5F310C6.js"></script>
+    <script src="dist/sidebar_items-06A0B776.js"></script>
 
       <script src="docs_config.js"></script>
 
@@ -53,7 +53,7 @@
 Towers of Hanoi
         </a>
         <div class="sidebar-projectVersion" translate="no">
-          v0.7.0
+          v0.8.0
         </div>
       </div>
     </div>
@@ -120,15 +120,14 @@ Pages
     </a>
 
   <span translate="no">Hanoi.TowerGame</span> 
-  <small class="app-vsn" translate="no">(Towers of Hanoi v0.7.0)</small>
+  <small class="app-vsn" translate="no">(Towers of Hanoi v0.8.0)</small>
 
 </h1>
 
 
   <section id="moduledoc">
-<p>The Hanoi game as a public API &amp; state.</p><p>Each individual game should run as one of these. They will exist 
-independently of each other.</p><p>Runs as a supervisor and starts a GenServer to process work and an
-ETS instance to hold state. Usually run as part of an OTP application.</p>
+<p>The Hanoi game as a public API &amp; state.</p><p>Runs as a supervisor and starts a GenServer to process work and an
+ETS instance to hold state. Usually run as part of an OTP application.</p><p>Instances are removed by an independent periodic purger process.</p>
   </section>
 
 
@@ -314,7 +313,7 @@ Resets move count</p></div>
     </a>
     <h1 class="signature" translate="no">add_game(name, stones)</h1>
 
-      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_server/tower_game.ex#L102" class="icon-action" rel="help" title="View Source">
+      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_server/tower_game.ex#L101" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -365,7 +364,7 @@ A game is an ETS table and a genserver under supervision</p>
     </a>
     <h1 class="signature" translate="no">count_games()</h1>
 
-      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_server/tower_game.ex#L137" class="icon-action" rel="help" title="View Source">
+      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_server/tower_game.ex#L136" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -393,7 +392,7 @@ A game is an ETS table and a genserver under supervision</p>
     </a>
     <h1 class="signature" translate="no">delete_game(pid)</h1>
 
-      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_server/tower_game.ex#L115" class="icon-action" rel="help" title="View Source">
+      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_server/tower_game.ex#L114" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -422,7 +421,7 @@ has been made for a while</p>
     </a>
     <h1 class="signature" translate="no">get_board_state(name)</h1>
 
-      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_server/tower_game.ex#L26" class="icon-action" rel="help" title="View Source">
+      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_server/tower_game.ex#L25" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -450,7 +449,7 @@ has been made for a while</p>
     </a>
     <h1 class="signature" translate="no">get_board_state_as_text(name)</h1>
 
-      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_server/tower_game.ex#L35" class="icon-action" rel="help" title="View Source">
+      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_server/tower_game.ex#L34" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -479,7 +478,7 @@ representation.</p>
     </a>
     <h1 class="signature" translate="no">get_moves_to_win(name)</h1>
 
-      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_server/tower_game.ex#L79" class="icon-action" rel="help" title="View Source">
+      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_server/tower_game.ex#L78" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -508,7 +507,7 @@ in a legal way (no big stone on small stone) to the right hand pile</p>
     </a>
     <h1 class="signature" translate="no">get_number_moves(name)</h1>
 
-      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_server/tower_game.ex#L43" class="icon-action" rel="help" title="View Source">
+      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_server/tower_game.ex#L42" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -536,7 +535,7 @@ in a legal way (no big stone on small stone) to the right hand pile</p>
     </a>
     <h1 class="signature" translate="no">get_number_stones(name)</h1>
 
-      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_server/tower_game.ex#L51" class="icon-action" rel="help" title="View Source">
+      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_server/tower_game.ex#L50" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -564,7 +563,7 @@ in a legal way (no big stone on small stone) to the right hand pile</p>
     </a>
     <h1 class="signature" translate="no">is_complete(name)</h1>
 
-      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_server/tower_game.ex#L70" class="icon-action" rel="help" title="View Source">
+      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_server/tower_game.ex#L69" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -593,7 +592,7 @@ That is all stones in correct order on right hand pile</p>
     </a>
     <h1 class="signature" translate="no">move_stone(name, from, to)</h1>
 
-      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_server/tower_game.ex#L61" class="icon-action" rel="help" title="View Source">
+      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_server/tower_game.ex#L60" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -623,7 +622,7 @@ Increments moves taken.</p>
     </a>
     <h1 class="signature" translate="no">reset_game(name, new_stones)</h1>
 
-      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_server/tower_game.ex#L88" class="icon-action" rel="help" title="View Source">
+      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_server/tower_game.ex#L87" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -652,7 +651,7 @@ Resets move count</p>
     </a>
     <h1 class="signature" translate="no">show_games_state()</h1>
 
-      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_server/tower_game.ex#L128" class="icon-action" rel="help" title="View Source">
+      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_server/tower_game.ex#L127" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -668,10 +667,10 @@ Resets move count</p>
 
       </div>
 
-<p>Functions that returns information on the games currently running</p><pre><code class="makeup elixir" translate="no"><span class="p" data-group-id="4108587440-1">[</span><span class="w">
-  </span><span class="p" data-group-id="4108587440-2">[</span><span class="ss">class</span><span class="p">:</span><span class="w"> </span><span class="nc">Hanoi.TowerState</span><span class="p">,</span><span class="w"> </span><span class="ss">name</span><span class="p">:</span><span class="w"> </span><span class="ss">:Hanoi_91924B39</span><span class="p">,</span><span class="w"> </span><span class="ss">pid</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="4108587440-3">#</span><span class="nc" data-group-id="4108587440-3">PID</span><span class="p" data-group-id="4108587440-3">&lt;</span><span class="mi">0</span><span class="o">.</span><span class="mi">486</span><span class="o">.</span><span class="mi">0</span><span class="p" data-group-id="4108587440-3">&gt;</span><span class="p">,</span><span class="w"> </span><span class="ss">stones</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="ss">moves</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="ss">age</span><span class="p">:</span><span class="w"> </span><span class="mi">152</span><span class="p" data-group-id="4108587440-2">]</span><span class="p">,</span><span class="w">
-  </span><span class="p" data-group-id="4108587440-4">[</span><span class="ss">class</span><span class="p">:</span><span class="w"> </span><span class="nc">Hanoi.TowerState</span><span class="p">,</span><span class="w"> </span><span class="ss">name</span><span class="p">:</span><span class="w"> </span><span class="ss">:Hanoi_31148637</span><span class="p">,</span><span class="w"> </span><span class="ss">pid</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="4108587440-5">#</span><span class="nc" data-group-id="4108587440-5">PID</span><span class="p" data-group-id="4108587440-5">&lt;</span><span class="mi">0</span><span class="o">.</span><span class="mi">515</span><span class="o">.</span><span class="mi">0</span><span class="p" data-group-id="4108587440-5">&gt;</span><span class="p">,</span><span class="w"> </span><span class="ss">stones</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="ss">moves</span><span class="p">:</span><span class="w"> </span><span class="mi">32</span><span class="p">,</span><span class="w"> </span><span class="ss">age</span><span class="p">:</span><span class="w"> </span><span class="mi">83</span><span class="p" data-group-id="4108587440-4">]</span><span class="w">
-</span><span class="p" data-group-id="4108587440-1">]</span></code></pre>
+<p>Functions that returns information on the games currently running</p><pre><code class="makeup elixir" translate="no"><span class="p" data-group-id="8622488743-1">[</span><span class="w">
+  </span><span class="p" data-group-id="8622488743-2">[</span><span class="ss">class</span><span class="p">:</span><span class="w"> </span><span class="nc">Hanoi.TowerState</span><span class="p">,</span><span class="w"> </span><span class="ss">name</span><span class="p">:</span><span class="w"> </span><span class="ss">:Hanoi_91924B39</span><span class="p">,</span><span class="w"> </span><span class="ss">pid</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="8622488743-3">#</span><span class="nc" data-group-id="8622488743-3">PID</span><span class="p" data-group-id="8622488743-3">&lt;</span><span class="mi">0</span><span class="o">.</span><span class="mi">486</span><span class="o">.</span><span class="mi">0</span><span class="p" data-group-id="8622488743-3">&gt;</span><span class="p">,</span><span class="w"> </span><span class="ss">stones</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="ss">moves</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="ss">age</span><span class="p">:</span><span class="w"> </span><span class="mi">152</span><span class="p" data-group-id="8622488743-2">]</span><span class="p">,</span><span class="w">
+  </span><span class="p" data-group-id="8622488743-4">[</span><span class="ss">class</span><span class="p">:</span><span class="w"> </span><span class="nc">Hanoi.TowerState</span><span class="p">,</span><span class="w"> </span><span class="ss">name</span><span class="p">:</span><span class="w"> </span><span class="ss">:Hanoi_31148637</span><span class="p">,</span><span class="w"> </span><span class="ss">pid</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="8622488743-5">#</span><span class="nc" data-group-id="8622488743-5">PID</span><span class="p" data-group-id="8622488743-5">&lt;</span><span class="mi">0</span><span class="o">.</span><span class="mi">515</span><span class="o">.</span><span class="mi">0</span><span class="p" data-group-id="8622488743-5">&gt;</span><span class="p">,</span><span class="w"> </span><span class="ss">stones</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="ss">moves</span><span class="p">:</span><span class="w"> </span><span class="mi">32</span><span class="p">,</span><span class="w"> </span><span class="ss">age</span><span class="p">:</span><span class="w"> </span><span class="mi">83</span><span class="p" data-group-id="8622488743-4">]</span><span class="w">
+</span><span class="p" data-group-id="8622488743-1">]</span></code></pre>
   </section>
 </section>
 <section class="detail" id="start_link/1">
@@ -683,7 +682,7 @@ Resets move count</p>
     </a>
     <h1 class="signature" translate="no">start_link(opts)</h1>
 
-      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_server/tower_game.ex#L18" class="icon-action" rel="help" title="View Source">
+      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_server/tower_game.ex#L17" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -710,11 +709,11 @@ Resets move count</p>
         <p>
 
             <span class="line">
-              <a href="https://hex.pm/packages/hanoi/0.7.0" class="footer-hex-package">Hex Package</a>
+              <a href="https://hex.pm/packages/hanoi/0.8.0" class="footer-hex-package">Hex Package</a>
 
-              <a href="https://preview.hex.pm/preview/hanoi/0.7.0">Hex Preview</a>
+              <a href="https://preview.hex.pm/preview/hanoi/0.8.0">Hex Preview</a>
 
-                (<a href="https://preview.hex.pm/preview/hanoi/0.7.0/show/lib/hanoi_server/tower_game.ex">current file</a>)
+                (<a href="https://preview.hex.pm/preview/hanoi/0.8.0/show/lib/hanoi_server/tower_game.ex">current file</a>)
 
             </span>
 

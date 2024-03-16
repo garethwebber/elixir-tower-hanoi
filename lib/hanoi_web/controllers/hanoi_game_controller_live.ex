@@ -52,9 +52,6 @@ defmodule HanoiWeb.HanoiGameControllerLive do
   G2(TowerState):::server --> T6(Algo):::topic;
   </div>
   """
-  alias Agent.Server
-  alias Logger.App
-  alias Agent.Server
 
   @doc "Set up initial liveview state"
   @spec mount(

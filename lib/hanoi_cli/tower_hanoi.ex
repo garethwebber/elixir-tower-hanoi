@@ -32,7 +32,6 @@ defmodule TowerHanoi do
   G1(TowerHanoi):::supervision ==> T4(Render):::topic; 
   </div>
   """
-alias ElixirLS.LanguageServer.CLI
 
   @doc """
   Main command-line entry point. Gets arguments parsed responds accordingly. 

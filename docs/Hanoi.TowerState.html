@@ -5,16 +5,16 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.31.0">
-    <meta name="project" content="Towers of Hanoi v0.7.0">
+    <meta name="project" content="Towers of Hanoi v0.8.0">
 
 
-    <title>Hanoi.TowerState — Towers of Hanoi v0.7.0</title>
+    <title>Hanoi.TowerState — Towers of Hanoi v0.8.0</title>
     <link rel="stylesheet" href="dist/html-elixir-3ZLIM5JF.css" />
 
 
     <script src="dist/handlebars.runtime-NWIB6V2M.js"></script>
     <script src="dist/handlebars.templates-43PMFBC7.js"></script>
-    <script src="dist/sidebar_items-F5F310C6.js"></script>
+    <script src="dist/sidebar_items-06A0B776.js"></script>
 
       <script src="docs_config.js"></script>
 
@@ -53,7 +53,7 @@
 Towers of Hanoi
         </a>
         <div class="sidebar-projectVersion" translate="no">
-          v0.7.0
+          v0.8.0
         </div>
       </div>
     </div>
@@ -120,13 +120,14 @@ Pages
     </a>
 
   <span translate="no">Hanoi.TowerState</span> 
-  <small class="app-vsn" translate="no">(Towers of Hanoi v0.7.0)</small>
+  <small class="app-vsn" translate="no">(Towers of Hanoi v0.8.0)</small>
 
 </h1>
 
 
   <section id="moduledoc">
-<p>GenServer represnting the game. Created by TowerGame along with ETS table to hold state.</p>
+<p>Private API: GenServer providing the business logic for the game. Created by TowerGame along with 
+ETS table to hold state.</p>
   </section>
 
 
@@ -158,6 +159,8 @@ Pages
 
       </div>
 
+        <div class="summary-synopsis"><p>Function returning the current state of the hanoi board</p></div>
+
     </div>
 
     <div class="summary-row">
@@ -165,6 +168,9 @@ Pages
         <a href="#get_board_state_as_text/1" translate="no">get_board_state_as_text(server)</a>
 
       </div>
+
+        <div class="summary-synopsis"><p>Debug function returning current state of hanoi board in a textual
+representation.</p></div>
 
     </div>
 
@@ -174,6 +180,8 @@ Pages
 
       </div>
 
+        <div class="summary-synopsis"><p>Returns the current state of the game, board, moves etc.</p></div>
+
     </div>
 
     <div class="summary-row">
@@ -181,6 +189,9 @@ Pages
         <a href="#get_moves_to_win/1" translate="no">get_moves_to_win(server)</a>
 
       </div>
+
+        <div class="summary-synopsis"><p>Function that for a board with all stones on left pile will move them
+in a legal way (no big stone on small stone) to the right hand pile</p></div>
 
     </div>
 
@@ -190,6 +201,8 @@ Pages
 
       </div>
 
+        <div class="summary-synopsis"><p>Function returning the number of moves that have been played.</p></div>
+
     </div>
 
     <div class="summary-row">
@@ -197,6 +210,18 @@ Pages
         <a href="#get_number_stones/1" translate="no">get_number_stones(server)</a>
 
       </div>
+
+        <div class="summary-synopsis"><p>Function that returns the number of stones on the board.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#handle_call/3" translate="no">handle_call(msg, arg2, state)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Handles events</p></div>
 
     </div>
 
@@ -206,7 +231,7 @@ Pages
 
       </div>
 
-        <div class="summary-synopsis"><p>Callback implementation for <a href="https://hexdocs.pm/elixir/GenServer.html#c:handle_continue/2"><code class="inline">GenServer.handle_continue/2</code></a>.</p></div>
+        <div class="summary-synopsis"><p>Completes work of init asynchronously</p></div>
 
     </div>
 
@@ -216,7 +241,7 @@ Pages
 
       </div>
 
-        <div class="summary-synopsis"><p>Callback implementation for <a href="https://hexdocs.pm/elixir/GenServer.html#c:init/1"><code class="inline">GenServer.init/1</code></a>.</p></div>
+        <div class="summary-synopsis"><p>Sets up basic state. Most of work completed in continuation asynchronously.</p></div>
 
     </div>
 
@@ -226,6 +251,9 @@ Pages
 
       </div>
 
+        <div class="summary-synopsis"><p>Funtion returns true if game is complete
+That is all stones in correct order on right hand pile</p></div>
+
     </div>
 
     <div class="summary-row">
@@ -233,6 +261,10 @@ Pages
         <a href="#move_stone/3" translate="no">move_stone(server, from, to)</a>
 
       </div>
+
+        <div class="summary-synopsis"><p>Funtion that moves a stone between piles. 
+Will error if the stone is bigger than the one at the top of the pile.
+Increments moves taken.</p></div>
 
     </div>
 
@@ -242,6 +274,9 @@ Pages
 
       </div>
 
+        <div class="summary-synopsis"><p>Restarts a game with a new number of stones on the board.
+Resets move count</p></div>
+
     </div>
 
     <div class="summary-row">
@@ -249,6 +284,8 @@ Pages
         <a href="#start_link/1" translate="no">start_link(opts)</a>
 
       </div>
+
+        <div class="summary-synopsis"><p>Call this function to start up the module. Name and Stones must be provided. </p></div>
 
     </div>
 
@@ -274,7 +311,7 @@ Pages
     </a>
     <h1 class="signature" translate="no">child_spec(init_arg)</h1>
 
-      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_server/tower_state.ex#L8" class="icon-action" rel="help" title="View Source">
+      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_server/tower_state.ex#L9" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -296,7 +333,7 @@ Pages
     </a>
     <h1 class="signature" translate="no">get_board_state(server)</h1>
 
-      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_server/tower_state.ex#L25" class="icon-action" rel="help" title="View Source">
+      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_server/tower_state.ex#L36" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -312,7 +349,7 @@ Pages
 
       </div>
 
-
+<p>Function returning the current state of the hanoi board</p>
   </section>
 </section>
 <section class="detail" id="get_board_state_as_text/1">
@@ -324,7 +361,7 @@ Pages
     </a>
     <h1 class="signature" translate="no">get_board_state_as_text(server)</h1>
 
-      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_server/tower_state.ex#L30" class="icon-action" rel="help" title="View Source">
+      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_server/tower_state.ex#L45" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -340,7 +377,8 @@ Pages
 
       </div>
 
-
+<p>Debug function returning current state of hanoi board in a textual
+representation.</p>
   </section>
 </section>
 <section class="detail" id="get_game_state/1">
@@ -352,7 +390,7 @@ Pages
     </a>
     <h1 class="signature" translate="no">get_game_state(server)</h1>
 
-      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_server/tower_state.ex#L20" class="icon-action" rel="help" title="View Source">
+      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_server/tower_state.ex#L28" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -368,7 +406,7 @@ Pages
 
       </div>
 
-
+<p>Returns the current state of the game, board, moves etc.</p>
   </section>
 </section>
 <section class="detail" id="get_moves_to_win/1">
@@ -380,7 +418,7 @@ Pages
     </a>
     <h1 class="signature" translate="no">get_moves_to_win(server)</h1>
 
-      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_server/tower_state.ex#L55" class="icon-action" rel="help" title="View Source">
+      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_server/tower_state.ex#L89" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -396,7 +434,8 @@ Pages
 
       </div>
 
-
+<p>Function that for a board with all stones on left pile will move them
+in a legal way (no big stone on small stone) to the right hand pile</p>
   </section>
 </section>
 <section class="detail" id="get_number_moves/1">
@@ -408,7 +447,7 @@ Pages
     </a>
     <h1 class="signature" translate="no">get_number_moves(server)</h1>
 
-      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_server/tower_state.ex#L35" class="icon-action" rel="help" title="View Source">
+      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_server/tower_state.ex#L53" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -424,7 +463,7 @@ Pages
 
       </div>
 
-
+<p>Function returning the number of moves that have been played.</p>
   </section>
 </section>
 <section class="detail" id="get_number_stones/1">
@@ -436,7 +475,7 @@ Pages
     </a>
     <h1 class="signature" translate="no">get_number_stones(server)</h1>
 
-      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_server/tower_state.ex#L40" class="icon-action" rel="help" title="View Source">
+      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_server/tower_state.ex#L61" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -452,7 +491,29 @@ Pages
 
       </div>
 
+<p>Function that returns the number of stones on the board.</p>
+  </section>
+</section>
+<section class="detail" id="handle_call/3">
 
+  <div class="detail-header">
+    <a href="#handle_call/3" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">handle_call(msg, arg2, state)</h1>
+
+      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_server/tower_state.ex#L126" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Handles events</p>
   </section>
 </section>
 <section class="detail" id="handle_continue/2">
@@ -464,7 +525,7 @@ Pages
     </a>
     <h1 class="signature" translate="no">handle_continue(atom, data)</h1>
 
-      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_server/tower_state.ex#L70" class="icon-action" rel="help" title="View Source">
+      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_server/tower_state.ex#L114" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -474,7 +535,7 @@ Pages
 
   <section class="docstring">
 
-<p>Callback implementation for <a href="https://hexdocs.pm/elixir/GenServer.html#c:handle_continue/2"><code class="inline">GenServer.handle_continue/2</code></a>.</p>
+<p>Completes work of init asynchronously</p>
   </section>
 </section>
 <section class="detail" id="init/1">
@@ -486,7 +547,7 @@ Pages
     </a>
     <h1 class="signature" translate="no">init(opts)</h1>
 
-      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_server/tower_state.ex#L64" class="icon-action" rel="help" title="View Source">
+      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_server/tower_state.ex#L105" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -496,7 +557,7 @@ Pages
 
   <section class="docstring">
 
-<p>Callback implementation for <a href="https://hexdocs.pm/elixir/GenServer.html#c:init/1"><code class="inline">GenServer.init/1</code></a>.</p>
+<p>Sets up basic state. Most of work completed in continuation asynchronously.</p>
   </section>
 </section>
 <section class="detail" id="is_complete/1">
@@ -508,7 +569,7 @@ Pages
     </a>
     <h1 class="signature" translate="no">is_complete(server)</h1>
 
-      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_server/tower_state.ex#L50" class="icon-action" rel="help" title="View Source">
+      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_server/tower_state.ex#L80" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -524,7 +585,8 @@ Pages
 
       </div>
 
-
+<p>Funtion returns true if game is complete
+That is all stones in correct order on right hand pile</p>
   </section>
 </section>
 <section class="detail" id="move_stone/3">
@@ -536,7 +598,7 @@ Pages
     </a>
     <h1 class="signature" translate="no">move_stone(server, from, to)</h1>
 
-      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_server/tower_state.ex#L45" class="icon-action" rel="help" title="View Source">
+      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_server/tower_state.ex#L71" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -552,7 +614,9 @@ Pages
 
       </div>
 
-
+<p>Funtion that moves a stone between piles. 
+Will error if the stone is bigger than the one at the top of the pile.
+Increments moves taken.</p>
   </section>
 </section>
 <section class="detail" id="reset_game/2">
@@ -564,7 +628,7 @@ Pages
     </a>
     <h1 class="signature" translate="no">reset_game(server, new_stones)</h1>
 
-      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_server/tower_state.ex#L60" class="icon-action" rel="help" title="View Source">
+      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_server/tower_state.ex#L98" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -580,7 +644,8 @@ Pages
 
       </div>
 
-
+<p>Restarts a game with a new number of stones on the board.
+Resets move count</p>
   </section>
 </section>
 <section class="detail" id="start_link/1">
@@ -592,7 +657,7 @@ Pages
     </a>
     <h1 class="signature" translate="no">start_link(opts)</h1>
 
-      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_server/tower_state.ex#L15" class="icon-action" rel="help" title="View Source">
+      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_server/tower_state.ex#L20" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -602,7 +667,13 @@ Pages
 
   <section class="docstring">
 
+      <div class="specs">
 
+          <pre translate="no"><span class="attribute">@spec</span> start_link(opts :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">list</a>()) :: {:error, <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">any</a>()} | {:ok, <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">pid</a>()}</pre>
+
+      </div>
+
+<p>Call this function to start up the module. Name and Stones must be provided. </p>
   </section>
 </section>
 
@@ -613,11 +684,11 @@ Pages
         <p>
 
             <span class="line">
-              <a href="https://hex.pm/packages/hanoi/0.7.0" class="footer-hex-package">Hex Package</a>
+              <a href="https://hex.pm/packages/hanoi/0.8.0" class="footer-hex-package">Hex Package</a>
 
-              <a href="https://preview.hex.pm/preview/hanoi/0.7.0">Hex Preview</a>
+              <a href="https://preview.hex.pm/preview/hanoi/0.8.0">Hex Preview</a>
 
-                (<a href="https://preview.hex.pm/preview/hanoi/0.7.0/show/lib/hanoi_server/tower_state.ex">current file</a>)
+                (<a href="https://preview.hex.pm/preview/hanoi/0.8.0/show/lib/hanoi_server/tower_state.ex">current file</a>)
 
             </span>
 

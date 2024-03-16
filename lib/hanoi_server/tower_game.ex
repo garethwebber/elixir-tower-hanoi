@@ -4,11 +4,10 @@ defmodule Hanoi.TowerGame do
   @moduledoc """
   The Hanoi game as a public API & state.
 
-  Each individual game should run as one of these. They will exist 
-  independently of each other.
-
   Runs as a supervisor and starts a GenServer to process work and an
   ETS instance to hold state. Usually run as part of an OTP application.
+
+  Instances are removed by an independent periodic purger process.
   """
 
   @doc """
