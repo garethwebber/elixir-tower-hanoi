@@ -126,8 +126,7 @@ Pages
 
 
   <section id="moduledoc">
-<p>OTP Application that runs phoenix web app.</p><p>Currently also loads HanoiGame supervision tree &amp; Genserver. This may move to
-being started by the web app to allow multiple games to run in parallel.</p><p>Alternative entrypoint to the CLI module</p>
+<p>OTP Application supervises the game. </p><p>It starts </p><ul><li>the phoenix liveview web app</li><li>the TowerGame dynamic supervisor that creates and deletes individual games</li><li>the Session Purger that removes uused games after an hour</li></ul><p>Alternative entrypoint to the CLI module</p>
   </section>
 
 
@@ -175,7 +174,7 @@ being started by the web app to allow multiple games to run in parallel.</p><p>A
     </a>
     <h1 class="signature" translate="no">start(type, args)</h1>
 
-      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_app/application.ex#L15" class="icon-action" rel="help" title="View Source">
+      <a href="https://github.com/garethwebber/elixir-tower-hanoi/blob/main/lib/hanoi_app/application.ex#L17" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>

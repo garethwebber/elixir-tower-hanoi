@@ -1,9 +1,11 @@
 defmodule Hanoi.Application do
   @moduledoc """
-  OTP Application that runs phoenix web app.
+  OTP Application supervises the game. 
 
-  Currently also loads HanoiGame supervision tree & Genserver. This may move to
-  being started by the web app to allow multiple games to run in parallel.
+  It starts 
+  - the phoenix liveview web app
+  - the TowerGame dynamic supervisor that creates and deletes individual games
+  - the Session Purger that removes uused games after an hour
 
   Alternative entrypoint to the CLI module
   """
